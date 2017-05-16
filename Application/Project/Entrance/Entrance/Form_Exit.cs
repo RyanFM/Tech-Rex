@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
+using MySql.Data.MySqlClient;
 
 namespace Entrance
 {
@@ -90,8 +91,16 @@ namespace Entrance
         {
             label_RFIDnr.Text = "RFID number:";
             label_status.Text = "RFID number is: " + rfidTag.ToString();
+            UpdateSQL();
         }
         //Above about tag
+
+        public void UpdateSQL()
+        {
+            string query = "UPDATE visitor SET status='Checked-out' WHERE visitor='" + rfidTag + "'";
+            MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+        }
+
 
         /*************** Unimportant method **********/
         // Get RFID info

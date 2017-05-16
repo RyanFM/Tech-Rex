@@ -11,7 +11,7 @@ namespace Entrance
     {
         /********* instance varible ***********/
         private string connectionString;
-        private MySqlConnection databaseConnection;
+        public MySqlConnection databaseConnection;
 
         /********* Construcor ***********/
         public DatabaseConnector()

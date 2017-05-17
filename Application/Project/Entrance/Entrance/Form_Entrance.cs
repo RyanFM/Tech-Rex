@@ -88,9 +88,18 @@ namespace Entrance
         public void DetachTag(object sender,TagEventArgs e)
         {
             label_RFIDnr.Text = "RFID number:";
-            label_status.Text = "RFID stored. Scan QR code.";
+            label_status.Text = "RFID stored. ";//Scan QR code.";
+            UpdateSQL();
         }
         //Above about tag
+
+
+        //SQL update -- update stasut
+        public void UpdateSQL()
+        {
+            string query = "UPDATE visitor SET status='Checked-in' WHERE visitor='" + rfidTag + "'";
+            MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+        }
 
 
 
@@ -118,5 +127,6 @@ namespace Entrance
             UserRFID.Antenna = false;
             UserRFID.close();
         }
+
     }
 }

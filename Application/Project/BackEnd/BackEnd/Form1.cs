@@ -28,7 +28,7 @@ namespace BackEnd
         {
             
 
-            if (textBox_Search.Text != "")
+            if (textBox_Search.Text != "") // If you begin to type into the search box
             {
                 for (int i = listView_Details.Items.Count - 1; i >= 0; i--) 
                 {
@@ -50,7 +50,7 @@ namespace BackEnd
             else
             {
                  
-                DisplayListInfo(); // Resets the listview
+                DisplayListInfo(); // Resets the listview when the search box is empty
             }
         }
 

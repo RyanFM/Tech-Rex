@@ -47,3 +47,6 @@ E:\OneDrive\Tech-rex\Applications\Camping\Camping\obj\Debug\Camping.Properties.R
 E:\OneDrive\Tech-rex\Applications\Camping\Camping\obj\Debug\Camping.csproj.GenerateResource.Cache
 E:\OneDrive\Tech-rex\Applications\Camping\Camping\obj\Debug\Camping.exe
 E:\OneDrive\Tech-rex\Applications\Camping\Camping\obj\Debug\Camping.pdb
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Camping\Camping\bin\Debug\Camping.exe.config
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Camping\Camping\obj\Debug\Camping.exe
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Camping\Camping\obj\Debug\Camping.pdb

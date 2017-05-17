@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace Entrance
+namespace Camping
 {
-    class DatabaseConnector
+    public class DatabaseConnector
     {
         /********* instance varible ***********/
         private string connectionString;
-        private MySqlConnection databaseConnection;
+        public MySqlConnection databaseConnection;
 
         /********* Construcor ***********/
         public DatabaseConnector()

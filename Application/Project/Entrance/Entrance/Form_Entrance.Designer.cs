@@ -38,6 +38,8 @@
             this.label_RFIDnr = new System.Windows.Forms.Label();
             this.label_DB = new System.Windows.Forms.Label();
             this.label_databasestatus = new System.Windows.Forms.Label();
+            this.label_ID = new System.Windows.Forms.Label();
+            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label_Title
@@ -134,11 +136,30 @@
             this.label_databasestatus.TabIndex = 19;
             this.label_databasestatus.Text = "--";
             // 
+            // label_ID
+            // 
+            this.label_ID.AutoSize = true;
+            this.label_ID.Location = new System.Drawing.Point(52, 62);
+            this.label_ID.Name = "label_ID";
+            this.label_ID.Size = new System.Drawing.Size(21, 13);
+            this.label_ID.TabIndex = 20;
+            this.label_ID.Text = "ID:";
+            // 
+            // textBox_ID
+            // 
+            this.textBox_ID.Location = new System.Drawing.Point(80, 60);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(100, 20);
+            this.textBox_ID.TabIndex = 21;
+            this.textBox_ID.TextChanged += new System.EventHandler(this.textBox_ID_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 336);
+            this.Controls.Add(this.textBox_ID);
+            this.Controls.Add(this.label_ID);
             this.Controls.Add(this.label_databasestatus);
             this.Controls.Add(this.label_DB);
             this.Controls.Add(this.label_RFIDnr);
@@ -170,6 +191,8 @@
         private System.Windows.Forms.Label label_RFIDnr;
         private System.Windows.Forms.Label label_DB;
         private System.Windows.Forms.Label label_databasestatus;
+        private System.Windows.Forms.Label label_ID;
+        private System.Windows.Forms.TextBox textBox_ID;
     }
 }
 

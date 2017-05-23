@@ -52,8 +52,8 @@ namespace Entrance
                 UserRFID.waitForAttachment(3000);
                 UserRFID.Antenna = true;
                 UserRFID.LED = true;
-                UserRFID.Tag += new TagEventHandler(AttcahTag);
-                UserRFID.TagLost += new TagEventHandler(DetachTag);
+               // UserRFID.Tag += new TagEventHandler(AttcahTag);
+               // UserRFID.TagLost += new TagEventHandler(DetachTag);
             }
             catch(PhidgetException)
             {
@@ -84,6 +84,10 @@ namespace Entrance
             rfidTag = e.Tag.ToString();
             label_RFIDnr.Text += " "+ rfidTag;
             label_status.Text = "RFID scanned.";
+
+           // string query = "UPDATE visitor SET status='Checked-in' WHERE visitor_id=1";
+           // MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+
         }
         public void DetachTag(object sender,TagEventArgs e)
         {
@@ -97,22 +101,18 @@ namespace Entrance
         //SQL update -- update stasut
         public void UpdateSQL()
         {
-            string query = "UPDATE visitor SET status='Checked-in' WHERE visitor='" + rfidTag + "'";
+            
+            string query = "UPDATE visitor SET status='Checked-in',rfid='"+rfidTag+"' WHERE visitor_id=" + id;
             MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+            command.ExecuteNonQuery();
+
         }
 
 
 
 
         /**************** unimportant method *******************/
-        //Change form button
-        private void button_Exit_Click(object sender, EventArgs e)
-        {
-            Form_Exit Form2 = new Form_Exit();
-            this.Hide();
-            Form2.ShowDialog();
-            this.Close();
-        }
+
 
         //Status changes
         public void ChangeStatus(string status)
@@ -128,5 +128,17 @@ namespace Entrance
             UserRFID.close();
         }
 
+        private void textBox_ID_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                id = Convert.ToInt32(textBox_ID.Text);
+            }
+            catch
+            {
+
+            }
+            
+        }
     }
 }

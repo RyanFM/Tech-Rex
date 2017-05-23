@@ -24,17 +24,16 @@ namespace Entrance
         //Open database
         public bool IsConnected()
         {
-            bool connected = false;
+            
             try
             {
                 databaseConnection.Open();
-                connected = !connected;
-                return connected;
+                return true;
             }
             catch
             {
                 databaseConnection.Close();
-                return connected;
+                return false;
             }
 
         }

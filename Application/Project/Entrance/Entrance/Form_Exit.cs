@@ -90,15 +90,17 @@ namespace Entrance
         public void DetachTag(object sender, TagEventArgs e)
         {
             label_RFIDnr.Text = "RFID number:";
-            label_status.Text = "RFID number is: " + rfidTag.ToString();
-            UpdateSQL();
+            label_status.Text = "RFID number stored";
+            if(listView_main.Items.Count == 0)
+                UpdateSQL();
         }
         //Above about tag
 
         public void UpdateSQL()
         {
-            string query = "UPDATE visitor SET status='Checked-out' WHERE visitor='" + rfidTag + "'";
+            string query = "UPDATE visitor SET status='Checked-out',rfid=null WHERE rfid='" + rfidTag + "'";
             MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+            command.ExecuteNonQuery();
         }
 
 

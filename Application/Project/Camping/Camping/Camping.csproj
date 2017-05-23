@@ -80,6 +80,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -93,6 +94,35 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="images\Camping Map.PNG" />
+    <Content Include="images\nr1.png" />
+    <Content Include="images\nr10.png" />
+    <Content Include="images\nr11.png" />
+    <Content Include="images\nr12.png" />
+    <Content Include="images\nr13.png" />
+    <Content Include="images\nr14.png" />
+    <Content Include="images\nr15.png" />
+    <Content Include="images\nr16.png" />
+    <Content Include="images\nr17.png" />
+    <Content Include="images\nr18.png" />
+    <Content Include="images\nr19.png" />
+    <Content Include="images\nr2.png" />
+    <Content Include="images\nr20.png" />
+    <Content Include="images\nr21.png" />
+    <Content Include="images\nr22.png" />
+    <Content Include="images\nr23.png" />
+    <Content Include="images\nr24.png" />
+    <Content Include="images\nr25.png" />
+    <Content Include="images\nr3.png" />
+    <Content Include="images\nr4.png" />
+    <Content Include="images\nr5.png" />
+    <Content Include="images\nr6.png" />
+    <Content Include="images\nr7.png" />
+    <Content Include="images\nr8.png" />
+    <Content Include="images\nr9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

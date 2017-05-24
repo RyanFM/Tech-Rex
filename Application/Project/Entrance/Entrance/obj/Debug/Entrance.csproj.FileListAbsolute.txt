@@ -101,3 +101,17 @@ C:\Users\PrinceWong\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\D
 C:\Users\PrinceWong\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.csproj.GenerateResource.Cache
 C:\Users\PrinceWong\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.exe
 C:\Users\PrinceWong\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.pdb
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\bin\Debug\Entrance.exe.config
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.exe
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.pdb
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\bin\Debug\Entrance.exe
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\bin\Debug\Entrance.pdb
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\bin\Debug\Phidget21.NET.dll
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\bin\Debug\MySql.Data.xml
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\bin\Debug\Phidget21.NET.xml
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.csprojResolveAssemblyReference.cache
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.Form1.resources
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.Form_Exit.resources
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.Main.resources
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.Properties.Resources.resources
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.csproj.GenerateResource.Cache

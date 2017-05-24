@@ -18,6 +18,7 @@ namespace Camping
         /*************** feild *****************/
         //private int NumberScanned;
         private string rfidTag;
+        private string camp = "OHHHH SHIT";
         RFID UserRFID;
         DatabaseConnector DB;
 
@@ -383,7 +384,7 @@ namespace Camping
 
         public bool IsReserved()
         {
-            string camp = "OHHHH SHIT";
+            
 
             string query = "SELECT camping_spot FROM visitor WHERE rfid='" + rfidTag + "'";
             DB.databaseConnection.Open();
@@ -395,7 +396,7 @@ namespace Camping
                 reader.Read();
                 camp = reader[0].ToString();
 
-                ;listBox_member.Items.Clear();
+                listBox_member.Items.Clear();
  
                 // listBox_member.Items.Add("RFID number " + rfidTag + ", Camping sopt: " + camp);
                 
@@ -412,15 +413,18 @@ namespace Camping
             if (camp == "")
             {
                 listBox_member.Items.Add("Camping sopt Not found");
+                lbSiteNo.Text = "";
                 return false;
             }
             else
             {
 
                 listBox_member.Items.Add("Camping sopt: " + camp);
+                lbSiteNo.Text = camp;
+                ShowCampingSpot();
                 return true;
             }
-
+           
 
 
 
@@ -437,10 +441,5 @@ namespace Camping
             listBox_member.Items.Add("Deny--- No reservsation found");
         }
 
-        private void tbTest_TextChanged(object sender, EventArgs e)
-        {
-            lbSiteNo.Text = tbTest.Text;
-            ShowCampingSpot();
-        }
     }
 }

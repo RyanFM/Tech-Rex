@@ -35,3 +35,13 @@ C:\Users\PrinceWong\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Deb
 C:\Users\PrinceWong\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Debug\BackEnd.csproj.GenerateResource.Cache
 C:\Users\PrinceWong\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Debug\BackEnd.exe
 C:\Users\PrinceWong\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Debug\BackEnd.pdb
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\bin\Debug\BackEnd.exe.config
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\bin\Debug\BackEnd.exe
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\bin\Debug\BackEnd.pdb
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\bin\Debug\MySql.Data.xml
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Debug\BackEnd.csprojResolveAssemblyReference.cache
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Debug\BackEnd.Form1.resources
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Debug\BackEnd.Properties.Resources.resources
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Debug\BackEnd.csproj.GenerateResource.Cache
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Debug\BackEnd.exe
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\BackEnd\BackEnd\obj\Debug\BackEnd.pdb

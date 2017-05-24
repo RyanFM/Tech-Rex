@@ -37,6 +37,7 @@ namespace Entrance
             if (DB.IsConnected())
             {
                 label_databasestatus.Text = "Database Connected";
+                DB.databaseConnection.Close();
             }
             else
             {
@@ -52,8 +53,8 @@ namespace Entrance
                 UserRFID.waitForAttachment(3000);
                 UserRFID.Antenna = true;
                 UserRFID.LED = true;
-               // UserRFID.Tag += new TagEventHandler(AttcahTag);
-               // UserRFID.TagLost += new TagEventHandler(DetachTag);
+                UserRFID.Tag += new TagEventHandler(AttcahTag);
+                UserRFID.TagLost += new TagEventHandler(DetachTag);
             }
             catch(PhidgetException)
             {
@@ -93,18 +94,61 @@ namespace Entrance
         {
             label_RFIDnr.Text = "RFID number:";
             label_status.Text = "RFID stored. ";//Scan QR code.";
-            UpdateSQL();
+            if (ValidateStatus())
+            {
+                UpdateSQL();
+            }
+            else
+            {
+                MessageBox.Show("Ticket may not paid.");
+            }
+               
         }
         //Above about tag
 
+        //validate
+        public bool ValidateStatus()
+        {
+            string status = "OHHHHHHHHH SHIT";
+
+            DB.databaseConnection.Open();
+            
+            string query = "SELECT status FROM visitor WHERE visitor_id=" + id;
+            MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+
+
+            try
+            {
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                status = reader[0].ToString();
+
+            }
+            catch
+            {
+                MessageBox.Show("Read failed");
+            }
+            finally
+            {
+                DB.databaseConnection.Close();
+            }
+            if (status == "Reserved")
+                return false;
+            return true;
+
+
+
+
+        }
 
         //SQL update -- update stasut
         public void UpdateSQL()
         {
-            
+            DB.databaseConnection.Open();
             string query = "UPDATE visitor SET status='Checked-in',rfid='"+rfidTag+"' WHERE visitor_id=" + id;
             MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
             command.ExecuteNonQuery();
+            DB.databaseConnection.Close();
 
         }
 

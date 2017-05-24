@@ -49,7 +49,7 @@ namespace BackEnd
             }
             else
             {
-                 
+                listView_Details.Items.Clear();
                 DisplayListInfo(); // Resets the listview when the search box is empty
             }
         }

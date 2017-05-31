@@ -28,8 +28,52 @@ namespace Purchases
         {
             InitializeComponent();
             DisplayShopID();
-        }
+            UserRFID = new RFID();
+            try
+            {
+                UserRFID.open();
+                UserRFID.waitForAttachment(3000);
+                UserRFID.Antenna = true;
+                UserRFID.LED = true;
+            }
+            catch
+            {
+                MessageBox.Show("Device connected failed");
+            }
 
+            UserRFID.Tag += new TagEventHandler(AttachTag);
+
+
+        }
+        public void AttachTag(object sender, TagEventArgs e)
+        {
+            rfidTag = e.Tag.ToString();
+
+            string query = "SELECT visitor_id FROM visitor WHERE rfid='" + rfidTag + "'";
+            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            MySqlCommand command = new MySqlCommand(query, databaseConnection);
+            databaseConnection.Open();
+            
+            MySqlDataReader reader = command.ExecuteReader();
+
+            try
+            {
+                reader.Read();
+                visitorID = Convert.ToInt32(reader[0]);
+
+            }
+            catch
+            {
+                MessageBox.Show("Read failed");
+            }
+            finally
+            {
+                databaseConnection.Close();
+            }
+
+            Checkout();
+
+        }
         public void DisplayShopID()
         {
             string sql = "SELECT shop_id FROM shop WHERE type = 'rent'";
@@ -220,6 +264,94 @@ namespace Purchases
                 return true;
             }
 
+
+        }
+        public void Checkout()
+        {
+            int amount;
+            int productID;
+            string productName = "";
+
+            if (EnoughToPay() && EnoughInStock())
+            {
+                for (int i = 0; i < listView_Cart.Items.Count; i++)
+                {
+                    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+
+                    productName = listView_Cart.Items[i].SubItems[0].Text;
+                    databaseConnection.Open();
+                    string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
+                    MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
+                    productID = Convert.ToInt32(commandPID.ExecuteScalar());
+                    databaseConnection.Close();
+
+                    amount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
+                    // get the amount needed to be removed and product id
+
+                    string sqlStockUpdate = "UPDATE shop_inventory SET amount = (amount - " + amount + ") WHERE shop_id = " + shopID + " AND product_id = " + productID;
+
+                    MySqlCommand commandUpdateStock;
+                    commandUpdateStock = new MySqlCommand(sqlStockUpdate, databaseConnection);
+
+                    databaseConnection.Open();
+                    commandUpdateStock.ExecuteNonQuery();
+                    databaseConnection.Close();
+                    UpdateBalance();
+
+
+                }
+                InsertOrder();
+                string receipt = "\tReceipt for " + DateTime.Now.ToString() + "\n\t======Order Details======\n";
+                for (int i = 0; i < listView_Cart.Items.Count; i++)
+                {
+                    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+
+                    int odAmount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
+                    int odPID;
+
+
+                    productName = listView_Cart.Items[i].SubItems[0].Text;
+                    databaseConnection.Open();
+                    string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
+                    MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
+                    odPID = Convert.ToInt32(commandPID.ExecuteScalar());
+                    databaseConnection.Close();
+
+                    databaseConnection.Open();
+                    string query = "INSERT INTO order_detail (order_nr, product_id, amount, type) VALUES " +
+                                   " ((SELECT o.order_nr FROM orders o, visitor v WHERE o.visitor_id = v.visitor_id ORDER BY o.order_nr desc LIMIT 1), " + odPID + ", " + odAmount + ", 'rent')";
+                    MySqlCommand command = new MySqlCommand(query, databaseConnection);
+                    command.ExecuteNonQuery();
+                    databaseConnection.Close();
+
+                    databaseConnection.Open();
+                    string queryRent = "INSERT INTO rented_products (visitor_id, product_id, amount, days_rented) VALUES (" + visitorID + "," + odPID + ", " + odAmount + ", 1)";
+                    MySqlCommand commandRent = new MySqlCommand(queryRent, databaseConnection);
+                    commandRent.ExecuteNonQuery();
+                    databaseConnection.Close();
+
+                    //give receipt
+                    receipt += "\n\t" + odAmount.ToString() + "x " + productName + "\t€" + listView_Cart.Items[i].SubItems[3].Text;
+                }
+                receipt += "\n\t-----------------\n\tTotal: \t€" + Total.ToString();
+                receipt += "\n\n\tThank you for your order";
+                MessageBox.Show(receipt);
+            }
+            else
+            {
+                if (EnoughToPay() && !EnoughInStock()) // There's not enough in stock
+                {
+                    MessageBox.Show("Not enough in stock!");
+                }
+                else
+                {
+                    MessageBox.Show("Insufficient funds!");
+                }
+
+            }
+            DisplayListInfo();
+            ResetCart();
+
         }
         public void UpdateBalance()
         {
@@ -293,65 +425,71 @@ namespace Purchases
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
             MySqlCommand commandList = new MySqlCommand(sql, databaseConnection);
             MySqlCommand commandST = new MySqlCommand(sqlSubTotal, databaseConnection);
-
-            try // subtotal calculation
+            if (Convert.ToInt32(tbAdd.Text) > 0)
             {
-                databaseConnection.Open();
-                double stQuery = Convert.ToDouble(commandST.ExecuteScalar());
-
-                subTotal = stQuery;
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                databaseConnection.Close();
-
-            }
-
-            try // add to cart
-            {
-                databaseConnection.Open();
-                MySqlDataReader reader = commandList.ExecuteReader();
-
-
-                while (reader.Read())
-
+                try // subtotal calculation
                 {
+                    databaseConnection.Open();
+                    double stQuery = Convert.ToDouble(commandST.ExecuteScalar());
+
+                    subTotal = stQuery;
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    databaseConnection.Close();
+
+                }
+
+                try // add to cart
+                {
+                    databaseConnection.Open();
+                    MySqlDataReader reader = commandList.ExecuteReader();
+
+
+                    while (reader.Read())
+
+                    {
 
 
 
-                    ListViewItem item = new ListViewItem(reader[0].ToString());
-                    item.SubItems.Add(reader[1].ToString());
-                    item.SubItems.Add(tbAdd.Text);
-                    item.SubItems.Add(subTotal.ToString());
+                        ListViewItem item = new ListViewItem(reader[0].ToString());
+                        item.SubItems.Add(reader[1].ToString());
+                        item.SubItems.Add(tbAdd.Text);
+                        item.SubItems.Add(subTotal.ToString());
 
-                    listView_Cart.Items.Add(item);
+                        listView_Cart.Items.Add(item);
 
 
 
+
+
+                    }
+                    reader.Close();
 
 
                 }
-                reader.Close();
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    databaseConnection.Close();
 
+                }
 
+                Total += subTotal;
+                lbTotal.Text = Total.ToString();
             }
-            catch (MySqlException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Please input a valid amount");
+                tbAdd.Text = "0";
             }
-            finally
-            {
-                databaseConnection.Close();
-
-            }
-
-            Total += subTotal;
-            lbTotal.Text = Total.ToString();
-
         }
 
         private void button_Remove_Click(object sender, EventArgs e)
@@ -385,82 +523,87 @@ namespace Purchases
 
         private void button_Checkout_Click(object sender, EventArgs e)
         {
-            int amount;
-            int productID;
-            string productName = "";
+            //int amount;
+            //int productID;
+            //string productName = "";
 
-            if (EnoughToPay() && EnoughInStock())
-            {
-                for (int i = 0; i < listView_Cart.Items.Count; i++)
-                {
-                    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            //if (EnoughToPay() && EnoughInStock())
+            //{
+            //    for (int i = 0; i < listView_Cart.Items.Count; i++)
+            //    {
+            //        MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
-                    productName = listView_Cart.Items[i].SubItems[0].Text;
-                    databaseConnection.Open();
-                    string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
-                    MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
-                    productID = Convert.ToInt32(commandPID.ExecuteScalar());
-                    databaseConnection.Close();
+            //        productName = listView_Cart.Items[i].SubItems[0].Text;
+            //        databaseConnection.Open();
+            //        string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
+            //        MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
+            //        productID = Convert.ToInt32(commandPID.ExecuteScalar());
+            //        databaseConnection.Close();
 
-                    amount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
-                    // get the amount needed to be removed and product id
+            //        amount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
+            //        // get the amount needed to be removed and product id
 
-                    string sqlStockUpdate = "UPDATE shop_inventory SET amount = (amount - " + amount + ") WHERE shop_id = " + shopID + " AND product_id = " + productID;
+            //        string sqlStockUpdate = "UPDATE shop_inventory SET amount = (amount - " + amount + ") WHERE shop_id = " + shopID + " AND product_id = " + productID;
 
-                    MySqlCommand commandUpdateStock;
-                    commandUpdateStock = new MySqlCommand(sqlStockUpdate, databaseConnection);
+            //        MySqlCommand commandUpdateStock;
+            //        commandUpdateStock = new MySqlCommand(sqlStockUpdate, databaseConnection);
 
-                    databaseConnection.Open();
-                    commandUpdateStock.ExecuteNonQuery();
-                    databaseConnection.Close();
-                    UpdateBalance();
-
-
-                }
-                InsertOrder();
-                for (int i = 0; i < listView_Cart.Items.Count; i++)
-                {
-                    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-
-                    int odAmount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
-                    int odPID;
+            //        databaseConnection.Open();
+            //        commandUpdateStock.ExecuteNonQuery();
+            //        databaseConnection.Close();
+            //        UpdateBalance();
 
 
-                    productName = listView_Cart.Items[i].SubItems[0].Text;
-                    databaseConnection.Open();
-                    string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
-                    MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
-                    odPID = Convert.ToInt32(commandPID.ExecuteScalar());
-                    databaseConnection.Close();
+            //    }
+            //    InsertOrder();
+            //    string receipt = "\tReceipt for " + DateTime.Now.ToString() + "\n\t======Order Details======\n";
+            //    for (int i = 0; i < listView_Cart.Items.Count; i++)
+            //    {
+            //        MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
-                    databaseConnection.Open();
-                    string query = "INSERT INTO order_detail (order_nr, product_id, amount, type) VALUES " +
-                                   " ((SELECT o.order_nr FROM orders o, visitor v WHERE o.visitor_id = v.visitor_id ORDER BY o.order_nr desc LIMIT 1), " + odPID + ", " + odAmount + ", 'rent')";
-                    MySqlCommand command = new MySqlCommand(query, databaseConnection);
-                    command.ExecuteNonQuery();
-                    databaseConnection.Close();
+            //        int odAmount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
+            //        int odPID;
 
-                    databaseConnection.Open();
-                    string queryRent = "INSERT INTO rented_products (visitor_id, product_id, amount, days_rented) VALUES (" + visitorID + "," + odPID + ", " + odAmount + ", 1)";
-                    MySqlCommand commandRent = new MySqlCommand(queryRent, databaseConnection);
-                    commandRent.ExecuteNonQuery();
-                    databaseConnection.Close();
-                }
-            }
-            else
-            {
-                if (EnoughToPay() && !EnoughInStock()) // There's not enough in stock
-                {
-                    MessageBox.Show("Not enough in stock!");
-                }else
-                {
-                    MessageBox.Show("Insufficient funds!");
-                }
 
-            }
-            DisplayListInfo();
-            ResetCart();
+            //        productName = listView_Cart.Items[i].SubItems[0].Text;
+            //        databaseConnection.Open();
+            //        string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
+            //        MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
+            //        odPID = Convert.ToInt32(commandPID.ExecuteScalar());
+            //        databaseConnection.Close();
 
+            //        databaseConnection.Open();
+            //        string query = "INSERT INTO order_detail (order_nr, product_id, amount, type) VALUES " +
+            //                       " ((SELECT o.order_nr FROM orders o, visitor v WHERE o.visitor_id = v.visitor_id ORDER BY o.order_nr desc LIMIT 1), " + odPID + ", " + odAmount + ", 'rent')";
+            //        MySqlCommand command = new MySqlCommand(query, databaseConnection);
+            //        command.ExecuteNonQuery();
+            //        databaseConnection.Close();
+
+            //        databaseConnection.Open();
+            //        string queryRent = "INSERT INTO rented_products (visitor_id, product_id, amount, days_rented) VALUES (" + visitorID + "," + odPID + ", " + odAmount + ", 1)";
+            //        MySqlCommand commandRent = new MySqlCommand(queryRent, databaseConnection);
+            //        commandRent.ExecuteNonQuery();
+            //        databaseConnection.Close();
+
+            //        //give receipt
+            //        receipt += "\n\t" + odAmount.ToString() + "x " + productName + "\t€" + listView_Cart.Items[i].SubItems[3].Text;
+            //    }
+            //    MessageBox.Show(receipt);
+            //}
+            //else
+            //{
+            //    if (EnoughToPay() && !EnoughInStock()) // There's not enough in stock
+            //    {
+            //        MessageBox.Show("Not enough in stock!");
+            //    }else
+            //    {
+            //        MessageBox.Show("Insufficient funds!");
+            //    }
+
+            //}
+            //DisplayListInfo();
+            //ResetCart();
+            Checkout();
         }
 
         private void cbShop_SelectedIndexChanged(object sender, EventArgs e)

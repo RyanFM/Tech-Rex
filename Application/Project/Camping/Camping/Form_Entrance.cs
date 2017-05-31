@@ -373,7 +373,7 @@ namespace Camping
         {
             if (IsReserved() == true)
             {
-                Checkin();
+                Check();
             }
             else
             {
@@ -425,15 +425,64 @@ namespace Camping
                 return true;
             }
            
+        }
+
+        public bool CheckStatus()
+        {
+            string status = "OHHHHHHHHH SHIT-3";
+
+            DB.databaseConnection.Open();
+
+            string query = "SELECT lower(status) FROM visitor WHERE rfid='" + rfidTag + "'";
+            MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
 
 
+            try
+            {
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                status = reader[0].ToString();
+
+            }
+            catch
+            {
+                MessageBox.Show("Read failed");
+            }
+            finally
+            {
+                DB.databaseConnection.Close();
+            }
+
+            if (status == "in-spot")
+                return true;
+            return false;
 
         }
 
-        public void Checkin()
+        public void Check()
         {
-            //MessageBox.Show("Pass allowed.", "Pass");
-            listBox_member.Items.Add("Pass--- Pass allowed");
+            if (CheckStatus())
+            {
+                DB.databaseConnection.Open();
+                string query = "UPDATE visitor SET status='Checked-in'where rfid='" + rfidTag + "'";
+                MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+                command.ExecuteNonQuery();
+                DB.databaseConnection.Close();
+                listBox_member.Items.Add("LEAVE--- Leave spot");
+            }
+            else
+            {
+                DB.databaseConnection.Open();
+                string query = "UPDATE visitor SET status='In-spot' where rfid='" + rfidTag +"'";
+                MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+                command.ExecuteNonQuery();
+                DB.databaseConnection.Close();
+                //MessageBox.Show("Pass allowed.", "Pass");
+                listBox_member.Items.Add("Pass--- Pass allowed");
+            }
+
+
+
         }
         public void Deny()
         {

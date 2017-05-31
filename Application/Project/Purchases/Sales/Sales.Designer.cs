@@ -52,6 +52,7 @@
             this.textBox_Add = new System.Windows.Forms.TextBox();
             this.cbShop = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.lbtest2 = new System.Windows.Forms.Label();
             this.groupBox_Cart.SuspendLayout();
             this.groupBox_Add.SuspendLayout();
             this.SuspendLayout();
@@ -271,11 +272,21 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Shop ID:";
             // 
+            // lbtest2
+            // 
+            this.lbtest2.AutoSize = true;
+            this.lbtest2.Location = new System.Drawing.Point(588, 54);
+            this.lbtest2.Name = "lbtest2";
+            this.lbtest2.Size = new System.Drawing.Size(46, 17);
+            this.lbtest2.TabIndex = 8;
+            this.lbtest2.Text = "label4";
+            // 
             // Sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 671);
+            this.Controls.Add(this.lbtest2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbShop);
             this.Controls.Add(this.groupBox_Cart);
@@ -317,6 +328,7 @@
         private System.Windows.Forms.ComboBox cbProducts;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbTotal;
+        private System.Windows.Forms.Label lbtest2;
     }
 }
 

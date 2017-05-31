@@ -23,6 +23,7 @@ namespace Purchases
         int visitorID = 1;
 
         double Total = 0.00;
+        double subTotal = 0.00;
 
         public Form_Loans()
         {
@@ -296,10 +297,11 @@ namespace Purchases
                     databaseConnection.Open();
                     commandUpdateStock.ExecuteNonQuery();
                     databaseConnection.Close();
-                    UpdateBalance();
+                   
 
 
                 }
+                UpdateBalance();
                 InsertOrder();
                 string receipt = "\tReceipt for " + DateTime.Now.ToString() + "\n\t======Order Details======\n";
                 for (int i = 0; i < listView_Cart.Items.Count; i++)
@@ -357,11 +359,15 @@ namespace Purchases
         {
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
-            databaseConnection.Open();
-            string query = "UPDATE visitor SET balance = " + GetNewBalance() + " WHERE visitor_id = " + visitorID;
-            MySqlCommand command = new MySqlCommand(query, databaseConnection);
-            command.ExecuteNonQuery();
-            databaseConnection.Close();
+            for (int i = 0; i < listView_Cart.Items.Count; i++)
+            {
+                databaseConnection.Open();
+                subTotal = Convert.ToDouble(listView_Cart.Items[i].SubItems[3].Text);
+                string sqlBalance = "UPDATE visitor SET balance = (balance - " + subTotal + ") WHERE visitor_id = " + visitorID;
+                MySqlCommand command = new MySqlCommand(sqlBalance, databaseConnection);
+                command.ExecuteNonQuery();
+                databaseConnection.Close();
+            }
         }
         public void InsertOrder()
         {
@@ -405,6 +411,7 @@ namespace Purchases
         private void button_GoBack_Click(object sender, EventArgs e)
         {
             Form1 Form1 = new Form1();
+            UserRFID.close();
             this.Hide();
             Form1.ShowDialog();
             this.Close();

@@ -25,12 +25,13 @@ namespace Sales
         int visitorID = 1;
 
         double Total = 0.00;
+        double subTotal = 0.00;
 
         public Sales()
         {
             InitializeComponent();
             DisplayShopID();
-
+            lbtest2.Text = Total.ToString();
 
             UserRFID = new RFID();
             try
@@ -199,6 +200,21 @@ namespace Sales
             lbTotal.Text = Total.ToString();
         }
 
+        //public void GetSubTotal()
+        //{
+        //    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+        //    double updatedBalance = 0.00;
+        //    for (int i = 0; i < listView_Cart.Items.Count; i++)
+        //    {
+        //        databaseConnection.Open();
+        //        subTotal = Convert.ToDouble(listView_Cart.Items[i].SubItems[3].Text);
+        //        string sqlBalance = "SELECT (balance - " + subTotal + ") FROM visitor WHERE visitor_id = " + visitorID;
+        //        MySqlCommand commandBalance = new MySqlCommand(sqlBalance, databaseConnection);
+        //        updatedBalance = Convert.ToDouble(commandBalance.ExecuteScalar());
+        //        databaseConnection.Close();
+        //    }
+           
+        //}
         public double GetNewBalance() // get the balance after calculation of the pricing on checkout
         {
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
@@ -299,10 +315,11 @@ namespace Sales
                     databaseConnection.Open();
                     commandUpdateStock.ExecuteNonQuery();
                     databaseConnection.Close();
-                    UpdateBalance();
+                    
 
 
                 }
+                UpdateBalance();
                 InsertOrder();
                 string receipt = "\tReceipt for " + DateTime.Now.ToString() + "\n\t======Order Details======\n";
                 for (int i = 0; i < listView_Cart.Items.Count; i++)
@@ -357,12 +374,21 @@ namespace Sales
         public void UpdateBalance()
         {
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            
+            for (int i = 0; i < listView_Cart.Items.Count; i++)
+            {
+                databaseConnection.Open();
+                subTotal = Convert.ToDouble(listView_Cart.Items[i].SubItems[3].Text);
+                string sqlBalance = "UPDATE visitor SET balance = (balance - " + subTotal + ") WHERE visitor_id = " + visitorID;
+                MySqlCommand command = new MySqlCommand(sqlBalance, databaseConnection);
+                command.ExecuteNonQuery();
+                databaseConnection.Close();
+            }
 
-            databaseConnection.Open();
-            string query = "UPDATE visitor SET balance = " + GetNewBalance() + " WHERE visitor_id = " + visitorID;
-            MySqlCommand command = new MySqlCommand(query, databaseConnection);
-            command.ExecuteNonQuery();
-            databaseConnection.Close();
+
+            
+          
+            
         }
         public void InsertOrder()
         {
@@ -486,6 +512,7 @@ namespace Sales
 
                 Total += subTotal;
                 lbTotal.Text = Total.ToString();
+                lbtest2.Text = Total.ToString();
             }
             else
             {
@@ -527,6 +554,7 @@ namespace Sales
 
             lbTotal.Text = Total.ToString();
             listView_Cart.SelectedItems[0].Remove();
+            lbtest2.Text = Total.ToString();
         }
 
         private void button_Checkout_Click(object sender, EventArgs e) //update stock and create order/order_Detail
@@ -608,7 +636,7 @@ namespace Sales
             //DisplayListInfo();
             //ResetCart();
 
-            Checkout();
+            //Checkout();
            
         }
         //Above about tag

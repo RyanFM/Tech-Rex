@@ -115,3 +115,4 @@ C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug
 C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.Main.resources
 C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.Properties.Resources.resources
 C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.csproj.GenerateResource.Cache
+C:\Users\Prince\Desktop\Tech-Rex\Application\Project\Entrance\Entrance\obj\Debug\Entrance.Form_Gate.resources

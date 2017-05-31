@@ -32,5 +32,14 @@ namespace Entrance
             Form.ShowDialog();
             this.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form_Gate Form = new Form_Gate();
+            this.Hide();
+            Form.ShowDialog();
+            this.Close();
+
+        }
     }
 }

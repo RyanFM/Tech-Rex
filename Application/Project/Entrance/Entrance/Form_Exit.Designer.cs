@@ -49,20 +49,18 @@
             // 
             this.label_Title.AutoSize = true;
             this.label_Title.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title.Location = new System.Drawing.Point(17, 15);
-            this.label_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_Title.Location = new System.Drawing.Point(26, 23);
             this.label_Title.Name = "label_Title";
-            this.label_Title.Size = new System.Drawing.Size(127, 26);
+            this.label_Title.Size = new System.Drawing.Size(183, 37);
             this.label_Title.TabIndex = 1;
             this.label_Title.Text = "Festival Exit";
             // 
             // label_Toreturn
             // 
             this.label_Toreturn.AutoSize = true;
-            this.label_Toreturn.Location = new System.Drawing.Point(48, 224);
-            this.label_Toreturn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_Toreturn.Location = new System.Drawing.Point(72, 345);
             this.label_Toreturn.Name = "label_Toreturn";
-            this.label_Toreturn.Size = new System.Drawing.Size(58, 13);
+            this.label_Toreturn.Size = new System.Drawing.Size(84, 20);
             this.label_Toreturn.TabIndex = 6;
             this.label_Toreturn.Text = "To Return:";
             // 
@@ -75,10 +73,10 @@
             this.Amount_Return});
             this.listView_main.FullRowSelect = true;
             this.listView_main.GridLines = true;
-            this.listView_main.Location = new System.Drawing.Point(51, 54);
-            this.listView_main.Margin = new System.Windows.Forms.Padding(2);
+            this.listView_main.Location = new System.Drawing.Point(76, 83);
+            this.listView_main.MultiSelect = false;
             this.listView_main.Name = "listView_main";
-            this.listView_main.Size = new System.Drawing.Size(249, 168);
+            this.listView_main.Size = new System.Drawing.Size(372, 256);
             this.listView_main.TabIndex = 9;
             this.listView_main.UseCompatibleStateImageBehavior = false;
             this.listView_main.View = System.Windows.Forms.View.Details;
@@ -101,10 +99,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(51, 271);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(76, 417);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(249, 40);
+            this.button1.Size = new System.Drawing.Size(374, 62);
             this.button1.TabIndex = 10;
             this.button1.Text = "Purchase item";
             this.button1.UseVisualStyleBackColor = true;
@@ -113,72 +110,77 @@
             // label_CS
             // 
             this.label_CS.AutoSize = true;
-            this.label_CS.Location = new System.Drawing.Point(339, 93);
+            this.label_CS.Location = new System.Drawing.Point(508, 143);
+            this.label_CS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_CS.Name = "label_CS";
-            this.label_CS.Size = new System.Drawing.Size(75, 13);
+            this.label_CS.Size = new System.Drawing.Size(114, 20);
             this.label_CS.TabIndex = 14;
             this.label_CS.Text = "Current status:";
             // 
             // label_status
             // 
             this.label_status.AutoSize = true;
-            this.label_status.Location = new System.Drawing.Point(420, 93);
+            this.label_status.Location = new System.Drawing.Point(630, 143);
+            this.label_status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_status.Name = "label_status";
-            this.label_status.Size = new System.Drawing.Size(13, 13);
+            this.label_status.Size = new System.Drawing.Size(19, 20);
             this.label_status.TabIndex = 15;
             this.label_status.Text = "--";
             // 
             // label_SS
             // 
             this.label_SS.AutoSize = true;
-            this.label_SS.Location = new System.Drawing.Point(339, 271);
+            this.label_SS.Location = new System.Drawing.Point(508, 417);
+            this.label_SS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_SS.Name = "label_SS";
-            this.label_SS.Size = new System.Drawing.Size(66, 13);
+            this.label_SS.Size = new System.Drawing.Size(100, 20);
             this.label_SS.TabIndex = 16;
             this.label_SS.Text = "RFID status:";
             // 
             // label_SystemStatus
             // 
             this.label_SystemStatus.AutoSize = true;
-            this.label_SystemStatus.Location = new System.Drawing.Point(420, 271);
+            this.label_SystemStatus.Location = new System.Drawing.Point(630, 417);
+            this.label_SystemStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_SystemStatus.Name = "label_SystemStatus";
-            this.label_SystemStatus.Size = new System.Drawing.Size(13, 13);
+            this.label_SystemStatus.Size = new System.Drawing.Size(19, 20);
             this.label_SystemStatus.TabIndex = 17;
             this.label_SystemStatus.Text = "--";
             // 
             // label_databasestatus
             // 
             this.label_databasestatus.AutoSize = true;
-            this.label_databasestatus.Location = new System.Drawing.Point(444, 298);
+            this.label_databasestatus.Location = new System.Drawing.Point(666, 458);
+            this.label_databasestatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_databasestatus.Name = "label_databasestatus";
-            this.label_databasestatus.Size = new System.Drawing.Size(13, 13);
+            this.label_databasestatus.Size = new System.Drawing.Size(19, 20);
             this.label_databasestatus.TabIndex = 18;
             this.label_databasestatus.Text = "--";
             // 
             // label_DB
             // 
             this.label_DB.AutoSize = true;
-            this.label_DB.Location = new System.Drawing.Point(339, 298);
+            this.label_DB.Location = new System.Drawing.Point(508, 458);
+            this.label_DB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_DB.Name = "label_DB";
-            this.label_DB.Size = new System.Drawing.Size(87, 13);
+            this.label_DB.Size = new System.Drawing.Size(131, 20);
             this.label_DB.TabIndex = 19;
             this.label_DB.Text = "Database status:";
             // 
             // label_RFIDnr
             // 
             this.label_RFIDnr.AutoSize = true;
-            this.label_RFIDnr.Location = new System.Drawing.Point(339, 54);
-            this.label_RFIDnr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_RFIDnr.Location = new System.Drawing.Point(508, 83);
             this.label_RFIDnr.Name = "label_RFIDnr";
-            this.label_RFIDnr.Size = new System.Drawing.Size(73, 13);
+            this.label_RFIDnr.Size = new System.Drawing.Size(110, 20);
             this.label_RFIDnr.TabIndex = 20;
             this.label_RFIDnr.Text = "RFID number:";
             // 
             // Form_Exit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 394);
+            this.ClientSize = new System.Drawing.Size(1005, 606);
             this.Controls.Add(this.label_RFIDnr);
             this.Controls.Add(this.label_DB);
             this.Controls.Add(this.label_databasestatus);
@@ -190,7 +192,6 @@
             this.Controls.Add(this.listView_main);
             this.Controls.Add(this.label_Toreturn);
             this.Controls.Add(this.label_Title);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form_Exit";
             this.Text = "Festival Exit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Exit_FormClosing);

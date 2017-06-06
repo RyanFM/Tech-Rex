@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
 using MySql.Data.MySqlClient;
+using System.Timers;
 
 namespace Entrance
 {
@@ -72,67 +73,93 @@ namespace Entrance
 
 
         //
+        public void ResetForm()
+        {
+            lbRent.Text = "Please scan tag";
+            lbRent.ForeColor = SystemColors.ActiveCaptionText;
+            gbRent.BackColor = SystemColors.ControlLight;
+
+            lbMoney.ForeColor = SystemColors.ControlText;
+            lbTotal.ForeColor = SystemColors.ControlText;
+        }
+        public void ExecuteIn(int milliseconds)
+        {
+            var timer = new System.Windows.Forms.Timer();
+            timer.Tick += (s, e) =>
+            {
+                ((System.Windows.Forms.Timer)s).Stop(); //s is the Timer
+                ResetForm();
+
+            };
+            timer.Interval = milliseconds;
+            timer.Start();
+        }
+
         public void DisplayListInfo()
         {
-            listView_main.Items.Clear();
-
-
-            string sql = "SELECT p.product_name, p.deposit, r.amount,  r.days_rented , ((p.deposit * r.amount) - (r.days_rented * 20) * amount)" +
-                         "FROM product p JOIN rented_products r ON(p.product_id = r.product_id) " +
-                         "JOIN visitor v ON (v.visitor_id = r.visitor_id) " +
-                         "WHERE v.visitor_id = " + id;
-
-
-
-
-
-            MySqlCommand commandList = new MySqlCommand(sql, DB.databaseConnection);
-
-
-
-
-            try
+            if (insufficient == false)
             {
+                listView_main.Items.Clear();
 
-                MySqlDataReader reader = commandList.ExecuteReader();
+
+                string sql = "SELECT p.product_name, p.deposit, r.amount,  r.days_rented , ((p.deposit * r.amount) - (r.days_rented * 20) * amount)" +
+                             "FROM product p JOIN rented_products r ON(p.product_id = r.product_id) " +
+                             "JOIN visitor v ON (v.visitor_id = r.visitor_id) " +
+                             "WHERE v.visitor_id = " + id;
 
 
-                while (reader.Read())
 
+
+
+                MySqlCommand commandList = new MySqlCommand(sql, DB.databaseConnection);
+
+
+
+
+                try
                 {
 
-
-                    ListViewItem item = new ListViewItem(reader[0].ToString());
-                    item.SubItems.Add(reader[1].ToString());
-                    item.SubItems.Add(reader[2].ToString());
-                    item.SubItems.Add(reader[3].ToString());
-                    item.SubItems.Add(reader[4].ToString());
+                    MySqlDataReader reader = commandList.ExecuteReader();
 
 
-                    listView_main.Items.Add(item);
+                    while (reader.Read())
 
-                }
-                reader.Close();
-                for (int i = 0; i < listView_main.Items.Count; i++)
-                {
-
-                    if (Convert.ToDouble(listView_main.Items[i].SubItems[4].Text) < 0)
                     {
-                        double newPrice = 0 - Convert.ToDouble(listView_main.Items[i].SubItems[4].Text);
-                        listView_main.Items[i].SubItems[4].Text = newPrice.ToString();
 
+
+                        ListViewItem item = new ListViewItem(reader[0].ToString());
+                        item.SubItems.Add(reader[1].ToString());
+                        item.SubItems.Add(reader[2].ToString());
+                        item.SubItems.Add(reader[3].ToString());
+                        item.SubItems.Add(reader[4].ToString());
+
+
+                        listView_main.Items.Add(item);
+
+                    }
+                    reader.Close();
+                    for (int i = 0; i < listView_main.Items.Count; i++)
+                    {
+
+                        if (Convert.ToDouble(listView_main.Items[i].SubItems[4].Text) < 0)
+                        {
+                            double newPrice = 0 - Convert.ToDouble(listView_main.Items[i].SubItems[4].Text);
+                            listView_main.Items[i].SubItems[4].Text = newPrice.ToString();
+
+
+                        }
 
                     }
 
+
                 }
-
-
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                UpdateTotalPrice();
             }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            UpdateTotalPrice();
+            
         }
 
 
@@ -170,6 +197,10 @@ namespace Entrance
                     MessageBox.Show("Insufficient funds!");
 
                     insufficient = true;
+                }
+                else
+                {
+                    insufficient = false;
                 }
             }
             else
@@ -250,8 +281,13 @@ namespace Entrance
 
             if (UpdatedBalance == 99999 || insufficient == true)
             {
-                MessageBox.Show("Please try again");
-                insufficient = false;
+                
+                
+                listView_main.Items.Clear();
+                Total = 0;
+                ReturnStatus();
+                ExecuteIn(1500);
+                
             }
             else
             {
@@ -282,19 +318,32 @@ namespace Entrance
 
         public void ChangeText()
         {
-            if (listView_main.Items.Count == 0)
+            if (insufficient == false)
             {
-                lbRent.Text = "PASS";
 
-                lbRent.ForeColor = Color.DarkGreen;
-                gbRent.BackColor = Color.DarkSeaGreen;
+                if (listView_main.Items.Count == 0)
+                {
+                    lbRent.Text = "PASS";
+
+                    lbRent.ForeColor = Color.DarkGreen;
+                    gbRent.BackColor = Color.DarkSeaGreen;
+                    lbMoney.ForeColor = Color.DarkGreen;
+                    lbTotal.ForeColor = Color.DarkGreen;
+                    ExecuteIn(1500);
+                }
+                else
+                {
+                    lbRent.Text = "Please return these items";
+
+                    lbRent.ForeColor = Color.Red;
+                    gbRent.BackColor = Color.Maroon;
+                    lbMoney.ForeColor = Color.Red;
+                    lbTotal.ForeColor = Color.Red;
+                }
             }
             else
             {
-                lbRent.Text = "Please return these items";
-
-                lbRent.ForeColor = Color.Red;
-                gbRent.BackColor = Color.Maroon;
+                insufficient = false;
             }
         }
         //About Tag

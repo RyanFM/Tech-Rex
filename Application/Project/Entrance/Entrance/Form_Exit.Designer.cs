@@ -34,6 +34,8 @@
             this.Name_Return = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Price_Return = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Amount_Return = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DaysRented = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmSubtotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnReturn = new System.Windows.Forms.Button();
             this.label_CS = new System.Windows.Forms.Label();
             this.label_status = new System.Windows.Forms.Label();
@@ -43,8 +45,6 @@
             this.label_DB = new System.Windows.Forms.Label();
             this.label_RFIDnr = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
-            this.DaysRented = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clmSubtotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lbRent = new System.Windows.Forms.Label();
             this.gbRent = new System.Windows.Forms.GroupBox();
             this.gbRent.SuspendLayout();
@@ -100,6 +100,16 @@
             // Amount_Return
             // 
             this.Amount_Return.Text = "Amount";
+            // 
+            // DaysRented
+            // 
+            this.DaysRented.Text = "Days Rented";
+            this.DaysRented.Width = 68;
+            // 
+            // clmSubtotal
+            // 
+            this.clmSubtotal.Text = "Subtotal";
+            this.clmSubtotal.Width = 70;
             // 
             // btnReturn
             // 
@@ -187,19 +197,9 @@
             this.lbTotal.AutoSize = true;
             this.lbTotal.Location = new System.Drawing.Point(106, 306);
             this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(46, 17);
+            this.lbTotal.Size = new System.Drawing.Size(44, 17);
             this.lbTotal.TabIndex = 21;
-            this.lbTotal.Text = "label1";
-            // 
-            // DaysRented
-            // 
-            this.DaysRented.Text = "Days Rented";
-            this.DaysRented.Width = 68;
-            // 
-            // clmSubtotal
-            // 
-            this.clmSubtotal.Text = "Subtotal";
-            this.clmSubtotal.Width = 70;
+            this.lbTotal.Text = "€0.00";
             // 
             // lbRent
             // 
@@ -214,7 +214,7 @@
             // 
             // gbRent
             // 
-            this.gbRent.BackColor = System.Drawing.SystemColors.Control;
+            this.gbRent.BackColor = System.Drawing.SystemColors.ControlLight;
             this.gbRent.Controls.Add(this.lbRent);
             this.gbRent.Controls.Add(this.lbTotal);
             this.gbRent.Controls.Add(this.btnReturn);

@@ -37,26 +37,21 @@
             // 
             this.label_Line1.AutoSize = true;
             this.label_Line1.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Line1.Location = new System.Drawing.Point(138, 258);
+            this.label_Line1.Location = new System.Drawing.Point(188, 256);
             this.label_Line1.Name = "label_Line1";
-            this.label_Line1.Size = new System.Drawing.Size(643, 56);
+            this.label_Line1.Size = new System.Drawing.Size(435, 46);
             this.label_Line1.TabIndex = 0;
-            this.label_Line1.Text = "Scan your bracelet to enter\r\n";
+            this.label_Line1.Text = "Scan your tag to enter\r\n";
             this.label_Line1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // timer1
-            // 
-            //this.timer1.Enabled = true;
-            //this.timer1.Interval = 3000;
-            //this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form_Gate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(199)))), ((int)(((byte)(61)))));
-            this.ClientSize = new System.Drawing.Size(933, 825);
+            this.BackColor = System.Drawing.Color.Gold;
+            this.ClientSize = new System.Drawing.Size(829, 660);
             this.Controls.Add(this.label_Line1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_Gate";
             this.Text = "Form_Gate";
             this.ResumeLayout(false);

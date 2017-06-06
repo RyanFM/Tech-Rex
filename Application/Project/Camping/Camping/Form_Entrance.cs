@@ -18,6 +18,7 @@ namespace Camping
         /*************** feild *****************/
         //private int NumberScanned;
         private string rfidTag;
+        private int id;
         private string camp = "OHHHH SHIT";
         RFID UserRFID;
         DatabaseConnector DB;
@@ -364,6 +365,24 @@ namespace Camping
         public void AttachTag(object sender,TagEventArgs e)
         {
             rfidTag = e.Tag.ToString();
+            DB.databaseConnection.Open();
+            string queryID = "SELECT visitor_id FROM visitor WHERE rfid='" + rfidTag + "'";
+
+            MySqlCommand commandID = new MySqlCommand(queryID, DB.databaseConnection);
+            MySqlDataReader reader = commandID.ExecuteReader();
+
+            try
+            {
+                reader.Read();
+                id = Convert.ToInt32(reader[0]);
+
+            }
+            catch
+            {
+                MessageBox.Show("Read failed");
+            }
+            reader.Close();
+            DB.databaseConnection.Close();
             //listBox_member.Items.Add(e.Tag.ToString());
 
 
@@ -412,7 +431,7 @@ namespace Camping
 
             if (camp == "")
             {
-                listBox_member.Items.Add("Camping sopt Not found");
+                listBox_member.Items.Add("Camping spot Not found");
                 lbSiteNo.Text = "";
                 return false;
             }
@@ -429,7 +448,7 @@ namespace Camping
 
         public bool CheckStatus()
         {
-            string status = "OHHHHHHHHH SHIT-3";
+            string status = "";
 
             DB.databaseConnection.Open();
 
@@ -465,6 +484,20 @@ namespace Camping
             {
                 DB.databaseConnection.Open();
                 string query = "UPDATE visitor SET status='Checked-in'where rfid='" + rfidTag + "'";
+
+                string queryUpdateSaturday = "UPDATE rented_products r JOIN visitor v ON (v.visitor_id = r.visitor_id) " +
+                                            "SET r.days_rented = 2 WHERE r.days_rented = 1 AND v.visitor_id = " + id;
+
+
+                string queryUpdateSunday = "UPDATE rented_products r JOIN visitor v ON (v.visitor_id = r.visitor_id) " +
+                                            "SET r.days_rented = 3 WHERE r.days_rented = 2 AND v.visitor_id = " + id;
+
+                MySqlCommand commandSaturday = new MySqlCommand(queryUpdateSaturday, DB.databaseConnection);
+                MySqlCommand commandSunday = new MySqlCommand(queryUpdateSunday, DB.databaseConnection);
+
+                commandSaturday.ExecuteNonQuery();
+                commandSunday.ExecuteNonQuery();
+
                 MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
                 command.ExecuteNonQuery();
                 DB.databaseConnection.Close();

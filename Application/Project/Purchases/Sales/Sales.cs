@@ -197,7 +197,7 @@ namespace Sales
         {
             listView_Cart.Items.Clear();
             Total = 0.00;
-            lbTotal.Text = Total.ToString();
+            lbTotal.Text = "€" + Total.ToString();
         }
 
         //public void GetSubTotal()
@@ -511,7 +511,7 @@ namespace Sales
                 }
 
                 Total += subTotal;
-                lbTotal.Text = Total.ToString();
+                lbTotal.Text = "€" + Total.ToString();
                 lbtest2.Text = Total.ToString();
             }
             else
@@ -552,7 +552,7 @@ namespace Sales
             }
 
 
-            lbTotal.Text = Total.ToString();
+            lbTotal.Text = "€" + Total.ToString();
             listView_Cart.SelectedItems[0].Remove();
             lbtest2.Text = Total.ToString();
         }

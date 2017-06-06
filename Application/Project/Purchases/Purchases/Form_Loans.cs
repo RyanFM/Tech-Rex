@@ -108,7 +108,7 @@ namespace Purchases
         {
             listView_Add.Items.Clear();
             shopID = Convert.ToInt32(cbShop.SelectedItem);
-
+            
             string sql = "SELECT p.product_id, p.product_name, p.price, si.amount " +
                          "FROM product p , shop_inventory si " +
                          "WHERE p.product_id = si.product_id " +
@@ -193,7 +193,7 @@ namespace Purchases
         {
             listView_Cart.Items.Clear();
             Total = 0.00;
-            lbTotal.Text = Total.ToString();
+            lbTotal.Text = "€" + Total.ToString();
         }
 
         public double GetNewBalance() // get the balance after calculation of the pricing on checkout
@@ -490,7 +490,7 @@ namespace Purchases
                 }
 
                 Total += subTotal;
-                lbTotal.Text = Total.ToString();
+                lbTotal.Text = "€" + Total.ToString();
             }
             else
             {
@@ -524,7 +524,7 @@ namespace Purchases
             }
 
 
-            lbTotal.Text = Total.ToString();
+            lbTotal.Text = "€" + Total.ToString();
             listView_Cart.SelectedItems[0].Remove();
         }
 

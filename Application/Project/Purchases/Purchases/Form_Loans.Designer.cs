@@ -183,9 +183,9 @@
             this.lbTotal.AutoSize = true;
             this.lbTotal.Location = new System.Drawing.Point(188, 279);
             this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(36, 17);
+            this.lbTotal.Size = new System.Drawing.Size(44, 17);
             this.lbTotal.TabIndex = 14;
-            this.lbTotal.Text = "0.00";
+            this.lbTotal.Text = "€0.00";
             // 
             // button_Checkout
             // 

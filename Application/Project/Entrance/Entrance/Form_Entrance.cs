@@ -145,7 +145,7 @@ namespace Entrance
         public void UpdateSQL()
         {
             DB.databaseConnection.Open();
-            string query = "UPDATE visitor SET status='Checked-in',rfid='"+rfidTag+"' WHERE visitor_id=" + id;
+            string query = "UPDATE visitor SET rfid='" + rfidTag + "' WHERE visitor_id=" + id;
             MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
             command.ExecuteNonQuery();
             DB.databaseConnection.Close();

@@ -64,14 +64,18 @@ namespace Entrance
                 this.BackColor = Color.Green;
                 label_Line1.ForeColor = Color.Azure;
                 label_Line1.Text = "PASS";
-
+                DB.databaseConnection.Open();
+                string query = "UPDATE visitor SET status='Checked-in' WHERE rfid='" + rfidTag + "'" ;
+                MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+                command.ExecuteNonQuery();
+                DB.databaseConnection.Close();
 
             }
             else
             {
                 this.BackColor = Color.Red;
                 label_Line1.ForeColor = Color.Azure;
-                label_Line1.Text = "Deny. Call the stuuff.";
+                label_Line1.Text = "Deny. Call the staff.";
 
             }
 
@@ -103,7 +107,7 @@ namespace Entrance
             {
                 DB.databaseConnection.Close();
             }
-            if (status == "Checked-in")
+            if (status == "Registered")
                 return true;
             return false;
         }

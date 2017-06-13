@@ -39,6 +39,7 @@
             this.button_Remove = new System.Windows.Forms.Button();
             this.label_Total = new System.Windows.Forms.Label();
             this.groupBox_Add = new System.Windows.Forms.GroupBox();
+            this.btnCola = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbProducts = new System.Windows.Forms.ComboBox();
@@ -53,6 +54,13 @@
             this.cbShop = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lbtest2 = new System.Windows.Forms.Label();
+            this.btnCroquette = new System.Windows.Forms.Button();
+            this.btnHeiniken = new System.Windows.Forms.Button();
+            this.btnFries = new System.Windows.Forms.Button();
+            this.btnDoner = new System.Windows.Forms.Button();
+            this.btnPlus = new System.Windows.Forms.Button();
+            this.btnMin = new System.Windows.Forms.Button();
+            this.lblAmount = new System.Windows.Forms.Label();
             this.groupBox_Cart.SuspendLayout();
             this.groupBox_Add.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +72,7 @@
             this.groupBox_Cart.Controls.Add(this.button_Checkout);
             this.groupBox_Cart.Controls.Add(this.button_Remove);
             this.groupBox_Cart.Controls.Add(this.label_Total);
-            this.groupBox_Cart.Location = new System.Drawing.Point(504, 145);
+            this.groupBox_Cart.Location = new System.Drawing.Point(956, 134);
             this.groupBox_Cart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox_Cart.Name = "groupBox_Cart";
             this.groupBox_Cart.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -147,6 +155,15 @@
             // 
             // groupBox_Add
             // 
+            this.groupBox_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox_Add.Controls.Add(this.btnDoner);
+            this.groupBox_Add.Controls.Add(this.lblAmount);
+            this.groupBox_Add.Controls.Add(this.btnMin);
+            this.groupBox_Add.Controls.Add(this.btnPlus);
+            this.groupBox_Add.Controls.Add(this.btnFries);
+            this.groupBox_Add.Controls.Add(this.btnHeiniken);
+            this.groupBox_Add.Controls.Add(this.btnCroquette);
+            this.groupBox_Add.Controls.Add(this.btnCola);
             this.groupBox_Add.Controls.Add(this.label2);
             this.groupBox_Add.Controls.Add(this.label1);
             this.groupBox_Add.Controls.Add(this.cbProducts);
@@ -154,19 +171,30 @@
             this.groupBox_Add.Controls.Add(this.label_1);
             this.groupBox_Add.Controls.Add(this.button_Add);
             this.groupBox_Add.Controls.Add(this.textBox_Add);
-            this.groupBox_Add.Location = new System.Drawing.Point(27, 145);
+            this.groupBox_Add.Location = new System.Drawing.Point(27, 134);
             this.groupBox_Add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox_Add.Name = "groupBox_Add";
             this.groupBox_Add.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox_Add.Size = new System.Drawing.Size(453, 515);
+            this.groupBox_Add.Size = new System.Drawing.Size(903, 680);
             this.groupBox_Add.TabIndex = 4;
             this.groupBox_Add.TabStop = false;
             this.groupBox_Add.Text = "ADD TO CART";
             // 
+            // btnCola
+            // 
+            this.btnCola.BackgroundImage = global::Sales.Properties.Resources.Coca_Cola1;
+            this.btnCola.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCola.Location = new System.Drawing.Point(244, 217);
+            this.btnCola.Name = "btnCola";
+            this.btnCola.Size = new System.Drawing.Size(72, 155);
+            this.btnCola.TabIndex = 7;
+            this.btnCola.UseVisualStyleBackColor = true;
+            this.btnCola.Click += new System.EventHandler(this.btnCola_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(171, 140);
+            this.label2.Location = new System.Drawing.Point(72, 612);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 17);
             this.label2.TabIndex = 6;
@@ -175,7 +203,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(172, 69);
+            this.label1.Location = new System.Drawing.Point(73, 541);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 17);
             this.label1.TabIndex = 5;
@@ -184,7 +212,7 @@
             // cbProducts
             // 
             this.cbProducts.FormattingEnabled = true;
-            this.cbProducts.Location = new System.Drawing.Point(238, 137);
+            this.cbProducts.Location = new System.Drawing.Point(139, 609);
             this.cbProducts.Name = "cbProducts";
             this.cbProducts.Size = new System.Drawing.Size(73, 24);
             this.cbProducts.TabIndex = 4;
@@ -196,7 +224,7 @@
             this.Product,
             this.Price,
             this.Stock});
-            this.listView_Add.Location = new System.Drawing.Point(34, 253);
+            this.listView_Add.Location = new System.Drawing.Point(477, 434);
             this.listView_Add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView_Add.Name = "listView_Add";
             this.listView_Add.Size = new System.Drawing.Size(393, 242);
@@ -228,7 +256,7 @@
             // label_1
             // 
             this.label_1.AutoSize = true;
-            this.label_1.Location = new System.Drawing.Point(31, 218);
+            this.label_1.Location = new System.Drawing.Point(474, 399);
             this.label_1.Name = "label_1";
             this.label_1.Size = new System.Drawing.Size(88, 17);
             this.label_1.TabIndex = 2;
@@ -236,10 +264,10 @@
             // 
             // button_Add
             // 
-            this.button_Add.Location = new System.Drawing.Point(333, 62);
+            this.button_Add.Location = new System.Drawing.Point(733, 198);
             this.button_Add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_Add.Name = "button_Add";
-            this.button_Add.Size = new System.Drawing.Size(97, 30);
+            this.button_Add.Size = new System.Drawing.Size(122, 53);
             this.button_Add.TabIndex = 1;
             this.button_Add.Text = "ADD";
             this.button_Add.UseVisualStyleBackColor = true;
@@ -248,7 +276,7 @@
             // textBox_Add
             // 
             this.textBox_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Add.Location = new System.Drawing.Point(238, 64);
+            this.textBox_Add.Location = new System.Drawing.Point(139, 536);
             this.textBox_Add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_Add.Name = "textBox_Add";
             this.textBox_Add.Size = new System.Drawing.Size(73, 24);
@@ -281,11 +309,88 @@
             this.lbtest2.TabIndex = 8;
             this.lbtest2.Text = "label4";
             // 
+            // btnCroquette
+            // 
+            this.btnCroquette.BackgroundImage = global::Sales.Properties.Resources.Croquette1;
+            this.btnCroquette.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCroquette.Location = new System.Drawing.Point(309, 85);
+            this.btnCroquette.Name = "btnCroquette";
+            this.btnCroquette.Size = new System.Drawing.Size(117, 123);
+            this.btnCroquette.TabIndex = 8;
+            this.btnCroquette.UseVisualStyleBackColor = true;
+            this.btnCroquette.Click += new System.EventHandler(this.btnCroquette_Click);
+            // 
+            // btnHeiniken
+            // 
+            this.btnHeiniken.BackgroundImage = global::Sales.Properties.Resources.Heiniken1;
+            this.btnHeiniken.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHeiniken.Location = new System.Drawing.Point(114, 232);
+            this.btnHeiniken.Name = "btnHeiniken";
+            this.btnHeiniken.Size = new System.Drawing.Size(63, 140);
+            this.btnHeiniken.TabIndex = 11;
+            this.btnHeiniken.UseVisualStyleBackColor = true;
+            this.btnHeiniken.Click += new System.EventHandler(this.btnHeiniken_Click);
+            // 
+            // btnFries
+            // 
+            this.btnFries.BackgroundImage = global::Sales.Properties.Resources.French_fries1;
+            this.btnFries.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFries.Location = new System.Drawing.Point(167, 85);
+            this.btnFries.Name = "btnFries";
+            this.btnFries.Size = new System.Drawing.Size(117, 123);
+            this.btnFries.TabIndex = 12;
+            this.btnFries.UseVisualStyleBackColor = true;
+            this.btnFries.Click += new System.EventHandler(this.btnFries_Click);
+            // 
+            // btnDoner
+            // 
+            this.btnDoner.BackgroundImage = global::Sales.Properties.Resources.Doner_kebab1;
+            this.btnDoner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDoner.Location = new System.Drawing.Point(28, 83);
+            this.btnDoner.Name = "btnDoner";
+            this.btnDoner.Size = new System.Drawing.Size(117, 125);
+            this.btnDoner.TabIndex = 13;
+            this.btnDoner.UseVisualStyleBackColor = true;
+            this.btnDoner.Click += new System.EventHandler(this.btnDoner_Click);
+            // 
+            // btnPlus
+            // 
+            this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnPlus.Location = new System.Drawing.Point(795, 105);
+            this.btnPlus.Name = "btnPlus";
+            this.btnPlus.Size = new System.Drawing.Size(60, 62);
+            this.btnPlus.TabIndex = 14;
+            this.btnPlus.Text = "+";
+            this.btnPlus.UseVisualStyleBackColor = true;
+            this.btnPlus.Click += new System.EventHandler(this.btnPlus_Click);
+            // 
+            // btnMin
+            // 
+            this.btnMin.BackColor = System.Drawing.SystemColors.Control;
+            this.btnMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnMin.Location = new System.Drawing.Point(595, 105);
+            this.btnMin.Name = "btnMin";
+            this.btnMin.Size = new System.Drawing.Size(60, 62);
+            this.btnMin.TabIndex = 15;
+            this.btnMin.Text = "-";
+            this.btnMin.UseVisualStyleBackColor = false;
+            this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblAmount.Location = new System.Drawing.Point(700, 112);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(44, 48);
+            this.lblAmount.TabIndex = 16;
+            this.lblAmount.Text = "0";
+            // 
             // Sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1139, 671);
+            this.ClientSize = new System.Drawing.Size(1545, 897);
             this.Controls.Add(this.lbtest2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbShop);
@@ -329,6 +434,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Label lbtest2;
+        private System.Windows.Forms.Button btnCola;
+        private System.Windows.Forms.Label lblAmount;
+        private System.Windows.Forms.Button btnMin;
+        private System.Windows.Forms.Button btnPlus;
+        private System.Windows.Forms.Button btnDoner;
+        private System.Windows.Forms.Button btnFries;
+        private System.Windows.Forms.Button btnHeiniken;
+        private System.Windows.Forms.Button btnCroquette;
     }
 }
 

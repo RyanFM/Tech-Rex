@@ -70,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -83,6 +84,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="images\Coca Cola.jpg" />
+    <Content Include="images\Coca Cola.png" />
+    <Content Include="images\Croquette.jpg" />
+    <Content Include="images\Croquette.png" />
+    <Content Include="images\Doner kebab.jpg" />
+    <Content Include="images\Doner kebab.png" />
+    <Content Include="images\French fries.jpg" />
+    <Content Include="images\French fries.png" />
+    <Content Include="images\GoPro.jpg" />
+    <Content Include="images\GoPro.png" />
+    <Content Include="images\Headphones.jpg" />
+    <Content Include="images\Headphones.png" />
+    <Content Include="images\Heiniken.jpg" />
+    <Content Include="images\Heiniken.png" />
+    <Content Include="images\Laptop Charger.jpg" />
+    <Content Include="images\Laptop Charger.png" />
+    <Content Include="images\Tablet.jpg" />
+    <Content Include="images\Tablet.png" />
+    <Content Include="images\USB cable.jpg" />
+    <Content Include="images\USB cable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

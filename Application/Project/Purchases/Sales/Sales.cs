@@ -17,12 +17,14 @@ namespace Sales
     {
 
         /***************  field  *************************/
-       
+
         private string rfidTag;
         RFID UserRFID;
         string connectionString = "server=studmysql01.fhict.local;" + "Database=dbi350130;" + "Uid=dbi350130;" + "Pwd=Techrex;" + "connect timeout=30;";
         int shopID;
         int visitorID = 1;
+        int proAmount = 0;
+        int productID = 0;
 
         double Total = 0.00;
         double subTotal = 0.00;
@@ -163,36 +165,36 @@ namespace Sales
             }
         }
 
-        public void GetProductID()
-        {
-            cbProducts.Items.Clear();
-            shopID = Convert.ToInt32(cbShop.SelectedItem);
-            string sql = "SELECT product_id FROM shop_inventory WHERE shop_id = " + shopID;
+        //public void GetProductID()
+        //{
+        //    cbProducts.Items.Clear();
+        //    shopID = Convert.ToInt32(cbShop.SelectedItem);
+        //    string sql = "SELECT product_id FROM shop_inventory WHERE shop_id = " + shopID;
 
-            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-            MySqlCommand commandCombo = new MySqlCommand(sql, databaseConnection);
+        //    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+        //    MySqlCommand commandCombo = new MySqlCommand(sql, databaseConnection);
 
-            try
-            {
-                databaseConnection.Open();
-                MySqlDataReader reader = commandCombo.ExecuteReader();
+        //    try
+        //    {
+        //        databaseConnection.Open();
+        //        MySqlDataReader reader = commandCombo.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    cbProducts.Items.Add(reader[0].ToString());
-                }
-                reader.Close();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                databaseConnection.Close();
+        //        while (reader.Read())
+        //        {
+        //            cbProducts.Items.Add(reader[0].ToString());
+        //        }
+        //        reader.Close();
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        databaseConnection.Close();
 
-            }
-        }
+        //    }
+        //}
         public void ResetCart() // clears the cart and sets the total to zero
         {
             listView_Cart.Items.Clear();
@@ -213,7 +215,7 @@ namespace Sales
         //        updatedBalance = Convert.ToDouble(commandBalance.ExecuteScalar());
         //        databaseConnection.Close();
         //    }
-           
+
         //}
         public double GetNewBalance() // get the balance after calculation of the pricing on checkout
         {
@@ -315,7 +317,7 @@ namespace Sales
                     databaseConnection.Open();
                     commandUpdateStock.ExecuteNonQuery();
                     databaseConnection.Close();
-                    
+
 
 
                 }
@@ -367,6 +369,10 @@ namespace Sales
 
             DisplayListInfo();
             ResetCart();
+            ResetColors();
+            proAmount = 0;
+            productID = 0;
+            lblAmount.Text = proAmount.ToString();
 
 
         }
@@ -374,7 +380,7 @@ namespace Sales
         public void UpdateBalance()
         {
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-            
+
             for (int i = 0; i < listView_Cart.Items.Count; i++)
             {
                 databaseConnection.Open();
@@ -386,9 +392,9 @@ namespace Sales
             }
 
 
-            
-          
-            
+
+
+
         }
         public void InsertOrder()
         {
@@ -428,98 +434,109 @@ namespace Sales
         private void cbShop_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayListInfo();
-            GetProductID();
+            //GetProductID();
             ResetCart();
+            ResetColors();
+            proAmount = 0;
+            lblAmount.Text = proAmount.ToString();
+
         }
 
         private void button_Add_Click(object sender, EventArgs e)
         {
 
-
-
-            string sql = "SELECT product_name, price FROM product WHERE product_id = " +
-                          /*listView_Add.SelectedItems[0].SubItems[0].Text;*/ cbProducts.Text;
-
-            string sqlSubTotal = "SELECT (price * " + Convert.ToInt32(textBox_Add.Text) + ") FROM product " +
-                                 "WHERE product_id = " + /*listView_Add.SelectedItems[0].SubItems[0].Text;*/ cbProducts.Text;
-
-
-            double subTotal = 0.00;
-
-
-
-            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-            MySqlCommand commandList = new MySqlCommand(sql, databaseConnection);
-            MySqlCommand commandST = new MySqlCommand(sqlSubTotal, databaseConnection);
-            if (Convert.ToInt32(textBox_Add.Text) > 0)
+            if (productID != 0)
             {
-                try // subtotal calculation
+
+                string sql = "SELECT product_name, price FROM product WHERE product_id = " +
+                              /*listView_Add.SelectedItems[0].SubItems[0].Text;*/ productID;
+
+                string sqlSubTotal = "SELECT (price * " + proAmount + ") FROM product " +
+                                     "WHERE product_id = " + /*listView_Add.SelectedItems[0].SubItems[0].Text;*/ productID;
+
+
+                double subTotal = 0.00;
+
+
+
+                MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+                MySqlCommand commandList = new MySqlCommand(sql, databaseConnection);
+                MySqlCommand commandST = new MySqlCommand(sqlSubTotal, databaseConnection);
+                if (proAmount > 0)
                 {
-                    databaseConnection.Open();
-                    double stQuery = Convert.ToDouble(commandST.ExecuteScalar());
-
-                    subTotal = stQuery;
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    databaseConnection.Close();
-
-                }
-
-
-
-                try // add to cart
-                {
-                    databaseConnection.Open();
-                    MySqlDataReader reader = commandList.ExecuteReader();
-
-
-                    while (reader.Read())
-
+                    try // subtotal calculation
                     {
+                        databaseConnection.Open();
+                        double stQuery = Convert.ToDouble(commandST.ExecuteScalar());
+
+                        subTotal = stQuery;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        databaseConnection.Close();
+
+                    }
 
 
 
-                        ListViewItem item = new ListViewItem(reader[0].ToString());
-                        item.SubItems.Add(reader[1].ToString());
-                        item.SubItems.Add(textBox_Add.Text);
-                        item.SubItems.Add(subTotal.ToString());
-
-                        listView_Cart.Items.Add(item);
+                    try // add to cart
+                    {
+                        databaseConnection.Open();
+                        MySqlDataReader reader = commandList.ExecuteReader();
 
 
+                        while (reader.Read())
 
+                        {
+
+
+
+                            ListViewItem item = new ListViewItem(reader[0].ToString());
+                            item.SubItems.Add(reader[1].ToString());
+                            item.SubItems.Add(proAmount.ToString());
+                            item.SubItems.Add(subTotal.ToString());
+
+                            listView_Cart.Items.Add(item);
+
+
+
+
+
+                        }
+                        reader.Close();
 
 
                     }
-                    reader.Close();
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        databaseConnection.Close();
 
+                    }
 
+                    Total += subTotal;
+                    lbTotal.Text = "€" + Total.ToString();
+                    lbtest2.Text = Total.ToString();
                 }
-                catch (MySqlException ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Please input a valid amount");
+                    proAmount = 0;
+                    productID = 0;
+                    lblAmount.Text = proAmount.ToString();
                 }
-                finally
-                {
-                    databaseConnection.Close();
-
-                }
-
-                Total += subTotal;
-                lbTotal.Text = "€" + Total.ToString();
-                lbtest2.Text = Total.ToString();
+                proAmount = 0;
+                productID = 0;
+                lblAmount.Text = proAmount.ToString();
+                ResetColors();
             }
-            else
-            {
-                MessageBox.Show("Please input a valid amount");
-                textBox_Add.Text = "0";
-            }
-
         }
 
         private void listView_Add_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -636,9 +653,121 @@ namespace Sales
             //DisplayListInfo();
             //ResetCart();
 
-            //Checkout();
-           
+         //   Checkout();
+
         }
-        //Above about tag
+        public void ResetColors()
+        {
+            btnDoner.BackColor = SystemColors.Control;
+
+            btnCola.BackColor = SystemColors.Control;
+            btnFries.BackColor = SystemColors.Control;
+            btnHeiniken.BackColor = SystemColors.Control;
+            btnCroquette.BackColor = SystemColors.Control;
+        }
+        private void btnDoner_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnDoner.BackColor = SystemColors.GradientActiveCaption;
+
+                btnCola.BackColor = SystemColors.Control;
+                btnFries.BackColor = SystemColors.Control;
+                btnHeiniken.BackColor = SystemColors.Control;
+                btnCroquette.BackColor = SystemColors.Control;
+
+                proAmount = 1;
+                productID = 7;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            if (proAmount > 0 && cbShop.SelectedIndex != -1)
+            {
+                proAmount--;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1 && productID!=0)
+            {
+                proAmount++;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnFries_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnFries.BackColor = SystemColors.GradientActiveCaption;
+
+                btnCola.BackColor = SystemColors.Control;
+                btnDoner.BackColor = SystemColors.Control;
+                btnHeiniken.BackColor = SystemColors.Control;
+                btnCroquette.BackColor = SystemColors.Control;
+
+                proAmount = 1;
+                productID = 8;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnCroquette_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnFries.BackColor = SystemColors.Control;
+
+                btnCola.BackColor = SystemColors.Control;
+                btnDoner.BackColor = SystemColors.Control;
+                btnHeiniken.BackColor = SystemColors.Control;
+                btnCroquette.BackColor = SystemColors.GradientActiveCaption;
+
+                proAmount = 1;
+                productID = 4;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnHeiniken_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnFries.BackColor = SystemColors.Control;
+
+                btnCola.BackColor = SystemColors.Control;
+                btnDoner.BackColor = SystemColors.Control;
+                btnHeiniken.BackColor = SystemColors.GradientActiveCaption;
+                btnCroquette.BackColor = SystemColors.Control;
+
+                proAmount = 1;
+                productID = 2;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnCola_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnFries.BackColor = SystemColors.Control;
+
+                btnCola.BackColor = SystemColors.GradientActiveCaption;
+                btnDoner.BackColor = SystemColors.Control;
+                btnHeiniken.BackColor = SystemColors.Control;
+                btnCroquette.BackColor = SystemColors.Control;
+
+                proAmount = 1;
+                productID = 1;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
     }
+    //Above about tag
 }
+

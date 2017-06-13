@@ -185,5 +185,10 @@ namespace Entrance
             }
             
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            UserRFID.close();
+        }
     }
 }

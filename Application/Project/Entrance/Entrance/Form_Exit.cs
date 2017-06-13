@@ -329,6 +329,7 @@ namespace Entrance
                     gbRent.BackColor = Color.DarkSeaGreen;
                     lbMoney.ForeColor = Color.DarkGreen;
                     lbTotal.ForeColor = Color.DarkGreen;
+                    UpdateSQL();
                     ExecuteIn(1500);
                 }
                 else
@@ -437,6 +438,12 @@ namespace Entrance
             UserRFID.LED = false;
             UserRFID.Antenna = false;
             UserRFID.close();
+        }
+
+        private void Form_Exit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            UserRFID.close();
+
         }
 
         //------------------------------------------------------------------------------------------------------------//

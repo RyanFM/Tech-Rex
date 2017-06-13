@@ -58,36 +58,42 @@
             this.lb16 = new System.Windows.Forms.Label();
             this.lb18 = new System.Windows.Forms.Label();
             this.lbSiteNo = new System.Windows.Forms.Label();
+            this.gbCamp = new System.Windows.Forms.GroupBox();
+            this.lbCampSpot = new System.Windows.Forms.Label();
+            this.lbCamp = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbCamping)).BeginInit();
+            this.gbCamp.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_Title
             // 
             this.label_Title.AutoSize = true;
             this.label_Title.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title.Location = new System.Drawing.Point(22, 29);
+            this.label_Title.Location = new System.Drawing.Point(20, 23);
             this.label_Title.Name = "label_Title";
-            this.label_Title.Size = new System.Drawing.Size(287, 37);
+            this.label_Title.Size = new System.Drawing.Size(240, 31);
             this.label_Title.TabIndex = 0;
             this.label_Title.Text = "Camping Entrance";
             // 
             // lbSiteNoTitle
             // 
             this.lbSiteNoTitle.AutoSize = true;
-            this.lbSiteNoTitle.Location = new System.Drawing.Point(48, 142);
+            this.lbSiteNoTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSiteNoTitle.Location = new System.Drawing.Point(33, 343);
             this.lbSiteNoTitle.Name = "lbSiteNoTitle";
-            this.lbSiteNoTitle.Size = new System.Drawing.Size(101, 20);
+            this.lbSiteNoTitle.Size = new System.Drawing.Size(154, 29);
             this.lbSiteNoTitle.TabIndex = 2;
             this.lbSiteNoTitle.Text = "Site Number:";
+            this.lbSiteNoTitle.Visible = false;
             // 
             // listBox_member
             // 
             this.listBox_member.FormattingEnabled = true;
-            this.listBox_member.ItemHeight = 20;
-            this.listBox_member.Location = new System.Drawing.Point(29, 230);
-            this.listBox_member.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listBox_member.ItemHeight = 16;
+            this.listBox_member.Location = new System.Drawing.Point(32, 104);
+            this.listBox_member.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBox_member.Name = "listBox_member";
-            this.listBox_member.Size = new System.Drawing.Size(307, 224);
+            this.listBox_member.Size = new System.Drawing.Size(303, 196);
             this.listBox_member.TabIndex = 7;
             // 
             // lb2
@@ -96,9 +102,9 @@
             this.lb2.BackColor = System.Drawing.Color.Transparent;
             this.lb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb2.Image = global::Camping.Properties.Resources.nr2;
-            this.lb2.Location = new System.Drawing.Point(991, 165);
+            this.lb2.Location = new System.Drawing.Point(987, 134);
             this.lb2.Name = "lb2";
-            this.lb2.Size = new System.Drawing.Size(35, 37);
+            this.lb2.Size = new System.Drawing.Size(28, 31);
             this.lb2.TabIndex = 24;
             this.lb2.Text = "  ";
             // 
@@ -108,9 +114,9 @@
             this.lb25.BackColor = System.Drawing.Color.Transparent;
             this.lb25.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb25.Image = global::Camping.Properties.Resources.nr25;
-            this.lb25.Location = new System.Drawing.Point(1018, 424);
+            this.lb25.Location = new System.Drawing.Point(1011, 341);
             this.lb25.Name = "lb25";
-            this.lb25.Size = new System.Drawing.Size(53, 37);
+            this.lb25.Size = new System.Drawing.Size(42, 31);
             this.lb25.TabIndex = 23;
             this.lb25.Text = "    ";
             // 
@@ -120,9 +126,9 @@
             this.lb24.BackColor = System.Drawing.Color.Transparent;
             this.lb24.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb24.Image = global::Camping.Properties.Resources.nr24;
-            this.lb24.Location = new System.Drawing.Point(1007, 385);
+            this.lb24.Location = new System.Drawing.Point(1001, 310);
             this.lb24.Name = "lb24";
-            this.lb24.Size = new System.Drawing.Size(53, 37);
+            this.lb24.Size = new System.Drawing.Size(42, 31);
             this.lb24.TabIndex = 22;
             this.lb24.Text = "    ";
             // 
@@ -132,9 +138,9 @@
             this.lb23.BackColor = System.Drawing.Color.Transparent;
             this.lb23.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb23.Image = global::Camping.Properties.Resources.nr23;
-            this.lb23.Location = new System.Drawing.Point(1007, 346);
+            this.lb23.Location = new System.Drawing.Point(1001, 279);
             this.lb23.Name = "lb23";
-            this.lb23.Size = new System.Drawing.Size(53, 37);
+            this.lb23.Size = new System.Drawing.Size(42, 31);
             this.lb23.TabIndex = 21;
             this.lb23.Text = "    ";
             // 
@@ -144,9 +150,9 @@
             this.lb22.BackColor = System.Drawing.Color.Transparent;
             this.lb22.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb22.Image = global::Camping.Properties.Resources.nr22;
-            this.lb22.Location = new System.Drawing.Point(1018, 308);
+            this.lb22.Location = new System.Drawing.Point(1011, 248);
             this.lb22.Name = "lb22";
-            this.lb22.Size = new System.Drawing.Size(53, 37);
+            this.lb22.Size = new System.Drawing.Size(42, 31);
             this.lb22.TabIndex = 20;
             this.lb22.Text = "    ";
             // 
@@ -156,9 +162,9 @@
             this.lb21.BackColor = System.Drawing.Color.Transparent;
             this.lb21.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb21.Image = global::Camping.Properties.Resources.nr21;
-            this.lb21.Location = new System.Drawing.Point(1018, 269);
+            this.lb21.Location = new System.Drawing.Point(1011, 217);
             this.lb21.Name = "lb21";
-            this.lb21.Size = new System.Drawing.Size(53, 37);
+            this.lb21.Size = new System.Drawing.Size(42, 31);
             this.lb21.TabIndex = 19;
             this.lb21.Text = "    ";
             // 
@@ -168,9 +174,9 @@
             this.lb20.BackColor = System.Drawing.Color.Transparent;
             this.lb20.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb20.Image = global::Camping.Properties.Resources.nr20;
-            this.lb20.Location = new System.Drawing.Point(1028, 230);
+            this.lb20.Location = new System.Drawing.Point(1020, 186);
             this.lb20.Name = "lb20";
-            this.lb20.Size = new System.Drawing.Size(53, 37);
+            this.lb20.Size = new System.Drawing.Size(42, 31);
             this.lb20.TabIndex = 18;
             this.lb20.Text = "    ";
             // 
@@ -180,9 +186,9 @@
             this.lb19.BackColor = System.Drawing.Color.Transparent;
             this.lb19.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb19.Image = global::Camping.Properties.Resources.nr19;
-            this.lb19.Location = new System.Drawing.Point(1045, 180);
+            this.lb19.Location = new System.Drawing.Point(1035, 146);
             this.lb19.Name = "lb19";
-            this.lb19.Size = new System.Drawing.Size(53, 37);
+            this.lb19.Size = new System.Drawing.Size(42, 31);
             this.lb19.TabIndex = 17;
             this.lb19.Text = "    ";
             // 
@@ -192,9 +198,9 @@
             this.lb17.BackColor = System.Drawing.Color.Transparent;
             this.lb17.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb17.Image = global::Camping.Properties.Resources.nr17;
-            this.lb17.Location = new System.Drawing.Point(917, 456);
+            this.lb17.Location = new System.Drawing.Point(921, 367);
             this.lb17.Name = "lb17";
-            this.lb17.Size = new System.Drawing.Size(53, 37);
+            this.lb17.Size = new System.Drawing.Size(42, 31);
             this.lb17.TabIndex = 16;
             this.lb17.Text = "    ";
             // 
@@ -204,9 +210,9 @@
             this.lb15.BackColor = System.Drawing.Color.Transparent;
             this.lb15.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb15.Image = global::Camping.Properties.Resources.nr15;
-            this.lb15.Location = new System.Drawing.Point(907, 428);
+            this.lb15.Location = new System.Drawing.Point(912, 344);
             this.lb15.Name = "lb15";
-            this.lb15.Size = new System.Drawing.Size(53, 37);
+            this.lb15.Size = new System.Drawing.Size(42, 31);
             this.lb15.TabIndex = 15;
             this.lb15.Text = "    ";
             // 
@@ -216,9 +222,9 @@
             this.lb13.BackColor = System.Drawing.Color.Transparent;
             this.lb13.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb13.Image = global::Camping.Properties.Resources.nr13;
-            this.lb13.Location = new System.Drawing.Point(897, 389);
+            this.lb13.Location = new System.Drawing.Point(903, 313);
             this.lb13.Name = "lb13";
-            this.lb13.Size = new System.Drawing.Size(53, 37);
+            this.lb13.Size = new System.Drawing.Size(42, 31);
             this.lb13.TabIndex = 14;
             this.lb13.Text = "    ";
             // 
@@ -228,9 +234,9 @@
             this.lb11.BackColor = System.Drawing.Color.Transparent;
             this.lb11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb11.Image = global::Camping.Properties.Resources.nr11;
-            this.lb11.Location = new System.Drawing.Point(907, 335);
+            this.lb11.Location = new System.Drawing.Point(912, 270);
             this.lb11.Name = "lb11";
-            this.lb11.Size = new System.Drawing.Size(53, 37);
+            this.lb11.Size = new System.Drawing.Size(42, 31);
             this.lb11.TabIndex = 13;
             this.lb11.Text = "    ";
             // 
@@ -240,9 +246,9 @@
             this.lb9.BackColor = System.Drawing.Color.Transparent;
             this.lb9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb9.Image = global::Camping.Properties.Resources.nr9;
-            this.lb9.Location = new System.Drawing.Point(915, 296);
+            this.lb9.Location = new System.Drawing.Point(919, 239);
             this.lb9.Name = "lb9";
-            this.lb9.Size = new System.Drawing.Size(35, 37);
+            this.lb9.Size = new System.Drawing.Size(28, 31);
             this.lb9.TabIndex = 12;
             this.lb9.Text = "  ";
             // 
@@ -252,9 +258,9 @@
             this.lb7.BackColor = System.Drawing.Color.Transparent;
             this.lb7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb7.Image = global::Camping.Properties.Resources.nr7;
-            this.lb7.Location = new System.Drawing.Point(927, 258);
+            this.lb7.Location = new System.Drawing.Point(930, 208);
             this.lb7.Name = "lb7";
-            this.lb7.Size = new System.Drawing.Size(35, 37);
+            this.lb7.Size = new System.Drawing.Size(28, 31);
             this.lb7.TabIndex = 11;
             this.lb7.Text = "  ";
             // 
@@ -264,9 +270,9 @@
             this.lb5.BackColor = System.Drawing.Color.Transparent;
             this.lb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb5.Image = global::Camping.Properties.Resources.nr5;
-            this.lb5.Location = new System.Drawing.Point(938, 219);
+            this.lb5.Location = new System.Drawing.Point(940, 177);
             this.lb5.Name = "lb5";
-            this.lb5.Size = new System.Drawing.Size(35, 37);
+            this.lb5.Size = new System.Drawing.Size(28, 31);
             this.lb5.TabIndex = 10;
             this.lb5.Text = "  ";
             // 
@@ -276,9 +282,9 @@
             this.lb3.BackColor = System.Drawing.Color.Transparent;
             this.lb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb3.Image = global::Camping.Properties.Resources.nr3;
-            this.lb3.Location = new System.Drawing.Point(953, 192);
+            this.lb3.Location = new System.Drawing.Point(953, 156);
             this.lb3.Name = "lb3";
-            this.lb3.Size = new System.Drawing.Size(35, 37);
+            this.lb3.Size = new System.Drawing.Size(28, 31);
             this.lb3.TabIndex = 9;
             this.lb3.Text = "  ";
             // 
@@ -289,19 +295,19 @@
             this.lb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb1.ForeColor = System.Drawing.Color.Transparent;
             this.lb1.Image = global::Camping.Properties.Resources.nr1;
-            this.lb1.Location = new System.Drawing.Point(963, 154);
+            this.lb1.Location = new System.Drawing.Point(962, 125);
             this.lb1.Name = "lb1";
-            this.lb1.Size = new System.Drawing.Size(35, 37);
+            this.lb1.Size = new System.Drawing.Size(28, 31);
             this.lb1.TabIndex = 8;
             this.lb1.Text = "  ";
             // 
             // pbCamping
             // 
             this.pbCamping.Image = global::Camping.Properties.Resources.Camping_Map;
-            this.pbCamping.Location = new System.Drawing.Point(363, 69);
+            this.pbCamping.Location = new System.Drawing.Point(429, 57);
             this.pbCamping.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbCamping.Name = "pbCamping";
-            this.pbCamping.Size = new System.Drawing.Size(789, 709);
+            this.pbCamping.Size = new System.Drawing.Size(701, 567);
             this.pbCamping.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCamping.TabIndex = 6;
             this.pbCamping.TabStop = false;
@@ -312,9 +318,9 @@
             this.lb4.BackColor = System.Drawing.Color.Transparent;
             this.lb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb4.Image = global::Camping.Properties.Resources.nr4;
-            this.lb4.Location = new System.Drawing.Point(976, 192);
+            this.lb4.Location = new System.Drawing.Point(974, 156);
             this.lb4.Name = "lb4";
-            this.lb4.Size = new System.Drawing.Size(35, 37);
+            this.lb4.Size = new System.Drawing.Size(28, 31);
             this.lb4.TabIndex = 25;
             this.lb4.Text = "  ";
             // 
@@ -324,9 +330,9 @@
             this.lb6.BackColor = System.Drawing.Color.Transparent;
             this.lb6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb6.Image = global::Camping.Properties.Resources.nr6;
-            this.lb6.Location = new System.Drawing.Point(965, 231);
+            this.lb6.Location = new System.Drawing.Point(964, 187);
             this.lb6.Name = "lb6";
-            this.lb6.Size = new System.Drawing.Size(35, 37);
+            this.lb6.Size = new System.Drawing.Size(28, 31);
             this.lb6.TabIndex = 26;
             this.lb6.Text = "  ";
             // 
@@ -336,9 +342,9 @@
             this.lb8.BackColor = System.Drawing.Color.Transparent;
             this.lb8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb8.Image = global::Camping.Properties.Resources.nr8;
-            this.lb8.Location = new System.Drawing.Point(963, 269);
+            this.lb8.Location = new System.Drawing.Point(962, 217);
             this.lb8.Name = "lb8";
-            this.lb8.Size = new System.Drawing.Size(35, 37);
+            this.lb8.Size = new System.Drawing.Size(28, 31);
             this.lb8.TabIndex = 27;
             this.lb8.Text = "  ";
             // 
@@ -348,9 +354,9 @@
             this.lb10.BackColor = System.Drawing.Color.Transparent;
             this.lb10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb10.Image = global::Camping.Properties.Resources.nr10;
-            this.lb10.Location = new System.Drawing.Point(938, 308);
+            this.lb10.Location = new System.Drawing.Point(940, 248);
             this.lb10.Name = "lb10";
-            this.lb10.Size = new System.Drawing.Size(53, 37);
+            this.lb10.Size = new System.Drawing.Size(42, 31);
             this.lb10.TabIndex = 28;
             this.lb10.Text = "    ";
             // 
@@ -360,9 +366,9 @@
             this.lb12.BackColor = System.Drawing.Color.Transparent;
             this.lb12.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb12.Image = global::Camping.Properties.Resources.nr12;
-            this.lb12.Location = new System.Drawing.Point(930, 335);
+            this.lb12.Location = new System.Drawing.Point(933, 270);
             this.lb12.Name = "lb12";
-            this.lb12.Size = new System.Drawing.Size(53, 37);
+            this.lb12.Size = new System.Drawing.Size(42, 31);
             this.lb12.TabIndex = 29;
             this.lb12.Text = "    ";
             // 
@@ -372,9 +378,9 @@
             this.lb14.BackColor = System.Drawing.Color.Transparent;
             this.lb14.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb14.Image = global::Camping.Properties.Resources.nr14;
-            this.lb14.Location = new System.Drawing.Point(930, 374);
+            this.lb14.Location = new System.Drawing.Point(933, 301);
             this.lb14.Name = "lb14";
-            this.lb14.Size = new System.Drawing.Size(53, 37);
+            this.lb14.Size = new System.Drawing.Size(42, 31);
             this.lb14.TabIndex = 30;
             this.lb14.Text = "    ";
             // 
@@ -384,9 +390,9 @@
             this.lb16.BackColor = System.Drawing.Color.Transparent;
             this.lb16.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb16.Image = global::Camping.Properties.Resources.nr16;
-            this.lb16.Location = new System.Drawing.Point(938, 412);
+            this.lb16.Location = new System.Drawing.Point(940, 332);
             this.lb16.Name = "lb16";
-            this.lb16.Size = new System.Drawing.Size(53, 37);
+            this.lb16.Size = new System.Drawing.Size(42, 31);
             this.lb16.TabIndex = 31;
             this.lb16.Text = "    ";
             // 
@@ -396,26 +402,61 @@
             this.lb18.BackColor = System.Drawing.Color.Transparent;
             this.lb18.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb18.Image = global::Camping.Properties.Resources.nr18;
-            this.lb18.Location = new System.Drawing.Point(945, 451);
+            this.lb18.Location = new System.Drawing.Point(946, 363);
             this.lb18.Name = "lb18";
-            this.lb18.Size = new System.Drawing.Size(53, 37);
+            this.lb18.Size = new System.Drawing.Size(42, 31);
             this.lb18.TabIndex = 32;
             this.lb18.Text = "    ";
             // 
             // lbSiteNo
             // 
             this.lbSiteNo.AutoSize = true;
-            this.lbSiteNo.Location = new System.Drawing.Point(158, 142);
+            this.lbSiteNo.Location = new System.Drawing.Point(126, 10);
             this.lbSiteNo.Name = "lbSiteNo";
-            this.lbSiteNo.Size = new System.Drawing.Size(0, 20);
+            this.lbSiteNo.Size = new System.Drawing.Size(0, 17);
             this.lbSiteNo.TabIndex = 33;
+            // 
+            // gbCamp
+            // 
+            this.gbCamp.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.gbCamp.Controls.Add(this.lbCamp);
+            this.gbCamp.Controls.Add(this.lbCampSpot);
+            this.gbCamp.Controls.Add(this.lbSiteNo);
+            this.gbCamp.Controls.Add(this.listBox_member);
+            this.gbCamp.Controls.Add(this.lbSiteNoTitle);
+            this.gbCamp.Location = new System.Drawing.Point(12, 99);
+            this.gbCamp.Name = "gbCamp";
+            this.gbCamp.Size = new System.Drawing.Size(397, 439);
+            this.gbCamp.TabIndex = 34;
+            this.gbCamp.TabStop = false;
+            // 
+            // lbCampSpot
+            // 
+            this.lbCampSpot.AutoSize = true;
+            this.lbCampSpot.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCampSpot.Location = new System.Drawing.Point(206, 337);
+            this.lbCampSpot.Name = "lbCampSpot";
+            this.lbCampSpot.Size = new System.Drawing.Size(51, 36);
+            this.lbCampSpot.TabIndex = 34;
+            this.lbCampSpot.Text = "25";
+            this.lbCampSpot.Visible = false;
+            // 
+            // lbCamp
+            // 
+            this.lbCamp.AutoSize = true;
+            this.lbCamp.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCamp.Location = new System.Drawing.Point(32, 42);
+            this.lbCamp.Name = "lbCamp";
+            this.lbCamp.Size = new System.Drawing.Size(240, 36);
+            this.lbCamp.TabIndex = 35;
+            this.lbCamp.Text = "Please scan tag";
             // 
             // Form_Entrance
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1191, 838);
-            this.Controls.Add(this.lbSiteNo);
+            this.ClientSize = new System.Drawing.Size(1158, 670);
+            this.Controls.Add(this.gbCamp);
             this.Controls.Add(this.lb18);
             this.Controls.Add(this.lb16);
             this.Controls.Add(this.lb14);
@@ -441,14 +482,14 @@
             this.Controls.Add(this.lb5);
             this.Controls.Add(this.lb3);
             this.Controls.Add(this.lb1);
-            this.Controls.Add(this.listBox_member);
             this.Controls.Add(this.pbCamping);
-            this.Controls.Add(this.lbSiteNoTitle);
             this.Controls.Add(this.label_Title);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_Entrance";
             this.Text = "Entrance";
             ((System.ComponentModel.ISupportInitialize)(this.pbCamping)).EndInit();
+            this.gbCamp.ResumeLayout(false);
+            this.gbCamp.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -486,5 +527,8 @@
         private System.Windows.Forms.Label lb16;
         private System.Windows.Forms.Label lb18;
         private System.Windows.Forms.Label lbSiteNo;
+        private System.Windows.Forms.GroupBox gbCamp;
+        private System.Windows.Forms.Label lbCamp;
+        private System.Windows.Forms.Label lbCampSpot;
     }
 }

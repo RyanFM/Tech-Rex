@@ -21,6 +21,8 @@ namespace Purchases
         string connectionString = "server=studmysql01.fhict.local;" + "Database=dbi350130;" + "Uid=dbi350130;" + "Pwd=Techrex;" + "connect timeout=30;";
         int shopID;
         int visitorID = 1;
+        int proAmount = 0;
+        int productID = 0;
 
         double Total = 0.00;
         double subTotal = 0.00;
@@ -159,36 +161,36 @@ namespace Purchases
             }
         }
 
-        public void GetProductID()
-        {
-            cbProducts.Items.Clear();
-            shopID = Convert.ToInt32(cbShop.SelectedItem);
-            string sql = "SELECT product_id FROM shop_inventory WHERE shop_id = " + shopID;
+        //public void GetProductID()
+        //{
+        //    cbProducts.Items.Clear();
+        //    shopID = Convert.ToInt32(cbShop.SelectedItem);
+        //    string sql = "SELECT product_id FROM shop_inventory WHERE shop_id = " + shopID;
 
-            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-            MySqlCommand commandCombo = new MySqlCommand(sql, databaseConnection);
+        //    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+        //    MySqlCommand commandCombo = new MySqlCommand(sql, databaseConnection);
 
-            try
-            {
-                databaseConnection.Open();
-                MySqlDataReader reader = commandCombo.ExecuteReader();
+        //    try
+        //    {
+        //        databaseConnection.Open();
+        //        MySqlDataReader reader = commandCombo.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    cbProducts.Items.Add(reader[0].ToString());
-                }
-                reader.Close();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                databaseConnection.Close();
+        //        while (reader.Read())
+        //        {
+        //            cbProducts.Items.Add(reader[0].ToString());
+        //        }
+        //        reader.Close();
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        databaseConnection.Close();
 
-            }
-        }
+        //    }
+        //}
         public void ResetCart() // clears the cart and sets the total to zero
         {
             listView_Cart.Items.Clear();
@@ -353,6 +355,10 @@ namespace Purchases
             }
             DisplayListInfo();
             ResetCart();
+            ResetColors();
+            proAmount = 0;
+            productID = 0;
+            lblAmount.Text = proAmount.ToString();
 
         }
         public void UpdateBalance()
@@ -419,83 +425,93 @@ namespace Purchases
 
         private void button_Add_Click(object sender, EventArgs e)
         {
-            string sql = "SELECT product_name, deposit FROM product WHERE product_id = " + cbProducts.Text;
-
-            string sqlSubTotal = "SELECT (deposit * " + Convert.ToInt32(tbAdd.Text) + ") FROM product " +
-                                 "WHERE product_id = " + cbProducts.Text;
-
-
-            double subTotal = 0.00;
-
-
-
-            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-            MySqlCommand commandList = new MySqlCommand(sql, databaseConnection);
-            MySqlCommand commandST = new MySqlCommand(sqlSubTotal, databaseConnection);
-            if (Convert.ToInt32(tbAdd.Text) > 0)
+            if (productID != 0)
             {
-                try // subtotal calculation
+
+                string sql = "SELECT product_name, deposit FROM product WHERE product_id = " + productID;
+
+                string sqlSubTotal = "SELECT (deposit * " + proAmount + ") FROM product " +
+                                     "WHERE product_id = " + productID;
+
+
+                double subTotal = 0.00;
+
+
+
+                MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+                MySqlCommand commandList = new MySqlCommand(sql, databaseConnection);
+                MySqlCommand commandST = new MySqlCommand(sqlSubTotal, databaseConnection);
+                if (proAmount > 0)
                 {
-                    databaseConnection.Open();
-                    double stQuery = Convert.ToDouble(commandST.ExecuteScalar());
-
-                    subTotal = stQuery;
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    databaseConnection.Close();
-
-                }
-
-                try // add to cart
-                {
-                    databaseConnection.Open();
-                    MySqlDataReader reader = commandList.ExecuteReader();
-
-
-                    while (reader.Read())
-
+                    try // subtotal calculation
                     {
+                        databaseConnection.Open();
+                        double stQuery = Convert.ToDouble(commandST.ExecuteScalar());
+
+                        subTotal = stQuery;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        databaseConnection.Close();
+
+                    }
+
+                    try // add to cart
+                    {
+                        databaseConnection.Open();
+                        MySqlDataReader reader = commandList.ExecuteReader();
+
+
+                        while (reader.Read())
+
+                        {
 
 
 
-                        ListViewItem item = new ListViewItem(reader[0].ToString());
-                        item.SubItems.Add(reader[1].ToString());
-                        item.SubItems.Add(tbAdd.Text);
-                        item.SubItems.Add(subTotal.ToString());
+                            ListViewItem item = new ListViewItem(reader[0].ToString());
+                            item.SubItems.Add(reader[1].ToString());
+                            item.SubItems.Add(proAmount.ToString());
+                            item.SubItems.Add(subTotal.ToString());
 
-                        listView_Cart.Items.Add(item);
+                            listView_Cart.Items.Add(item);
 
 
 
+
+
+                        }
+                        reader.Close();
 
 
                     }
-                    reader.Close();
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        databaseConnection.Close();
 
+                    }
 
+                    Total += subTotal;
+                    lbTotal.Text = "€" + Total.ToString();
                 }
-                catch (MySqlException ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Please input a valid amount");
+                    proAmount = 0;
+                    productID = 0;
+                    lblAmount.Text = proAmount.ToString();
                 }
-                finally
-                {
-                    databaseConnection.Close();
-
-                }
-
-                Total += subTotal;
-                lbTotal.Text = "€" + Total.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Please input a valid amount");
-                tbAdd.Text = "0";
+                proAmount = 0;
+                productID = 0;
+                lblAmount.Text = proAmount.ToString();
+                ResetColors();
             }
         }
 
@@ -612,12 +628,130 @@ namespace Purchases
             //ResetCart();
             Checkout();
         }
-
+        public void ResetColors()
+        {
+            btnGoPro.BackColor = SystemColors.Control;
+            btnTablet.BackColor = SystemColors.Control;
+            btnHeadphone.BackColor = SystemColors.Control;
+            btnCharger.BackColor = SystemColors.Control;
+            btnUsb.BackColor = SystemColors.Control;
+        }
         private void cbShop_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayListInfo();
-            GetProductID();
+            //GetProductID();
             ResetCart();
+            ResetColors();
+            proAmount = 0;
+            lblAmount.Text = proAmount.ToString();
+        }
+
+        private void btnGoPro_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnGoPro.BackColor = SystemColors.GradientActiveCaption;
+
+                btnTablet.BackColor = SystemColors.Control;
+                btnHeadphone.BackColor = SystemColors.Control;
+                btnCharger.BackColor = SystemColors.Control;
+                btnUsb.BackColor = SystemColors.Control;
+
+                proAmount = 1;
+                productID = 9;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnTablet_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnGoPro.BackColor = SystemColors.Control;
+
+                btnTablet.BackColor = SystemColors.GradientActiveCaption;
+                btnHeadphone.BackColor = SystemColors.Control;
+                btnCharger.BackColor = SystemColors.Control;
+                btnUsb.BackColor = SystemColors.Control;
+
+                proAmount = 1;
+                productID = 10;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnHeadphone_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnGoPro.BackColor = SystemColors.Control;
+
+                btnTablet.BackColor = SystemColors.Control;
+                btnHeadphone.BackColor = SystemColors.GradientActiveCaption;
+                btnCharger.BackColor = SystemColors.Control;
+                btnUsb.BackColor = SystemColors.Control;
+
+                proAmount = 1;
+                productID = 5;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnCharger_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnGoPro.BackColor = SystemColors.Control;
+
+                btnTablet.BackColor = SystemColors.Control;
+                btnHeadphone.BackColor = SystemColors.Control;
+                btnCharger.BackColor = SystemColors.GradientActiveCaption;
+                btnUsb.BackColor = SystemColors.Control;
+
+                proAmount = 1;
+                productID = 6;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnUsb_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                btnGoPro.BackColor = SystemColors.Control;
+
+                btnTablet.BackColor = SystemColors.Control;
+                btnHeadphone.BackColor = SystemColors.Control;
+                btnCharger.BackColor = SystemColors.Control;
+                btnUsb.BackColor = SystemColors.GradientActiveCaption;
+
+                proAmount = 1;
+                productID = 3;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void Form_Loans_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            if (proAmount > 0 && cbShop.SelectedIndex != -1)
+            {
+                proAmount--;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1 && productID != 0)
+            {
+                proAmount++;
+                lblAmount.Text = proAmount.ToString();
+            }
         }
     }
 }

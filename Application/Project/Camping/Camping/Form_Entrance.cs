@@ -20,6 +20,7 @@ namespace Camping
         private string rfidTag;
         private int id;
         private string camp = "OHHHH SHIT";
+        private string ticketType = "";
         RFID UserRFID;
         DatabaseConnector DB;
 
@@ -38,12 +39,12 @@ namespace Camping
 
             if (DB.IsConnected())
             {
-                MessageBox.Show("Database Connected");
+                
                 DB.databaseConnection.Close();
             }
             else
             {
-                MessageBox.Show("Database Connecttion failed");
+                MessageBox.Show("Database Connection failed");
             }
 
             try
@@ -406,9 +407,12 @@ namespace Camping
             
 
             string query = "SELECT camping_spot FROM visitor WHERE rfid='" + rfidTag + "'";
+            string queryTicket = "SELECT ticket_type FROM visitor WHERE rfid='" + rfidTag + "'";
             DB.databaseConnection.Open();
             MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
+            MySqlCommand commandTicket = new MySqlCommand(queryTicket, DB.databaseConnection);
             MySqlDataReader reader = command.ExecuteReader();
+            
 
             try
             {
@@ -416,6 +420,13 @@ namespace Camping
                 camp = reader[0].ToString();
 
                 listBox_member.Items.Clear();
+                reader.Close();
+
+                MySqlDataReader readerTicket = commandTicket.ExecuteReader();
+                readerTicket.Read();
+                ticketType = readerTicket[0].ToString();
+                readerTicket.Close();
+
  
                 // listBox_member.Items.Add("RFID number " + rfidTag + ", Camping sopt: " + camp);
                 
@@ -440,6 +451,7 @@ namespace Camping
 
                 listBox_member.Items.Add("Camping sopt: " + camp);
                 lbSiteNo.Text = camp;
+                lbSiteNo.Visible = false;
                 ShowCampingSpot();
                 return true;
             }
@@ -510,6 +522,17 @@ namespace Camping
                 MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
                 command.ExecuteNonQuery();
                 DB.databaseConnection.Close();
+
+                gbCamp.BackColor = Color.DarkSeaGreen;
+                lbCamp.Text = "PASS";
+                lbCamp.ForeColor = Color.DarkGreen;
+
+                lbSiteNoTitle.Visible = true;
+                lbSiteNoTitle.ForeColor = Color.DarkGreen;
+
+                lbCampSpot.Visible = true;
+                lbCampSpot.Text = camp;
+                lbCampSpot.ForeColor = Color.DarkGreen;
                 //MessageBox.Show("Pass allowed.", "Pass");
                 listBox_member.Items.Add("Pass--- Pass allowed");
             }
@@ -521,6 +544,9 @@ namespace Camping
         {
             //MessageBox.Show("No reservsation found.", "Deny");
             listBox_member.Items.Add("Deny--- No reservsation found");
+            gbCamp.BackColor = Color.Maroon;
+            lbCamp.Text = "Denied";
+            lbCamp.ForeColor = Color.Red;
         }
 
     }

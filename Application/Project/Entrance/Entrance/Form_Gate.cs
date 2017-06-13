@@ -61,7 +61,7 @@ namespace Entrance
         {
             label_Line1.Text = "Scan your tag to enter";
             label_Line1.ForeColor = SystemColors.ControlText;
-            this.BackColor = Color.Gold;
+            this.BackColor = Color.PaleGoldenrod;
         }
         public void ExecuteIn(int milliseconds)
         {
@@ -99,7 +99,7 @@ namespace Entrance
 
             if (ValidateStatus() == true)
             {
-                this.BackColor = Color.Green;
+                this.BackColor = Color.DarkSeaGreen;
                 label_Line1.ForeColor = Color.Azure;
                 label_Line1.Text = "PASS";
                 
@@ -113,7 +113,7 @@ namespace Entrance
             }
             else
             {
-                this.BackColor = Color.Red;
+                this.BackColor = Color.Maroon;
                 label_Line1.ForeColor = Color.Azure;
                 label_Line1.Text = "Denied";
 
@@ -121,8 +121,10 @@ namespace Entrance
                 //label_Line1.Text = "Scan your tag to enter";
                 //label_Line1.ForeColor = SystemColors.ControlText;
                 //this.BackColor = Color.Gold;
+                DB.databaseConnection.Close();
 
             }
+            
 
         }
 
@@ -172,6 +174,11 @@ namespace Entrance
         private void OpenGate()
         {
 
+        }
+
+        private void Form_Gate_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            UserRFID.close();
         }
     }
 }

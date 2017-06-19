@@ -21,7 +21,7 @@ namespace Sales
         private string rfidTag;
         RFID UserRFID;
         string connectionString = "server=studmysql01.fhict.local;" + "Database=dbi350130;" + "Uid=dbi350130;" + "Pwd=Techrex;" + "connect timeout=30;";
-        int shopID;
+        int shopID = 0;
         int visitorID = 1;
         int proAmount = 0;
         int productID = 0;
@@ -32,8 +32,9 @@ namespace Sales
         public Sales()
         {
             InitializeComponent();
-            DisplayShopID();
-            lbtest2.Text = Total.ToString();
+            //btnCola.BackgroundImage = Properties.Resources.ColaGray;
+            //DisplayShopID();
+           
 
             UserRFID = new RFID();
             try
@@ -112,8 +113,9 @@ namespace Sales
 
         public void DisplayListInfo()
         {
+            
             listView_Add.Items.Clear();
-            shopID = Convert.ToInt32(cbShop.SelectedItem);
+            //shopID = Convert.ToInt32(cbShop.SelectedItem);
 
             string sql = "SELECT p.product_id, p.product_name, p.price, si.amount " +
                          "FROM product p , shop_inventory si " +
@@ -126,7 +128,24 @@ namespace Sales
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
             MySqlCommand commandList = new MySqlCommand(sql, databaseConnection);
 
+            //foreach (var item in collection)
+            //{
+            //    Button ProductButton = new Button();
+            //    ProductButton
 
+            //    dynamicbutton.Click += new System.EventHandler(menuItem_Click);
+            //    dynamicbutton.Text = menu.ReadLine();
+            //    dynamicbutton.Visible = true;
+            //    dynamicbutton.Location = new Point(4 + repetition * 307, 4);
+            //    dynamicbutton.Height = 44;
+            //    dynamicbutton.Width = 203;
+            //    dynamicbutton.BackColor = Color.FromArgb(40, 40, 40);
+            //    dynamicbutton.ForeColor = Color.White;
+            //    dynamicbutton.Font = new Font("Lucida Console", 16);
+            //    dynamicbutton.Show();
+            //    menuPanel.Controls.Add(dynamicbutton);
+            //}
+            //panelItems.Controls.Add
 
 
             try
@@ -162,6 +181,60 @@ namespace Sales
             {
                 databaseConnection.Close();
 
+            }
+            ResetButtons();
+            MenuButtonDisable();
+        }
+
+        public void MenuButtonDisable()
+        {
+            if (listView_Add.Items.Count != 0)
+            {
+                if (listView_Add.Items[0].SubItems[3].Text == "0")
+                {
+                    btnCola.BackgroundImage = Properties.Resources.ColaGray;
+                    btnCola.Enabled = false;
+                }
+                if (listView_Add.Items[1].SubItems[3].Text == "0")
+                {
+                    btnHeiniken.BackgroundImage = Properties.Resources.HeinikenGray;
+                    btnHeiniken.Enabled = false;
+                }
+                if (listView_Add.Items[2].SubItems[3].Text == "0")
+                {
+                    btnCroquette.BackgroundImage = Properties.Resources.CroquetteGray;
+                    btnCroquette.Enabled = false;
+                }
+                if (listView_Add.Items[3].SubItems[3].Text == "0")
+                {
+                    btnDoner.BackgroundImage = Properties.Resources.DonerGray;
+                    btnDoner.Enabled = false;
+                }
+                if (listView_Add.Items[4].SubItems[3].Text == "0")
+                {
+                    btnFries.BackgroundImage = Properties.Resources.FriesGray;
+                    btnFries.Enabled = false;
+                }
+                if (listView_Add.Items[5].SubItems[3].Text == "0")
+                {
+                    btnCoffee.BackgroundImage = Properties.Resources.coffeeGray;
+                    btnCoffee.Enabled = false;
+                }
+                if (listView_Add.Items[6].SubItems[3].Text == "0")
+                {
+                    btnBavaria.BackgroundImage = Properties.Resources.bavariaGray;
+                    btnBavaria.Enabled = false;
+                }
+                if (listView_Add.Items[7].SubItems[3].Text == "0")
+                {
+                    btnHotdog.BackgroundImage = Properties.Resources.hotdoggray;
+                    btnHotdog.Enabled = false;
+                }
+                if (listView_Add.Items[8].SubItems[3].Text == "0")
+                {
+                    btnAmstel.BackgroundImage = Properties.Resources.amstelGray;
+                    btnAmstel.Enabled = false;
+                }
             }
         }
 
@@ -292,89 +365,97 @@ namespace Sales
             int amount;
             int productID;
             string productName = "";
-
-            if (EnoughToPay() && EnoughInStock())
+            if (listView_Cart.Items.Count != 0)
             {
-                for (int i = 0; i < listView_Cart.Items.Count; i++)
+                if (EnoughToPay() && EnoughInStock())
                 {
-                    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+                    for (int i = 0; i < listView_Cart.Items.Count; i++)
+                    {
+                        MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
-                    productName = listView_Cart.Items[i].SubItems[0].Text;
-                    databaseConnection.Open();
-                    string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
-                    MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
-                    productID = Convert.ToInt32(commandPID.ExecuteScalar());
-                    databaseConnection.Close();
+                        productName = listView_Cart.Items[i].SubItems[0].Text;
+                        databaseConnection.Open();
+                        string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
+                        MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
+                        productID = Convert.ToInt32(commandPID.ExecuteScalar());
+                        databaseConnection.Close();
 
-                    amount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
-                    // get the amount needed to be removed and product id
+                        amount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
+                        // get the amount needed to be removed and product id
 
-                    string sqlStockUpdate = "UPDATE shop_inventory SET amount = (amount - " + amount + ") WHERE shop_id = " + shopID + " AND product_id = " + productID;
+                        string sqlStockUpdate = "UPDATE shop_inventory SET amount = (amount - " + amount + ") WHERE shop_id = " + shopID + " AND product_id = " + productID;
 
-                    MySqlCommand commandUpdateStock;
-                    commandUpdateStock = new MySqlCommand(sqlStockUpdate, databaseConnection);
+                        MySqlCommand commandUpdateStock;
+                        commandUpdateStock = new MySqlCommand(sqlStockUpdate, databaseConnection);
 
-                    databaseConnection.Open();
-                    commandUpdateStock.ExecuteNonQuery();
-                    databaseConnection.Close();
-
-
-
-                }
-                UpdateBalance();
-                InsertOrder();
-                string receipt = "\tReceipt for " + DateTime.Now.ToString() + "\n\t======Order Details======\n";
-                for (int i = 0; i < listView_Cart.Items.Count; i++)
-                {
-                    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-
-                    int odAmount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
-                    int odPID;
+                        databaseConnection.Open();
+                        commandUpdateStock.ExecuteNonQuery();
+                        databaseConnection.Close();
 
 
-                    productName = listView_Cart.Items[i].SubItems[0].Text;
-                    databaseConnection.Open();
-                    string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
-                    MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
-                    odPID = Convert.ToInt32(commandPID.ExecuteScalar());
-                    databaseConnection.Close();
 
-                    databaseConnection.Open();
-                    string query = "INSERT INTO order_detail (order_nr, product_id, amount, type) VALUES " +
-                                   " ((SELECT o.order_nr FROM orders o, visitor v WHERE o.visitor_id = v.visitor_id ORDER BY o.order_nr desc LIMIT 1), " + odPID + ", " + odAmount + ", 'sale')";
-                    MySqlCommand command = new MySqlCommand(query, databaseConnection);
-                    command.ExecuteNonQuery();
-                    databaseConnection.Close();
+                    }
+                    UpdateBalance();
+                    InsertOrder();
+                    string receipt = "\tReceipt for " + DateTime.Now.ToString() + "\n\t======Order Details======\n";
+                    for (int i = 0; i < listView_Cart.Items.Count; i++)
+                    {
+                        MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
-                    // Give receipt.
-                    receipt += "\n\t" + odAmount.ToString() + "x " + productName + "\t€" + listView_Cart.Items[i].SubItems[3].Text;
+                        int odAmount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
+                        int odPID;
 
-                }
-                receipt += "\n\t-----------------\n\tTotal: \t€" + Total.ToString();
-                receipt += "\n\n\tThank you for your order";
-                MessageBox.Show(receipt);
-            }
-            else
-            {
-                if (EnoughToPay() && !EnoughInStock())
-                {
-                    MessageBox.Show("Not enough in stock!");
+
+                        productName = listView_Cart.Items[i].SubItems[0].Text;
+                        databaseConnection.Open();
+                        string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
+                        MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
+                        odPID = Convert.ToInt32(commandPID.ExecuteScalar());
+                        databaseConnection.Close();
+
+                        databaseConnection.Open();
+                        string query = "INSERT INTO order_detail (order_nr, product_id, amount, type) VALUES " +
+                                       " ((SELECT o.order_nr FROM orders o, visitor v WHERE o.visitor_id = v.visitor_id ORDER BY o.order_nr desc LIMIT 1), " + odPID + ", " + odAmount + ", 'sale')";
+                        MySqlCommand command = new MySqlCommand(query, databaseConnection);
+                        command.ExecuteNonQuery();
+                        databaseConnection.Close();
+
+                        // Give receipt.
+                        receipt += "\n\t" + odAmount.ToString() + "x " + productName + "\t€" + listView_Cart.Items[i].SubItems[3].Text;
+
+                    }
+                    receipt += "\n\t-----------------\n\tTotal: \t€" + Total.ToString();
+                    receipt += "\n\n\tThank you for your order";
+                    MessageBox.Show(receipt);
                 }
                 else
                 {
-                    MessageBox.Show("Insufficient funds!");
+                    if (EnoughToPay() && !EnoughInStock())
+                    {
+                        MessageBox.Show("Not enough in stock!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Insufficient funds!");
+                    }
                 }
+                DisplayListInfo();
+                ResetCart();
+                ResetColors();
+                proAmount = 0;
+                productID = 0;
+
+                lbSwipe.Visible = false;
+                pnlSwipe.Visible = false;
+                lblAmount.Text = proAmount.ToString();
             }
+            else
+            {
+                MessageBox.Show("Please add something to the cart");
+            }
+                
 
-
-            DisplayListInfo();
-            ResetCart();
-            ResetColors();
-            proAmount = 0;
-            productID = 0;
-            lblAmount.Text = proAmount.ToString();
-
-
+            
         }
 
         public void UpdateBalance()
@@ -401,7 +482,7 @@ namespace Sales
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
             databaseConnection.Open();
-            string query = "INSERT INTO orders VALUES (DEFAULT," + visitorID + "," + cbShop.Text + ")";
+            string query = "INSERT INTO orders VALUES (DEFAULT," + visitorID + "," + shopID + ")";
             MySqlCommand command = new MySqlCommand(query, databaseConnection);
             command.ExecuteNonQuery();
             databaseConnection.Close();
@@ -430,12 +511,37 @@ namespace Sales
             //method called after detach
         }
 
+        public void IsInStock()
+        {
+
+        }
         // input a shop id
         private void cbShop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DisplayListInfo();
+           
+
+            switch (cbShop.SelectedItem.ToString())
+            {
+                case "Bob's Bar":
+                    shopID = 1;
+                    break;
+
+                case "The Ceiling":
+                    shopID = 3;
+                    break;
+
+                case "De Krokante Friet":
+                    shopID = 4;
+                    break;
+
+                default:
+                    break;
+            }
             //GetProductID();
+            ResetButtons();
+            DisplayListInfo();
             ResetCart();
+            
             ResetColors();
             proAmount = 0;
             lblAmount.Text = proAmount.ToString();
@@ -523,7 +629,7 @@ namespace Sales
 
                     Total += subTotal;
                     lbTotal.Text = "€" + Total.ToString();
-                    lbtest2.Text = Total.ToString();
+                 
                 }
                 else
                 {
@@ -536,6 +642,8 @@ namespace Sales
                 productID = 0;
                 lblAmount.Text = proAmount.ToString();
                 ResetColors();
+                pnlSwipe.Visible = true;
+                lbSwipe.Visible = true;
             }
         }
 
@@ -546,32 +654,39 @@ namespace Sales
 
         private void button_Remove_Click(object sender, EventArgs e)
         {
-            string sqlRemove = "SELECT (price * " + Convert.ToInt32(listView_Cart.SelectedItems[0].SubItems[2].Text) +
-                                " ) FROM product WHERE product_name = '" + listView_Cart.SelectedItems[0].SubItems[0].Text + "'";
-
-            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-            try
+            if (listView_Cart.Items.Count != 0)
             {
-                databaseConnection.Open();
-                MySqlCommand commandRemove = new MySqlCommand(sqlRemove, databaseConnection);
-                double stRemove = Convert.ToDouble(commandRemove.ExecuteScalar());
+                string sqlRemove = "SELECT (price * " + Convert.ToInt32(listView_Cart.SelectedItems[0].SubItems[2].Text) +
+                                    " ) FROM product WHERE product_name = '" + listView_Cart.SelectedItems[0].SubItems[0].Text + "'";
 
-                Total -= stRemove;
+                MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+                try
+                {
+                    databaseConnection.Open();
+                    MySqlCommand commandRemove = new MySqlCommand(sqlRemove, databaseConnection);
+                    double stRemove = Convert.ToDouble(commandRemove.ExecuteScalar());
+
+                    Total -= stRemove;
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    databaseConnection.Close();
+
+                }
+
+
+                lbTotal.Text = "€" + Total.ToString();
+                listView_Cart.SelectedItems[0].Remove();
+                if (listView_Cart.Items.Count == 0)
+                {
+                    lbSwipe.Visible = false;
+                    pnlSwipe.Visible = false;
+                }
             }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                databaseConnection.Close();
-
-            }
-
-
-            lbTotal.Text = "€" + Total.ToString();
-            listView_Cart.SelectedItems[0].Remove();
-            lbtest2.Text = Total.ToString();
         }
 
         private void button_Checkout_Click(object sender, EventArgs e) //update stock and create order/order_Detail
@@ -656,25 +771,65 @@ namespace Sales
          //   Checkout();
 
         }
+
+        public void ResetButtons()
+        {
+            btnDoner.BackgroundImage = Properties.Resources.Doner_kebab1;
+            btnDoner.Enabled = true;
+
+            btnCola.BackgroundImage = Properties.Resources.ColaFixed;
+            btnCola.Enabled = true;
+
+            btnFries.BackgroundImage = Properties.Resources.French_fries1;
+            btnFries.Enabled = true;
+
+            btnHeiniken.BackgroundImage = Properties.Resources.HeinikenFIxed;
+            btnHeiniken.Enabled = true;
+
+            btnCroquette.BackgroundImage = Properties.Resources.Croquette1;
+            btnCroquette.Enabled = true;
+
+            btnHotdog.BackgroundImage = Properties.Resources.hotdogFixed;
+            btnHotdog.Enabled = true;
+
+            btnCoffee.BackgroundImage = Properties.Resources.coffeeFixed;
+            btnCoffee.Enabled = true;
+
+            btnBavaria.BackgroundImage = Properties.Resources.bavariaFixed;
+            btnBavaria.Enabled = true;
+
+            btnAmstel.BackgroundImage = Properties.Resources.amstelFixed;
+            btnAmstel.Enabled = true;
+        }
         public void ResetColors()
         {
-            btnDoner.BackColor = SystemColors.Control;
+            btnDoner.BackColor = Color.Transparent;   
+                
+            btnCola.BackColor = Color.Transparent;           
 
-            btnCola.BackColor = SystemColors.Control;
-            btnFries.BackColor = SystemColors.Control;
-            btnHeiniken.BackColor = SystemColors.Control;
-            btnCroquette.BackColor = SystemColors.Control;
+            btnFries.BackColor = Color.Transparent;           
+
+            btnHeiniken.BackColor = Color.Transparent;            
+
+            btnCroquette.BackColor = Color.Transparent;            
+
+            btnHotdog.BackColor = Color.Transparent;           
+
+            btnCoffee.BackColor = Color.Transparent;           
+
+            btnBavaria.BackColor = Color.Transparent;          
+
+            btnAmstel.BackColor = Color.Transparent;
+           
         }
         private void btnDoner_Click(object sender, EventArgs e)
         {
             if (cbShop.SelectedIndex != -1)
             {
+                ResetColors();
                 btnDoner.BackColor = SystemColors.GradientActiveCaption;
 
-                btnCola.BackColor = SystemColors.Control;
-                btnFries.BackColor = SystemColors.Control;
-                btnHeiniken.BackColor = SystemColors.Control;
-                btnCroquette.BackColor = SystemColors.Control;
+                
 
                 proAmount = 1;
                 productID = 7;
@@ -704,12 +859,10 @@ namespace Sales
         {
             if (cbShop.SelectedIndex != -1)
             {
+                ResetColors();
                 btnFries.BackColor = SystemColors.GradientActiveCaption;
 
-                btnCola.BackColor = SystemColors.Control;
-                btnDoner.BackColor = SystemColors.Control;
-                btnHeiniken.BackColor = SystemColors.Control;
-                btnCroquette.BackColor = SystemColors.Control;
+                
 
                 proAmount = 1;
                 productID = 8;
@@ -721,11 +874,7 @@ namespace Sales
         {
             if (cbShop.SelectedIndex != -1)
             {
-                btnFries.BackColor = SystemColors.Control;
-
-                btnCola.BackColor = SystemColors.Control;
-                btnDoner.BackColor = SystemColors.Control;
-                btnHeiniken.BackColor = SystemColors.Control;
+                ResetColors();
                 btnCroquette.BackColor = SystemColors.GradientActiveCaption;
 
                 proAmount = 1;
@@ -738,12 +887,9 @@ namespace Sales
         {
             if (cbShop.SelectedIndex != -1)
             {
-                btnFries.BackColor = SystemColors.Control;
-
-                btnCola.BackColor = SystemColors.Control;
-                btnDoner.BackColor = SystemColors.Control;
+                ResetColors();
                 btnHeiniken.BackColor = SystemColors.GradientActiveCaption;
-                btnCroquette.BackColor = SystemColors.Control;
+                
 
                 proAmount = 1;
                 productID = 2;
@@ -755,15 +901,68 @@ namespace Sales
         {
             if (cbShop.SelectedIndex != -1)
             {
-                btnFries.BackColor = SystemColors.Control;
-
+                ResetColors();
                 btnCola.BackColor = SystemColors.GradientActiveCaption;
-                btnDoner.BackColor = SystemColors.Control;
-                btnHeiniken.BackColor = SystemColors.Control;
-                btnCroquette.BackColor = SystemColors.Control;
+                
 
                 proAmount = 1;
                 productID = 1;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnHotdog_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                ResetColors();
+                btnHotdog.BackColor = SystemColors.GradientActiveCaption;
+
+
+                proAmount = 1;
+                productID = 13;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnCoffee_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                ResetColors();
+                btnCoffee.BackColor = SystemColors.GradientActiveCaption;
+
+
+                proAmount = 1;
+                productID = 11;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnBavaria_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                ResetColors();
+                btnBavaria.BackColor = SystemColors.GradientActiveCaption;
+
+
+                proAmount = 1;
+                productID = 12;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void btnAmstel_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                ResetColors();
+                btnAmstel.BackColor = SystemColors.GradientActiveCaption;
+
+
+                proAmount = 1;
+                productID = 14;
                 lblAmount.Text = proAmount.ToString();
             }
         }

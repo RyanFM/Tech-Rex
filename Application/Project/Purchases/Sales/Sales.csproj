@@ -87,20 +87,35 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="images\amstelFixed.png" />
+    <Content Include="images\amstelGray.png" />
+    <Content Include="images\bavariaFixed.png" />
+    <Content Include="images\bavariaGray.png" />
     <Content Include="images\Coca Cola.jpg" />
     <Content Include="images\Coca Cola.png" />
+    <Content Include="images\coffeeFixed.png" />
+    <Content Include="images\coffeeGray.png" />
+    <Content Include="images\ColaFixed.png" />
+    <Content Include="images\ColaGray.png" />
     <Content Include="images\Croquette.jpg" />
     <Content Include="images\Croquette.png" />
+    <Content Include="images\CroquetteGray.png" />
     <Content Include="images\Doner kebab.jpg" />
     <Content Include="images\Doner kebab.png" />
+    <Content Include="images\DonerGray.png" />
     <Content Include="images\French fries.jpg" />
     <Content Include="images\French fries.png" />
+    <Content Include="images\FriesGray.png" />
     <Content Include="images\GoPro.jpg" />
     <Content Include="images\GoPro.png" />
     <Content Include="images\Headphones.jpg" />
     <Content Include="images\Headphones.png" />
     <Content Include="images\Heiniken.jpg" />
     <Content Include="images\Heiniken.png" />
+    <Content Include="images\HeinikenFIxed.png" />
+    <Content Include="images\HeinikenGray.png" />
+    <Content Include="images\hotdogFixed.png" />
+    <Content Include="images\hotdoggray.png" />
     <Content Include="images\Laptop Charger.jpg" />
     <Content Include="images\Laptop Charger.png" />
     <Content Include="images\Tablet.jpg" />

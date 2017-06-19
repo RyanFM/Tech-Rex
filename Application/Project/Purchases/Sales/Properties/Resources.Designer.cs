@@ -63,6 +63,46 @@ namespace Sales.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap amstelFixed {
+            get {
+                object obj = ResourceManager.GetObject("amstelFixed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap amstelGray {
+            get {
+                object obj = ResourceManager.GetObject("amstelGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bavariaFixed {
+            get {
+                object obj = ResourceManager.GetObject("bavariaFixed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bavariaGray {
+            get {
+                object obj = ResourceManager.GetObject("bavariaGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Coca_Cola {
             get {
                 object obj = ResourceManager.GetObject("Coca Cola", resourceCulture);
@@ -76,6 +116,46 @@ namespace Sales.Properties {
         internal static System.Drawing.Bitmap Coca_Cola1 {
             get {
                 object obj = ResourceManager.GetObject("Coca Cola1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap coffeeFixed {
+            get {
+                object obj = ResourceManager.GetObject("coffeeFixed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap coffeeGray {
+            get {
+                object obj = ResourceManager.GetObject("coffeeGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ColaFixed {
+            get {
+                object obj = ResourceManager.GetObject("ColaFixed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ColaGray {
+            get {
+                object obj = ResourceManager.GetObject("ColaGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,6 +183,16 @@ namespace Sales.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CroquetteGray {
+            get {
+                object obj = ResourceManager.GetObject("CroquetteGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Doner_kebab {
             get {
                 object obj = ResourceManager.GetObject("Doner kebab", resourceCulture);
@@ -123,6 +213,16 @@ namespace Sales.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DonerGray {
+            get {
+                object obj = ResourceManager.GetObject("DonerGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap French_fries {
             get {
                 object obj = ResourceManager.GetObject("French fries", resourceCulture);
@@ -136,6 +236,16 @@ namespace Sales.Properties {
         internal static System.Drawing.Bitmap French_fries1 {
             get {
                 object obj = ResourceManager.GetObject("French fries1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FriesGray {
+            get {
+                object obj = ResourceManager.GetObject("FriesGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +306,46 @@ namespace Sales.Properties {
         internal static System.Drawing.Bitmap Heiniken1 {
             get {
                 object obj = ResourceManager.GetObject("Heiniken1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HeinikenFIxed {
+            get {
+                object obj = ResourceManager.GetObject("HeinikenFIxed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HeinikenGray {
+            get {
+                object obj = ResourceManager.GetObject("HeinikenGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hotdogFixed {
+            get {
+                object obj = ResourceManager.GetObject("hotdogFixed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hotdoggray {
+            get {
+                object obj = ResourceManager.GetObject("hotdoggray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

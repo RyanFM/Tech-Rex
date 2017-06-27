@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listView_Details = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Fullname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -43,6 +44,14 @@
             this.btnShopInfo = new System.Windows.Forms.Button();
             this.btnSalesInfo = new System.Windows.Forms.Button();
             this.gbInfo = new System.Windows.Forms.GroupBox();
+            this.lbWorstSeller = new System.Windows.Forms.Label();
+            this.lbWorstSellerTitle = new System.Windows.Forms.Label();
+            this.lbCampAmount = new System.Windows.Forms.Label();
+            this.lbCampAmountTitle = new System.Windows.Forms.Label();
+            this.lbPopularShop = new System.Windows.Forms.Label();
+            this.lbPopularShopTitle = new System.Windows.Forms.Label();
+            this.lbBestSeller = new System.Windows.Forms.Label();
+            this.lbBestSellerTitle = new System.Windows.Forms.Label();
             this.lbEarned = new System.Windows.Forms.Label();
             this.lbEarnedTitle = new System.Windows.Forms.Label();
             this.lbCheckedOut = new System.Windows.Forms.Label();
@@ -53,14 +62,6 @@
             this.lbTickets = new System.Windows.Forms.Label();
             this.lbVisitorsTitle = new System.Windows.Forms.Label();
             this.lbTicketsTitle = new System.Windows.Forms.Label();
-            this.lbBestSellerTitle = new System.Windows.Forms.Label();
-            this.lbBestSeller = new System.Windows.Forms.Label();
-            this.lbPopularShopTitle = new System.Windows.Forms.Label();
-            this.lbPopularShop = new System.Windows.Forms.Label();
-            this.lbCampAmountTitle = new System.Windows.Forms.Label();
-            this.lbCampAmount = new System.Windows.Forms.Label();
-            this.lbWorstSellerTitle = new System.Windows.Forms.Label();
-            this.lbWorstSeller = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gbInfo.SuspendLayout();
             this.SuspendLayout();
@@ -234,6 +235,100 @@
             this.gbInfo.TabStop = false;
             this.gbInfo.Text = "Information";
             // 
+            // lbWorstSeller
+            // 
+            this.lbWorstSeller.AutoSize = true;
+            this.lbWorstSeller.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbWorstSeller.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbWorstSeller.Location = new System.Drawing.Point(278, 127);
+            this.lbWorstSeller.Name = "lbWorstSeller";
+            this.lbWorstSeller.Size = new System.Drawing.Size(53, 20);
+            this.lbWorstSeller.TabIndex = 18;
+            this.lbWorstSeller.Text = "label5";
+            this.lbWorstSeller.Visible = false;
+            // 
+            // lbWorstSellerTitle
+            // 
+            this.lbWorstSellerTitle.AutoSize = true;
+            this.lbWorstSellerTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbWorstSellerTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbWorstSellerTitle.Location = new System.Drawing.Point(23, 127);
+            this.lbWorstSellerTitle.Name = "lbWorstSellerTitle";
+            this.lbWorstSellerTitle.Size = new System.Drawing.Size(170, 20);
+            this.lbWorstSellerTitle.TabIndex = 17;
+            this.lbWorstSellerTitle.Text = "Least selling product:";
+            this.lbWorstSellerTitle.Visible = false;
+            // 
+            // lbCampAmount
+            // 
+            this.lbCampAmount.AutoSize = true;
+            this.lbCampAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbCampAmount.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbCampAmount.Location = new System.Drawing.Point(278, 44);
+            this.lbCampAmount.Name = "lbCampAmount";
+            this.lbCampAmount.Size = new System.Drawing.Size(53, 20);
+            this.lbCampAmount.TabIndex = 16;
+            this.lbCampAmount.Text = "label1";
+            this.lbCampAmount.Visible = false;
+            // 
+            // lbCampAmountTitle
+            // 
+            this.lbCampAmountTitle.AutoSize = true;
+            this.lbCampAmountTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbCampAmountTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbCampAmountTitle.Location = new System.Drawing.Point(24, 44);
+            this.lbCampAmountTitle.Name = "lbCampAmountTitle";
+            this.lbCampAmountTitle.Size = new System.Drawing.Size(196, 20);
+            this.lbCampAmountTitle.TabIndex = 15;
+            this.lbCampAmountTitle.Text = "Number of spots booked:";
+            this.lbCampAmountTitle.Visible = false;
+            // 
+            // lbPopularShop
+            // 
+            this.lbPopularShop.AutoSize = true;
+            this.lbPopularShop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbPopularShop.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbPopularShop.Location = new System.Drawing.Point(278, 44);
+            this.lbPopularShop.Name = "lbPopularShop";
+            this.lbPopularShop.Size = new System.Drawing.Size(53, 20);
+            this.lbPopularShop.TabIndex = 14;
+            this.lbPopularShop.Text = "label1";
+            this.lbPopularShop.Visible = false;
+            // 
+            // lbPopularShopTitle
+            // 
+            this.lbPopularShopTitle.AutoSize = true;
+            this.lbPopularShopTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbPopularShopTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbPopularShopTitle.Location = new System.Drawing.Point(23, 44);
+            this.lbPopularShopTitle.Name = "lbPopularShopTitle";
+            this.lbPopularShopTitle.Size = new System.Drawing.Size(152, 20);
+            this.lbPopularShopTitle.TabIndex = 13;
+            this.lbPopularShopTitle.Text = "Most popular shop:";
+            this.lbPopularShopTitle.Visible = false;
+            // 
+            // lbBestSeller
+            // 
+            this.lbBestSeller.AutoSize = true;
+            this.lbBestSeller.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbBestSeller.Location = new System.Drawing.Point(278, 81);
+            this.lbBestSeller.Name = "lbBestSeller";
+            this.lbBestSeller.Size = new System.Drawing.Size(53, 20);
+            this.lbBestSeller.TabIndex = 12;
+            this.lbBestSeller.Text = "label1";
+            this.lbBestSeller.Visible = false;
+            // 
+            // lbBestSellerTitle
+            // 
+            this.lbBestSellerTitle.AutoSize = true;
+            this.lbBestSellerTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbBestSellerTitle.Location = new System.Drawing.Point(23, 81);
+            this.lbBestSellerTitle.Name = "lbBestSellerTitle";
+            this.lbBestSellerTitle.Size = new System.Drawing.Size(163, 20);
+            this.lbBestSellerTitle.TabIndex = 11;
+            this.lbBestSellerTitle.Text = "Best selling product:";
+            this.lbBestSellerTitle.Visible = false;
+            // 
             // lbEarned
             // 
             this.lbEarned.AutoSize = true;
@@ -348,100 +443,6 @@
             this.lbTicketsTitle.TabIndex = 0;
             this.lbTicketsTitle.Text = "Total tickets sold:";
             // 
-            // lbBestSellerTitle
-            // 
-            this.lbBestSellerTitle.AutoSize = true;
-            this.lbBestSellerTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbBestSellerTitle.Location = new System.Drawing.Point(23, 81);
-            this.lbBestSellerTitle.Name = "lbBestSellerTitle";
-            this.lbBestSellerTitle.Size = new System.Drawing.Size(163, 20);
-            this.lbBestSellerTitle.TabIndex = 11;
-            this.lbBestSellerTitle.Text = "Best selling product:";
-            this.lbBestSellerTitle.Visible = false;
-            // 
-            // lbBestSeller
-            // 
-            this.lbBestSeller.AutoSize = true;
-            this.lbBestSeller.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbBestSeller.Location = new System.Drawing.Point(278, 81);
-            this.lbBestSeller.Name = "lbBestSeller";
-            this.lbBestSeller.Size = new System.Drawing.Size(53, 20);
-            this.lbBestSeller.TabIndex = 12;
-            this.lbBestSeller.Text = "label1";
-            this.lbBestSeller.Visible = false;
-            // 
-            // lbPopularShopTitle
-            // 
-            this.lbPopularShopTitle.AutoSize = true;
-            this.lbPopularShopTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbPopularShopTitle.ForeColor = System.Drawing.SystemColors.Menu;
-            this.lbPopularShopTitle.Location = new System.Drawing.Point(23, 44);
-            this.lbPopularShopTitle.Name = "lbPopularShopTitle";
-            this.lbPopularShopTitle.Size = new System.Drawing.Size(152, 20);
-            this.lbPopularShopTitle.TabIndex = 13;
-            this.lbPopularShopTitle.Text = "Most popular shop:";
-            this.lbPopularShopTitle.Visible = false;
-            // 
-            // lbPopularShop
-            // 
-            this.lbPopularShop.AutoSize = true;
-            this.lbPopularShop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbPopularShop.ForeColor = System.Drawing.SystemColors.Menu;
-            this.lbPopularShop.Location = new System.Drawing.Point(278, 44);
-            this.lbPopularShop.Name = "lbPopularShop";
-            this.lbPopularShop.Size = new System.Drawing.Size(53, 20);
-            this.lbPopularShop.TabIndex = 14;
-            this.lbPopularShop.Text = "label1";
-            this.lbPopularShop.Visible = false;
-            // 
-            // lbCampAmountTitle
-            // 
-            this.lbCampAmountTitle.AutoSize = true;
-            this.lbCampAmountTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbCampAmountTitle.ForeColor = System.Drawing.SystemColors.Menu;
-            this.lbCampAmountTitle.Location = new System.Drawing.Point(24, 44);
-            this.lbCampAmountTitle.Name = "lbCampAmountTitle";
-            this.lbCampAmountTitle.Size = new System.Drawing.Size(196, 20);
-            this.lbCampAmountTitle.TabIndex = 15;
-            this.lbCampAmountTitle.Text = "Number of spots booked:";
-            this.lbCampAmountTitle.Visible = false;
-            // 
-            // lbCampAmount
-            // 
-            this.lbCampAmount.AutoSize = true;
-            this.lbCampAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbCampAmount.ForeColor = System.Drawing.SystemColors.Menu;
-            this.lbCampAmount.Location = new System.Drawing.Point(278, 44);
-            this.lbCampAmount.Name = "lbCampAmount";
-            this.lbCampAmount.Size = new System.Drawing.Size(53, 20);
-            this.lbCampAmount.TabIndex = 16;
-            this.lbCampAmount.Text = "label1";
-            this.lbCampAmount.Visible = false;
-            // 
-            // lbWorstSellerTitle
-            // 
-            this.lbWorstSellerTitle.AutoSize = true;
-            this.lbWorstSellerTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbWorstSellerTitle.ForeColor = System.Drawing.SystemColors.Menu;
-            this.lbWorstSellerTitle.Location = new System.Drawing.Point(23, 127);
-            this.lbWorstSellerTitle.Name = "lbWorstSellerTitle";
-            this.lbWorstSellerTitle.Size = new System.Drawing.Size(170, 20);
-            this.lbWorstSellerTitle.TabIndex = 17;
-            this.lbWorstSellerTitle.Text = "Least selling product:";
-            this.lbWorstSellerTitle.Visible = false;
-            // 
-            // lbWorstSeller
-            // 
-            this.lbWorstSeller.AutoSize = true;
-            this.lbWorstSeller.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbWorstSeller.ForeColor = System.Drawing.SystemColors.Menu;
-            this.lbWorstSeller.Location = new System.Drawing.Point(278, 127);
-            this.lbWorstSeller.Name = "lbWorstSeller";
-            this.lbWorstSeller.Size = new System.Drawing.Size(53, 20);
-            this.lbWorstSeller.TabIndex = 18;
-            this.lbWorstSeller.Text = "label5";
-            this.lbWorstSeller.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -453,6 +454,7 @@
             this.Controls.Add(this.comboBox_Search);
             this.Controls.Add(this.label_Search);
             this.Controls.Add(this.listView_Details);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Festival Management";

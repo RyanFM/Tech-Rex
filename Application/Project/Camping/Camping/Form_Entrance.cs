@@ -99,7 +99,7 @@ namespace Camping
 
                   
                     ((Label)c).Visible = true;
-                    ((Label)c).Text = "   ";
+                    ((Label)c).Text = "    ";
                    
                     break;
                 }

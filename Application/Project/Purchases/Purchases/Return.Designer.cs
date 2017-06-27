@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Return));
             this.groupBox_Return = new System.Windows.Forms.GroupBox();
             this.lbTotal = new System.Windows.Forms.Label();
             this.lbMoney = new System.Windows.Forms.Label();
@@ -193,6 +194,7 @@
             this.ClientSize = new System.Drawing.Size(745, 505);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox_Return);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Return";
             this.Text = "Return";
             this.Load += new System.EventHandler(this.Return_Load);

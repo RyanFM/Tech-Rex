@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label_Title = new System.Windows.Forms.Label();
             this.label_Ticket_type = new System.Windows.Forms.Label();
             this.label_status = new System.Windows.Forms.Label();
@@ -110,7 +111,7 @@
             // 
             // textBox_ID
             // 
-            this.textBox_ID.Location = new System.Drawing.Point(275, 45);
+            this.textBox_ID.Location = new System.Drawing.Point(290, 45);
             this.textBox_ID.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_ID.MaxLength = 6;
             this.textBox_ID.Name = "textBox_ID";
@@ -135,9 +136,9 @@
             this.panel2.Controls.Add(this.textBox_ID);
             this.panel2.Controls.Add(this.label_ID);
             this.panel2.Controls.Add(this.label_status);
-            this.panel2.Location = new System.Drawing.Point(36, 84);
+            this.panel2.Location = new System.Drawing.Point(27, 84);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(380, 265);
+            this.panel2.Size = new System.Drawing.Size(401, 265);
             this.panel2.TabIndex = 23;
             // 
             // pnlScan
@@ -173,6 +174,7 @@
             this.Controls.Add(this.label_databasestatus);
             this.Controls.Add(this.label_SystemStatus);
             this.Controls.Add(this.label_Ticket_type);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Festival Entrance";

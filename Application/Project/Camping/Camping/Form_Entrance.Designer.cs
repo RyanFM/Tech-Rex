@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Entrance));
             this.label_Title = new System.Windows.Forms.Label();
             this.lbSiteNoTitle = new System.Windows.Forms.Label();
             this.lbSiteNo = new System.Windows.Forms.Label();
             this.gbCamp = new System.Windows.Forms.GroupBox();
+            this.pnlPass = new System.Windows.Forms.Panel();
+            this.lbPass = new System.Windows.Forms.Label();
             this.lbCamp = new System.Windows.Forms.Label();
             this.lbCampSpot = new System.Windows.Forms.Label();
             this.lb18 = new System.Windows.Forms.Label();
@@ -60,13 +63,11 @@
             this.lb3 = new System.Windows.Forms.Label();
             this.lb1 = new System.Windows.Forms.Label();
             this.pbCamping = new System.Windows.Forms.PictureBox();
-            this.lbPass = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pnlPass = new System.Windows.Forms.Panel();
             this.gbCamp.SuspendLayout();
+            this.pnlPass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCamping)).BeginInit();
             this.panel1.SuspendLayout();
-            this.pnlPass.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_Title
@@ -112,6 +113,28 @@
             this.gbCamp.Size = new System.Drawing.Size(386, 333);
             this.gbCamp.TabIndex = 34;
             this.gbCamp.TabStop = false;
+            // 
+            // pnlPass
+            // 
+            this.pnlPass.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.pnlPass.Controls.Add(this.lbPass);
+            this.pnlPass.Location = new System.Drawing.Point(23, 203);
+            this.pnlPass.Name = "pnlPass";
+            this.pnlPass.Size = new System.Drawing.Size(340, 61);
+            this.pnlPass.TabIndex = 37;
+            this.pnlPass.Visible = false;
+            // 
+            // lbPass
+            // 
+            this.lbPass.AutoSize = true;
+            this.lbPass.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lbPass.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbPass.Location = new System.Drawing.Point(26, 17);
+            this.lbPass.Name = "lbPass";
+            this.lbPass.Size = new System.Drawing.Size(254, 31);
+            this.lbPass.TabIndex = 36;
+            this.lbPass.Text = "PASS - View map ->";
+            this.lbPass.Visible = false;
             // 
             // lbCamp
             // 
@@ -482,18 +505,6 @@
             this.pbCamping.TabIndex = 6;
             this.pbCamping.TabStop = false;
             // 
-            // lbPass
-            // 
-            this.lbPass.AutoSize = true;
-            this.lbPass.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lbPass.ForeColor = System.Drawing.SystemColors.Menu;
-            this.lbPass.Location = new System.Drawing.Point(26, 17);
-            this.lbPass.Name = "lbPass";
-            this.lbPass.Size = new System.Drawing.Size(254, 31);
-            this.lbPass.TabIndex = 36;
-            this.lbPass.Text = "PASS - View map ->";
-            this.lbPass.Visible = false;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkOliveGreen;
@@ -502,16 +513,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1173, 61);
             this.panel1.TabIndex = 35;
-            // 
-            // pnlPass
-            // 
-            this.pnlPass.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.pnlPass.Controls.Add(this.lbPass);
-            this.pnlPass.Location = new System.Drawing.Point(23, 203);
-            this.pnlPass.Name = "pnlPass";
-            this.pnlPass.Size = new System.Drawing.Size(340, 61);
-            this.pnlPass.TabIndex = 37;
-            this.pnlPass.Visible = false;
             // 
             // Form_Entrance
             // 
@@ -547,16 +548,17 @@
             this.Controls.Add(this.lb3);
             this.Controls.Add(this.lb1);
             this.Controls.Add(this.pbCamping);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_Entrance";
             this.Text = "Entrance";
             this.gbCamp.ResumeLayout(false);
             this.gbCamp.PerformLayout();
+            this.pnlPass.ResumeLayout(false);
+            this.pnlPass.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCamping)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.pnlPass.ResumeLayout(false);
-            this.pnlPass.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

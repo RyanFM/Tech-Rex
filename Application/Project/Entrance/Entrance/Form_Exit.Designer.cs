@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Exit));
             this.label_Title = new System.Windows.Forms.Label();
             this.lbMoney = new System.Windows.Forms.Label();
             this.listView_main = new System.Windows.Forms.ListView();
@@ -173,9 +174,10 @@
             this.ClientSize = new System.Drawing.Size(792, 628);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gbRent);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_Exit";
-            this.Text = "z";
+            this.Text = "Festival Exit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Exit_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Exit_FormClosed);
             this.gbRent.ResumeLayout(false);

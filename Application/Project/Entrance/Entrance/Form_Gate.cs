@@ -131,10 +131,10 @@ namespace Entrance
         public bool ValidateStatus()
         {
             string status = "";
-
+            string ticketType = "";
            
 
-            string query = "SELECT status FROM visitor WHERE rfid='" + rfidTag + "'";
+            string query = "SELECT status, ticket_type FROM visitor WHERE rfid='" + rfidTag + "'";
             MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
 
 
@@ -143,6 +143,7 @@ namespace Entrance
                 MySqlDataReader reader = command.ExecuteReader();
                 reader.Read();
                 status = reader[0].ToString();
+                ticketType = reader[1].ToString();
                 reader.Close();
 
             }
@@ -156,7 +157,7 @@ namespace Entrance
             {
                 return true;
             }
-            else if (status == "Checked-out")
+            else if (status == "Checked-out" && ticketType == "Weekend Ticket")
             {
 
                

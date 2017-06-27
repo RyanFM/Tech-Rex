@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Loans));
             this.groupBox_Add = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnLaptop = new System.Windows.Forms.Button();
@@ -442,6 +443,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox_Cart);
             this.Controls.Add(this.groupBox_Add);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_Loans";
             this.Text = "Form_Loans";

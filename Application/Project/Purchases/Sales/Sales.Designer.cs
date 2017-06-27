@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sales));
             this.groupBox_Cart = new System.Windows.Forms.GroupBox();
+            this.pnlSwipe = new System.Windows.Forms.Panel();
+            this.lbSwipe = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
             this.listView_Cart = new System.Windows.Forms.ListView();
             this.Product_cart = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,7 +41,17 @@
             this.button_Remove = new System.Windows.Forms.Button();
             this.label_Total = new System.Windows.Forms.Label();
             this.groupBox_Add = new System.Windows.Forms.GroupBox();
+            this.pnMenuBorder = new System.Windows.Forms.Panel();
             this.tlpnMenu = new System.Windows.Forms.TableLayoutPanel();
+            this.btnHotdog = new System.Windows.Forms.Button();
+            this.btnBavaria = new System.Windows.Forms.Button();
+            this.btnAmstel = new System.Windows.Forms.Button();
+            this.btnCoffee = new System.Windows.Forms.Button();
+            this.btnFries = new System.Windows.Forms.Button();
+            this.btnDoner = new System.Windows.Forms.Button();
+            this.btnCroquette = new System.Windows.Forms.Button();
+            this.btnHeiniken = new System.Windows.Forms.Button();
+            this.btnCola = new System.Windows.Forms.Button();
             this.lblAmount = new System.Windows.Forms.Label();
             this.btnMin = new System.Windows.Forms.Button();
             this.btnPlus = new System.Windows.Forms.Button();
@@ -51,25 +64,13 @@
             this.button_Add = new System.Windows.Forms.Button();
             this.cbShop = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnHotdog = new System.Windows.Forms.Button();
-            this.btnBavaria = new System.Windows.Forms.Button();
-            this.btnAmstel = new System.Windows.Forms.Button();
-            this.btnCoffee = new System.Windows.Forms.Button();
-            this.btnFries = new System.Windows.Forms.Button();
-            this.btnDoner = new System.Windows.Forms.Button();
-            this.btnCroquette = new System.Windows.Forms.Button();
-            this.btnHeiniken = new System.Windows.Forms.Button();
-            this.btnCola = new System.Windows.Forms.Button();
             this.pnlTopBorder = new System.Windows.Forms.Panel();
-            this.lbSwipe = new System.Windows.Forms.Label();
-            this.pnlSwipe = new System.Windows.Forms.Panel();
-            this.pnMenuBorder = new System.Windows.Forms.Panel();
             this.groupBox_Cart.SuspendLayout();
+            this.pnlSwipe.SuspendLayout();
             this.groupBox_Add.SuspendLayout();
+            this.pnMenuBorder.SuspendLayout();
             this.tlpnMenu.SuspendLayout();
             this.pnlTopBorder.SuspendLayout();
-            this.pnlSwipe.SuspendLayout();
-            this.pnMenuBorder.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox_Cart
@@ -89,6 +90,28 @@
             this.groupBox_Cart.TabIndex = 5;
             this.groupBox_Cart.TabStop = false;
             this.groupBox_Cart.Text = "CART";
+            // 
+            // pnlSwipe
+            // 
+            this.pnlSwipe.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.pnlSwipe.Controls.Add(this.lbSwipe);
+            this.pnlSwipe.Location = new System.Drawing.Point(114, 394);
+            this.pnlSwipe.Name = "pnlSwipe";
+            this.pnlSwipe.Size = new System.Drawing.Size(347, 58);
+            this.pnlSwipe.TabIndex = 8;
+            this.pnlSwipe.Visible = false;
+            // 
+            // lbSwipe
+            // 
+            this.lbSwipe.AutoSize = true;
+            this.lbSwipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbSwipe.ForeColor = System.Drawing.Color.Honeydew;
+            this.lbSwipe.Location = new System.Drawing.Point(18, 12);
+            this.lbSwipe.Name = "lbSwipe";
+            this.lbSwipe.Size = new System.Drawing.Size(307, 36);
+            this.lbSwipe.TabIndex = 8;
+            this.lbSwipe.Text = "Swipe tag to checkout";
+            this.lbSwipe.Visible = false;
             // 
             // lbTotal
             // 
@@ -179,6 +202,15 @@
             this.groupBox_Add.TabStop = false;
             this.groupBox_Add.Text = "ADD TO CART";
             // 
+            // pnMenuBorder
+            // 
+            this.pnMenuBorder.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnMenuBorder.Controls.Add(this.tlpnMenu);
+            this.pnMenuBorder.Location = new System.Drawing.Point(23, 27);
+            this.pnMenuBorder.Name = "pnMenuBorder";
+            this.pnMenuBorder.Size = new System.Drawing.Size(379, 379);
+            this.pnMenuBorder.TabIndex = 18;
+            // 
             // tlpnMenu
             // 
             this.tlpnMenu.ColumnCount = 3;
@@ -203,6 +235,126 @@
             this.tlpnMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpnMenu.Size = new System.Drawing.Size(365, 362);
             this.tlpnMenu.TabIndex = 17;
+            // 
+            // btnHotdog
+            // 
+            this.btnHotdog.BackgroundImage = global::Sales.Properties.Resources.hotdoggray;
+            this.btnHotdog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHotdog.Enabled = false;
+            this.btnHotdog.Location = new System.Drawing.Point(243, 123);
+            this.btnHotdog.Name = "btnHotdog";
+            this.btnHotdog.Size = new System.Drawing.Size(118, 114);
+            this.btnHotdog.TabIndex = 18;
+            this.btnHotdog.UseVisualStyleBackColor = true;
+            this.btnHotdog.Click += new System.EventHandler(this.btnHotdog_Click);
+            // 
+            // btnBavaria
+            // 
+            this.btnBavaria.BackgroundImage = global::Sales.Properties.Resources.bavariaGray;
+            this.btnBavaria.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBavaria.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBavaria.Enabled = false;
+            this.btnBavaria.Location = new System.Drawing.Point(123, 243);
+            this.btnBavaria.Name = "btnBavaria";
+            this.btnBavaria.Size = new System.Drawing.Size(114, 116);
+            this.btnBavaria.TabIndex = 16;
+            this.btnBavaria.Tag = "1";
+            this.btnBavaria.UseVisualStyleBackColor = true;
+            this.btnBavaria.Click += new System.EventHandler(this.btnBavaria_Click);
+            // 
+            // btnAmstel
+            // 
+            this.btnAmstel.BackgroundImage = global::Sales.Properties.Resources.amstelGray;
+            this.btnAmstel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAmstel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAmstel.Enabled = false;
+            this.btnAmstel.Location = new System.Drawing.Point(243, 243);
+            this.btnAmstel.Name = "btnAmstel";
+            this.btnAmstel.Size = new System.Drawing.Size(119, 116);
+            this.btnAmstel.TabIndex = 15;
+            this.btnAmstel.Tag = "1";
+            this.btnAmstel.UseVisualStyleBackColor = true;
+            this.btnAmstel.Click += new System.EventHandler(this.btnAmstel_Click);
+            // 
+            // btnCoffee
+            // 
+            this.btnCoffee.BackgroundImage = global::Sales.Properties.Resources.coffeeGray;
+            this.btnCoffee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCoffee.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCoffee.Enabled = false;
+            this.btnCoffee.Location = new System.Drawing.Point(3, 243);
+            this.btnCoffee.Name = "btnCoffee";
+            this.btnCoffee.Size = new System.Drawing.Size(114, 116);
+            this.btnCoffee.TabIndex = 14;
+            this.btnCoffee.Tag = "1";
+            this.btnCoffee.UseVisualStyleBackColor = true;
+            this.btnCoffee.Click += new System.EventHandler(this.btnCoffee_Click);
+            // 
+            // btnFries
+            // 
+            this.btnFries.BackgroundImage = global::Sales.Properties.Resources.FriesGray;
+            this.btnFries.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFries.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFries.Enabled = false;
+            this.btnFries.Location = new System.Drawing.Point(123, 3);
+            this.btnFries.Name = "btnFries";
+            this.btnFries.Size = new System.Drawing.Size(114, 114);
+            this.btnFries.TabIndex = 12;
+            this.btnFries.UseVisualStyleBackColor = true;
+            this.btnFries.Click += new System.EventHandler(this.btnFries_Click);
+            // 
+            // btnDoner
+            // 
+            this.btnDoner.BackgroundImage = global::Sales.Properties.Resources.DonerGray;
+            this.btnDoner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDoner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDoner.Enabled = false;
+            this.btnDoner.Location = new System.Drawing.Point(243, 3);
+            this.btnDoner.Name = "btnDoner";
+            this.btnDoner.Size = new System.Drawing.Size(119, 114);
+            this.btnDoner.TabIndex = 13;
+            this.btnDoner.UseVisualStyleBackColor = true;
+            this.btnDoner.Click += new System.EventHandler(this.btnDoner_Click);
+            // 
+            // btnCroquette
+            // 
+            this.btnCroquette.BackgroundImage = global::Sales.Properties.Resources.CroquetteGray;
+            this.btnCroquette.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCroquette.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCroquette.Enabled = false;
+            this.btnCroquette.Location = new System.Drawing.Point(3, 3);
+            this.btnCroquette.Name = "btnCroquette";
+            this.btnCroquette.Size = new System.Drawing.Size(114, 114);
+            this.btnCroquette.TabIndex = 8;
+            this.btnCroquette.UseVisualStyleBackColor = true;
+            this.btnCroquette.Click += new System.EventHandler(this.btnCroquette_Click);
+            // 
+            // btnHeiniken
+            // 
+            this.btnHeiniken.BackgroundImage = global::Sales.Properties.Resources.HeinikenGray;
+            this.btnHeiniken.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHeiniken.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnHeiniken.Enabled = false;
+            this.btnHeiniken.Location = new System.Drawing.Point(3, 123);
+            this.btnHeiniken.Name = "btnHeiniken";
+            this.btnHeiniken.Size = new System.Drawing.Size(114, 114);
+            this.btnHeiniken.TabIndex = 11;
+            this.btnHeiniken.UseVisualStyleBackColor = true;
+            this.btnHeiniken.Click += new System.EventHandler(this.btnHeiniken_Click);
+            // 
+            // btnCola
+            // 
+            this.btnCola.BackgroundImage = global::Sales.Properties.Resources.ColaGray;
+            this.btnCola.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCola.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCola.Enabled = false;
+            this.btnCola.Location = new System.Drawing.Point(123, 123);
+            this.btnCola.Name = "btnCola";
+            this.btnCola.Size = new System.Drawing.Size(114, 114);
+            this.btnCola.TabIndex = 7;
+            this.btnCola.Tag = "1";
+            this.btnCola.UseVisualStyleBackColor = true;
+            this.btnCola.Click += new System.EventHandler(this.btnCola_Click);
             // 
             // lblAmount
             // 
@@ -333,126 +485,6 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Shop name:";
             // 
-            // btnHotdog
-            // 
-            this.btnHotdog.BackgroundImage = global::Sales.Properties.Resources.hotdoggray;
-            this.btnHotdog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHotdog.Enabled = false;
-            this.btnHotdog.Location = new System.Drawing.Point(243, 123);
-            this.btnHotdog.Name = "btnHotdog";
-            this.btnHotdog.Size = new System.Drawing.Size(118, 114);
-            this.btnHotdog.TabIndex = 18;
-            this.btnHotdog.UseVisualStyleBackColor = true;
-            this.btnHotdog.Click += new System.EventHandler(this.btnHotdog_Click);
-            // 
-            // btnBavaria
-            // 
-            this.btnBavaria.BackgroundImage = global::Sales.Properties.Resources.bavariaGray;
-            this.btnBavaria.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnBavaria.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBavaria.Enabled = false;
-            this.btnBavaria.Location = new System.Drawing.Point(123, 243);
-            this.btnBavaria.Name = "btnBavaria";
-            this.btnBavaria.Size = new System.Drawing.Size(114, 116);
-            this.btnBavaria.TabIndex = 16;
-            this.btnBavaria.Tag = "1";
-            this.btnBavaria.UseVisualStyleBackColor = true;
-            this.btnBavaria.Click += new System.EventHandler(this.btnBavaria_Click);
-            // 
-            // btnAmstel
-            // 
-            this.btnAmstel.BackgroundImage = global::Sales.Properties.Resources.amstelGray;
-            this.btnAmstel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAmstel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAmstel.Enabled = false;
-            this.btnAmstel.Location = new System.Drawing.Point(243, 243);
-            this.btnAmstel.Name = "btnAmstel";
-            this.btnAmstel.Size = new System.Drawing.Size(119, 116);
-            this.btnAmstel.TabIndex = 15;
-            this.btnAmstel.Tag = "1";
-            this.btnAmstel.UseVisualStyleBackColor = true;
-            this.btnAmstel.Click += new System.EventHandler(this.btnAmstel_Click);
-            // 
-            // btnCoffee
-            // 
-            this.btnCoffee.BackgroundImage = global::Sales.Properties.Resources.coffeeGray;
-            this.btnCoffee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCoffee.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCoffee.Enabled = false;
-            this.btnCoffee.Location = new System.Drawing.Point(3, 243);
-            this.btnCoffee.Name = "btnCoffee";
-            this.btnCoffee.Size = new System.Drawing.Size(114, 116);
-            this.btnCoffee.TabIndex = 14;
-            this.btnCoffee.Tag = "1";
-            this.btnCoffee.UseVisualStyleBackColor = true;
-            this.btnCoffee.Click += new System.EventHandler(this.btnCoffee_Click);
-            // 
-            // btnFries
-            // 
-            this.btnFries.BackgroundImage = global::Sales.Properties.Resources.FriesGray;
-            this.btnFries.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnFries.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFries.Enabled = false;
-            this.btnFries.Location = new System.Drawing.Point(123, 3);
-            this.btnFries.Name = "btnFries";
-            this.btnFries.Size = new System.Drawing.Size(114, 114);
-            this.btnFries.TabIndex = 12;
-            this.btnFries.UseVisualStyleBackColor = true;
-            this.btnFries.Click += new System.EventHandler(this.btnFries_Click);
-            // 
-            // btnDoner
-            // 
-            this.btnDoner.BackgroundImage = global::Sales.Properties.Resources.DonerGray;
-            this.btnDoner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDoner.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDoner.Enabled = false;
-            this.btnDoner.Location = new System.Drawing.Point(243, 3);
-            this.btnDoner.Name = "btnDoner";
-            this.btnDoner.Size = new System.Drawing.Size(119, 114);
-            this.btnDoner.TabIndex = 13;
-            this.btnDoner.UseVisualStyleBackColor = true;
-            this.btnDoner.Click += new System.EventHandler(this.btnDoner_Click);
-            // 
-            // btnCroquette
-            // 
-            this.btnCroquette.BackgroundImage = global::Sales.Properties.Resources.CroquetteGray;
-            this.btnCroquette.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCroquette.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCroquette.Enabled = false;
-            this.btnCroquette.Location = new System.Drawing.Point(3, 3);
-            this.btnCroquette.Name = "btnCroquette";
-            this.btnCroquette.Size = new System.Drawing.Size(114, 114);
-            this.btnCroquette.TabIndex = 8;
-            this.btnCroquette.UseVisualStyleBackColor = true;
-            this.btnCroquette.Click += new System.EventHandler(this.btnCroquette_Click);
-            // 
-            // btnHeiniken
-            // 
-            this.btnHeiniken.BackgroundImage = global::Sales.Properties.Resources.HeinikenGray;
-            this.btnHeiniken.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHeiniken.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnHeiniken.Enabled = false;
-            this.btnHeiniken.Location = new System.Drawing.Point(3, 123);
-            this.btnHeiniken.Name = "btnHeiniken";
-            this.btnHeiniken.Size = new System.Drawing.Size(114, 114);
-            this.btnHeiniken.TabIndex = 11;
-            this.btnHeiniken.UseVisualStyleBackColor = true;
-            this.btnHeiniken.Click += new System.EventHandler(this.btnHeiniken_Click);
-            // 
-            // btnCola
-            // 
-            this.btnCola.BackgroundImage = global::Sales.Properties.Resources.ColaGray;
-            this.btnCola.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCola.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCola.Enabled = false;
-            this.btnCola.Location = new System.Drawing.Point(123, 123);
-            this.btnCola.Name = "btnCola";
-            this.btnCola.Size = new System.Drawing.Size(114, 114);
-            this.btnCola.TabIndex = 7;
-            this.btnCola.Tag = "1";
-            this.btnCola.UseVisualStyleBackColor = true;
-            this.btnCola.Click += new System.EventHandler(this.btnCola_Click);
-            // 
             // pnlTopBorder
             // 
             this.pnlTopBorder.BackColor = System.Drawing.Color.DarkOliveGreen;
@@ -463,37 +495,6 @@
             this.pnlTopBorder.Size = new System.Drawing.Size(1475, 56);
             this.pnlTopBorder.TabIndex = 8;
             // 
-            // lbSwipe
-            // 
-            this.lbSwipe.AutoSize = true;
-            this.lbSwipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbSwipe.ForeColor = System.Drawing.Color.Honeydew;
-            this.lbSwipe.Location = new System.Drawing.Point(18, 12);
-            this.lbSwipe.Name = "lbSwipe";
-            this.lbSwipe.Size = new System.Drawing.Size(307, 36);
-            this.lbSwipe.TabIndex = 8;
-            this.lbSwipe.Text = "Swipe tag to checkout";
-            this.lbSwipe.Visible = false;
-            // 
-            // pnlSwipe
-            // 
-            this.pnlSwipe.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.pnlSwipe.Controls.Add(this.lbSwipe);
-            this.pnlSwipe.Location = new System.Drawing.Point(114, 394);
-            this.pnlSwipe.Name = "pnlSwipe";
-            this.pnlSwipe.Size = new System.Drawing.Size(347, 58);
-            this.pnlSwipe.TabIndex = 8;
-            this.pnlSwipe.Visible = false;
-            // 
-            // pnMenuBorder
-            // 
-            this.pnMenuBorder.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnMenuBorder.Controls.Add(this.tlpnMenu);
-            this.pnMenuBorder.Location = new System.Drawing.Point(23, 27);
-            this.pnMenuBorder.Name = "pnMenuBorder";
-            this.pnMenuBorder.Size = new System.Drawing.Size(379, 379);
-            this.pnMenuBorder.TabIndex = 18;
-            // 
             // Sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -503,18 +504,19 @@
             this.Controls.Add(this.pnlTopBorder);
             this.Controls.Add(this.groupBox_Cart);
             this.Controls.Add(this.groupBox_Add);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Sales";
             this.Text = "Sales";
             this.groupBox_Cart.ResumeLayout(false);
             this.groupBox_Cart.PerformLayout();
+            this.pnlSwipe.ResumeLayout(false);
+            this.pnlSwipe.PerformLayout();
             this.groupBox_Add.ResumeLayout(false);
             this.groupBox_Add.PerformLayout();
+            this.pnMenuBorder.ResumeLayout(false);
             this.tlpnMenu.ResumeLayout(false);
             this.pnlTopBorder.ResumeLayout(false);
             this.pnlTopBorder.PerformLayout();
-            this.pnlSwipe.ResumeLayout(false);
-            this.pnlSwipe.PerformLayout();
-            this.pnMenuBorder.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

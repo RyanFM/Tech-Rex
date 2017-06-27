@@ -1,0 +1,65 @@
+<?php
+
+$host = 'studmysql01.fhict.local';
+$database = 'dbi350130';
+$dsn = 'mysql:host=$host;dbname=$database; charset=utf8';
+$username = 'dbi350130';
+$password = 'Techrex';
+$message = '';
+// Create connection
+$mysqli = new mysqli($host, $username, $password,$database);
+// Check connection
+if ($mysqli->connect_error) {
+die("Connection failed: " . $mysqli->connect_error);
+}
+$first_name=$_POST['first_name'];
+$last_name=$_POST['last_name'];
+$email=$_POST['email'];
+$dob=$_POST['dob'];
+$stat='yes';
+$bal=5;
+$sql="INSERT INTO visitor (visitor_id,rfid,first_name,last_name,email,dob,balance,status)
+VALUES ('16', '2222','$first_name','$last_name','$email','$dob','bal','$stat')";
+if($mysqli->query($sql)===TRUE)
+{
+echo "New row created";
+}
+else{
+echo"Error ".$sql."<br>".$mysqli->error;
+}
+mail("$email",
+"Visitor registration info.","you have registered in our website i350130.iris.fhict.nl !!");
+$mysqli->close();
+
+?>
+
+<div style="width:500px ; height:600px; float:left;">
+  <div style="padding:85px;">
+    <h1>Create Account Here</h1>
+    <form method="POST" action="signup.php">
+      <input type="text" name="first_name" placeholder="First Name"><br>
+      <input type="text" name="last_name" placeholder="Last Name"><br>
+      <input type="year" name="dob" placeholder="Date of Birth"><br>
+      <input type="text" name="email" placeholder="example@example.com"><br>
+      <input type="text" name="pass" placeholder="**********"><br>
+      <select name="date">
+        <option value="ticketChoice">Choose your ticket</option>
+        <option value="weekendTicket">Whole weekend Ticket</option>
+        <option value="fridayTicket">Friday Ticket</option>
+        <option value="saturdayTicket">Saturday Ticket</option>
+      </select><br><br>
+      <input type="submit" name="signup" value="SIGN UP">
+    </form>
+  </div>
+</div>
+
+<div style="width:500px ; float:right; height:600px;">
+  <div style="padding:85px;padding-right:200px;">
+
+    <h1>Welcome Back</h1>
+    <form method="post">
+      <input type="text" name="email" placeholder="example@example.com"><br><br>
+      <input type="text" name="pass" placeholder="**********"><br><br>
+      <input type="submit" name="signin" value="SIGN IN">
+  </div>
+</div>

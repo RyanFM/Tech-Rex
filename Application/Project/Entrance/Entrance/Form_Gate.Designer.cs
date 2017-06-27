@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Gate));
             this.lbScan = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pnlScan = new System.Windows.Forms.Panel();
@@ -88,6 +89,7 @@
             this.ClientSize = new System.Drawing.Size(641, 533);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlScan);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_Gate";
             this.Text = "Form_Gate";

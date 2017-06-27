@@ -69,6 +69,7 @@ namespace Entrance
         public void ResetForm()
         {
             lbScan.Text = "Scan new tag";
+            textBox_ID.Text = "";
         }
 
         public void ExecuteIn(int milliseconds)

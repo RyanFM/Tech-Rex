@@ -73,6 +73,16 @@ namespace Purchases.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GoProGray {
+            get {
+                object obj = ResourceManager.GetObject("GoProGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Headphones {
             get {
                 object obj = ResourceManager.GetObject("Headphones", resourceCulture);
@@ -93,9 +103,39 @@ namespace Purchases.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap laptopFixed {
+            get {
+                object obj = ResourceManager.GetObject("laptopFixed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LaptopGray {
+            get {
+                object obj = ResourceManager.GetObject("LaptopGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tablet {
             get {
                 object obj = ResourceManager.GetObject("Tablet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TabletGray {
+            get {
+                object obj = ResourceManager.GetObject("TabletGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

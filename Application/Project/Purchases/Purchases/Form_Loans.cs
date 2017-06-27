@@ -14,7 +14,7 @@ using MySql.Data.MySqlClient;
 namespace Purchases
 {
 
-    public partial class Form_Loans : Form
+    public partial class Form_Loans : Form, iRFID
     {
         private string rfidTag;
         RFID UserRFID;
@@ -30,7 +30,7 @@ namespace Purchases
         public Form_Loans()
         {
             InitializeComponent();
-            DisplayShopID();
+           
             UserRFID = new RFID();
             try
             {
@@ -77,39 +77,12 @@ namespace Purchases
             Checkout();
 
         }
-        public void DisplayShopID()
-        {
-            string sql = "SELECT shop_id FROM shop WHERE type = 'rent'";
-
-            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-            MySqlCommand commandCombo = new MySqlCommand(sql, databaseConnection);
-
-            try
-            {
-                databaseConnection.Open();
-                MySqlDataReader reader = commandCombo.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    cbShop.Items.Add(reader[0].ToString());
-                }
-                reader.Close();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                databaseConnection.Close();
-
-            }
-        }
+       
 
         public void DisplayListInfo()
         {
             listView_Add.Items.Clear();
-            shopID = Convert.ToInt32(cbShop.SelectedItem);
+           
             
             string sql = "SELECT p.product_id, p.product_name, p.price, si.amount " +
                          "FROM product p , shop_inventory si " +
@@ -159,38 +132,47 @@ namespace Purchases
                 databaseConnection.Close();
 
             }
+            ResetButtons();
+            MenuButtonDisable();
         }
 
-        //public void GetProductID()
-        //{
-        //    cbProducts.Items.Clear();
-        //    shopID = Convert.ToInt32(cbShop.SelectedItem);
-        //    string sql = "SELECT product_id FROM shop_inventory WHERE shop_id = " + shopID;
 
-        //    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-        //    MySqlCommand commandCombo = new MySqlCommand(sql, databaseConnection);
 
-        //    try
-        //    {
-        //        databaseConnection.Open();
-        //        MySqlDataReader reader = commandCombo.ExecuteReader();
 
-        //        while (reader.Read())
-        //        {
-        //            cbProducts.Items.Add(reader[0].ToString());
-        //        }
-        //        reader.Close();
-        //    }
-        //    catch (MySqlException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        databaseConnection.Close();
+        public void MenuButtonDisable()
+        {
+            if (listView_Add.Items.Count != 0)
+            {
+                if (listView_Add.Items[0].SubItems[3].Text == "0")
+                {
+                    btnUsb.Enabled = false;
+                }
+                if (listView_Add.Items[1].SubItems[3].Text == "0")
+                {
+                    btnHeadphone.Enabled = false;
+                }
+                if (listView_Add.Items[2].SubItems[3].Text == "0")
+                {
+                    btnCharger.Enabled = false;
+                }
+                if (listView_Add.Items[3].SubItems[3].Text == "0")
+                {
+                    btnGoPro.BackgroundImage = Properties.Resources.GoProGray;
+                    btnGoPro.Enabled = false;
+                }
+                if (listView_Add.Items[4].SubItems[3].Text == "0")
+                {
+                    btnTablet.BackgroundImage = Properties.Resources.TabletGray;
+                    btnTablet.Enabled = false;
+                }
+                if (listView_Add.Items[5].SubItems[3].Text == "0")
+                {
+                    btnLaptop.BackgroundImage = Properties.Resources.LaptopGray;
+                    btnLaptop.Enabled = false;
+                }
 
-        //    }
-        //}
+            }
+        }
         public void ResetCart() // clears the cart and sets the total to zero
         {
             listView_Cart.Items.Clear();
@@ -275,91 +257,101 @@ namespace Purchases
             int productID;
             string productName = "";
 
-            if (EnoughToPay() && EnoughInStock())
+            if (listView_Cart.Items.Count != 0)
             {
-                for (int i = 0; i < listView_Cart.Items.Count; i++)
+
+                if (EnoughToPay() && EnoughInStock())
                 {
-                    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+                    for (int i = 0; i < listView_Cart.Items.Count; i++)
+                    {
+                        MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
-                    productName = listView_Cart.Items[i].SubItems[0].Text;
-                    databaseConnection.Open();
-                    string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
-                    MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
-                    productID = Convert.ToInt32(commandPID.ExecuteScalar());
-                    databaseConnection.Close();
+                        productName = listView_Cart.Items[i].SubItems[0].Text;
+                        databaseConnection.Open();
+                        string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
+                        MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
+                        productID = Convert.ToInt32(commandPID.ExecuteScalar());
+                        databaseConnection.Close();
 
-                    amount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
-                    // get the amount needed to be removed and product id
+                        amount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
+                        // get the amount needed to be removed and product id
 
-                    string sqlStockUpdate = "UPDATE shop_inventory SET amount = (amount - " + amount + ") WHERE shop_id = " + shopID + " AND product_id = " + productID;
+                        string sqlStockUpdate = "UPDATE shop_inventory SET amount = (amount - " + amount + ") WHERE shop_id = " + shopID + " AND product_id = " + productID;
 
-                    MySqlCommand commandUpdateStock;
-                    commandUpdateStock = new MySqlCommand(sqlStockUpdate, databaseConnection);
+                        MySqlCommand commandUpdateStock;
+                        commandUpdateStock = new MySqlCommand(sqlStockUpdate, databaseConnection);
 
-                    databaseConnection.Open();
-                    commandUpdateStock.ExecuteNonQuery();
-                    databaseConnection.Close();
-                   
-
-
-                }
-                UpdateBalance();
-                InsertOrder();
-                string receipt = "\tReceipt for " + DateTime.Now.ToString() + "\n\t======Order Details======\n";
-                for (int i = 0; i < listView_Cart.Items.Count; i++)
-                {
-                    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-
-                    int odAmount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
-                    int odPID;
+                        databaseConnection.Open();
+                        commandUpdateStock.ExecuteNonQuery();
+                        databaseConnection.Close();
 
 
-                    productName = listView_Cart.Items[i].SubItems[0].Text;
-                    databaseConnection.Open();
-                    string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
-                    MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
-                    odPID = Convert.ToInt32(commandPID.ExecuteScalar());
-                    databaseConnection.Close();
 
-                    databaseConnection.Open();
-                    string query = "INSERT INTO order_detail (order_nr, product_id, amount, type) VALUES " +
-                                   " ((SELECT o.order_nr FROM orders o, visitor v WHERE o.visitor_id = v.visitor_id ORDER BY o.order_nr desc LIMIT 1), " + odPID + ", " + odAmount + ", 'rent')";
-                    MySqlCommand command = new MySqlCommand(query, databaseConnection);
-                    command.ExecuteNonQuery();
-                    databaseConnection.Close();
+                    }
+                    UpdateBalance();
+                    InsertOrder();
+                    string receipt = "\tReceipt for " + DateTime.Now.ToString() + "\n\t======Order Details======\n";
+                    for (int i = 0; i < listView_Cart.Items.Count; i++)
+                    {
+                        MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
-                    databaseConnection.Open();
-                    string queryRent = "INSERT INTO rented_products (visitor_id, product_id, amount, days_rented) VALUES (" + visitorID + "," + odPID + ", " + odAmount + ", 1)";
-                    MySqlCommand commandRent = new MySqlCommand(queryRent, databaseConnection);
-                    commandRent.ExecuteNonQuery();
-                    databaseConnection.Close();
+                        int odAmount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
+                        int odPID;
 
-                    //give receipt
-                    receipt += "\n\t" + odAmount.ToString() + "x " + productName + "\t€" + listView_Cart.Items[i].SubItems[3].Text;
-                }
-                receipt += "\n\t-----------------\n\tTotal: \t€" + Total.ToString();
-                receipt += "\n\n\tThank you for your order";
-                MessageBox.Show(receipt);
-            }
-            else
-            {
-                if (EnoughToPay() && !EnoughInStock()) // There's not enough in stock
-                {
-                    MessageBox.Show("Not enough in stock!");
+
+                        productName = listView_Cart.Items[i].SubItems[0].Text;
+                        databaseConnection.Open();
+                        string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
+                        MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
+                        odPID = Convert.ToInt32(commandPID.ExecuteScalar());
+                        databaseConnection.Close();
+
+                        databaseConnection.Open();
+                        string query = "INSERT INTO order_detail (order_nr, product_id, amount, type) VALUES " +
+                                       " ((SELECT o.order_nr FROM orders o, visitor v WHERE o.visitor_id = v.visitor_id ORDER BY o.order_nr desc LIMIT 1), " + odPID + ", " + odAmount + ", 'rent')";
+                        MySqlCommand command = new MySqlCommand(query, databaseConnection);
+                        command.ExecuteNonQuery();
+                        databaseConnection.Close();
+
+                        databaseConnection.Open();
+                        string queryRent = "INSERT INTO rented_products (visitor_id, product_id, amount, days_rented) VALUES (" + visitorID + "," + odPID + ", " + odAmount + ", 1)";
+                        MySqlCommand commandRent = new MySqlCommand(queryRent, databaseConnection);
+                        commandRent.ExecuteNonQuery();
+                        databaseConnection.Close();
+
+                        //give receipt
+                        receipt += "\n\t" + odAmount.ToString() + "x " + productName + "\t€" + listView_Cart.Items[i].SubItems[3].Text;
+                    }
+                    receipt += "\n\t-----------------\n\tTotal: \t€" + Total.ToString();
+                    receipt += "\n\n\tThank you for your order";
+                    MessageBox.Show(receipt);
                 }
                 else
                 {
-                    MessageBox.Show("Insufficient funds!");
+                    if (EnoughToPay() && !EnoughInStock()) // There's not enough in stock
+                    {
+                        MessageBox.Show("Not enough in stock!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Insufficient funds!");
+                    }
+
                 }
+                DisplayListInfo();
+                ResetCart();
+                ResetColors();
+                proAmount = 0;
+                productID = 0;
 
+                lbSwipe.Visible = false;
+                pnlSwipe.Visible = false;
+                lblAmount.Text = proAmount.ToString();
             }
-            DisplayListInfo();
-            ResetCart();
-            ResetColors();
-            proAmount = 0;
-            productID = 0;
-            lblAmount.Text = proAmount.ToString();
-
+            else
+            {
+                MessageBox.Show("Please add something to the cart");
+            }
         }
         public void UpdateBalance()
         {
@@ -380,39 +372,12 @@ namespace Purchases
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
             databaseConnection.Open();
-            string query = "INSERT INTO orders VALUES (DEFAULT," + visitorID + "," + cbShop.Text + ")";
+            string query = "INSERT INTO orders VALUES (DEFAULT," + visitorID + "," + shopID + ")";
             MySqlCommand command = new MySqlCommand(query, databaseConnection);
             command.ExecuteNonQuery();
             databaseConnection.Close();
         }
-        //public void InsertRent()
-        //{
-        //    string productName = "";
 
-        //    MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-
-        //    for (int i = 0; i < listView_Cart.Items.Count; i++)
-        //    {
-
-
-        //        int odAmount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
-        //        int odPID;
-
-
-        //        productName = listView_Cart.Items[i].SubItems[0].Text;
-        //        databaseConnection.Open();
-        //        string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
-        //        MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
-        //        odPID = Convert.ToInt32(commandPID.ExecuteScalar());
-        //        databaseConnection.Close();
-
-        //        databaseConnection.Open();
-        //        string query = "INSERT INTO rented_products (visitor_id, product_id, amount, days_rented) VALUES (" + visitorID + "," + cbShop.Text + ")";
-        //        MySqlCommand command = new MySqlCommand(query, databaseConnection);
-        //        command.ExecuteNonQuery();
-        //        databaseConnection.Close();
-        //    }
-        //}
 
         private void button_GoBack_Click(object sender, EventArgs e)
         {
@@ -512,151 +477,116 @@ namespace Purchases
                 productID = 0;
                 lblAmount.Text = proAmount.ToString();
                 ResetColors();
+                pnlSwipe.Visible = true;
+                lbSwipe.Visible = true;
             }
         }
 
         private void button_Remove_Click(object sender, EventArgs e)
         {
-            string sqlRemove = "SELECT (deposit * " + Convert.ToInt32(listView_Cart.SelectedItems[0].SubItems[2].Text) +
+            if (listView_Cart.Items.Count != 0)
+            {
+                string sqlRemove = "SELECT (deposit * " + Convert.ToInt32(listView_Cart.SelectedItems[0].SubItems[2].Text) +
                                " ) FROM product WHERE product_name = '" + listView_Cart.SelectedItems[0].SubItems[0].Text + "'";
 
-            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-            try
-            {
-                databaseConnection.Open();
-                MySqlCommand commandRemove = new MySqlCommand(sqlRemove, databaseConnection);
-                double stRemove = Convert.ToDouble(commandRemove.ExecuteScalar());
+                MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+                try
+                {
+                    databaseConnection.Open();
+                    MySqlCommand commandRemove = new MySqlCommand(sqlRemove, databaseConnection);
+                    double stRemove = Convert.ToDouble(commandRemove.ExecuteScalar());
 
-                Total -= stRemove;
+                    Total -= stRemove;
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    databaseConnection.Close();
+
+                }
+
+
+                lbTotal.Text = "€" + Total.ToString();
+                listView_Cart.SelectedItems[0].Remove();
+
+                if (listView_Cart.Items.Count == 0)
+                {
+                    lbSwipe.Visible = false;
+                    pnlSwipe.Visible = false;
+                }
             }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                databaseConnection.Close();
-
-            }
-
-
-            lbTotal.Text = "€" + Total.ToString();
-            listView_Cart.SelectedItems[0].Remove();
         }
 
         private void button_Checkout_Click(object sender, EventArgs e)
         {
-            //int amount;
-            //int productID;
-            //string productName = "";
+           
+        }
+        public void ResetButtons()
+        {
+            
+            btnCharger.Enabled = true;
 
-            //if (EnoughToPay() && EnoughInStock())
-            //{
-            //    for (int i = 0; i < listView_Cart.Items.Count; i++)
-            //    {
-            //        MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            btnGoPro.BackgroundImage = Properties.Resources.GoPro;
+            btnGoPro.Enabled = true;
+                        
+            btnHeadphone.Enabled = true;
 
-            //        productName = listView_Cart.Items[i].SubItems[0].Text;
-            //        databaseConnection.Open();
-            //        string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
-            //        MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
-            //        productID = Convert.ToInt32(commandPID.ExecuteScalar());
-            //        databaseConnection.Close();
+            btnLaptop.BackgroundImage = Properties.Resources.laptopFixed;
+            btnLaptop.Enabled = true;
 
-            //        amount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
-            //        // get the amount needed to be removed and product id
+            btnTablet.BackgroundImage = Properties.Resources.Tablet;
+            btnTablet.Enabled = true;
 
-            //        string sqlStockUpdate = "UPDATE shop_inventory SET amount = (amount - " + amount + ") WHERE shop_id = " + shopID + " AND product_id = " + productID;
-
-            //        MySqlCommand commandUpdateStock;
-            //        commandUpdateStock = new MySqlCommand(sqlStockUpdate, databaseConnection);
-
-            //        databaseConnection.Open();
-            //        commandUpdateStock.ExecuteNonQuery();
-            //        databaseConnection.Close();
-            //        UpdateBalance();
-
-
-            //    }
-            //    InsertOrder();
-            //    string receipt = "\tReceipt for " + DateTime.Now.ToString() + "\n\t======Order Details======\n";
-            //    for (int i = 0; i < listView_Cart.Items.Count; i++)
-            //    {
-            //        MySqlConnection databaseConnection = new MySqlConnection(connectionString);
-
-            //        int odAmount = Convert.ToInt32(listView_Cart.Items[i].SubItems[2].Text);
-            //        int odPID;
-
-
-            //        productName = listView_Cart.Items[i].SubItems[0].Text;
-            //        databaseConnection.Open();
-            //        string sqlPID = "SELECT product_id FROM product WHERE product_name = '" + productName + "'";
-            //        MySqlCommand commandPID = new MySqlCommand(sqlPID, databaseConnection);
-            //        odPID = Convert.ToInt32(commandPID.ExecuteScalar());
-            //        databaseConnection.Close();
-
-            //        databaseConnection.Open();
-            //        string query = "INSERT INTO order_detail (order_nr, product_id, amount, type) VALUES " +
-            //                       " ((SELECT o.order_nr FROM orders o, visitor v WHERE o.visitor_id = v.visitor_id ORDER BY o.order_nr desc LIMIT 1), " + odPID + ", " + odAmount + ", 'rent')";
-            //        MySqlCommand command = new MySqlCommand(query, databaseConnection);
-            //        command.ExecuteNonQuery();
-            //        databaseConnection.Close();
-
-            //        databaseConnection.Open();
-            //        string queryRent = "INSERT INTO rented_products (visitor_id, product_id, amount, days_rented) VALUES (" + visitorID + "," + odPID + ", " + odAmount + ", 1)";
-            //        MySqlCommand commandRent = new MySqlCommand(queryRent, databaseConnection);
-            //        commandRent.ExecuteNonQuery();
-            //        databaseConnection.Close();
-
-            //        //give receipt
-            //        receipt += "\n\t" + odAmount.ToString() + "x " + productName + "\t€" + listView_Cart.Items[i].SubItems[3].Text;
-            //    }
-            //    MessageBox.Show(receipt);
-            //}
-            //else
-            //{
-            //    if (EnoughToPay() && !EnoughInStock()) // There's not enough in stock
-            //    {
-            //        MessageBox.Show("Not enough in stock!");
-            //    }else
-            //    {
-            //        MessageBox.Show("Insufficient funds!");
-            //    }
-
-            //}
-            //DisplayListInfo();
-            //ResetCart();
-            Checkout();
+            btnUsb.Enabled = true;
+        
         }
         public void ResetColors()
         {
-            btnGoPro.BackColor = SystemColors.Control;
-            btnTablet.BackColor = SystemColors.Control;
-            btnHeadphone.BackColor = SystemColors.Control;
-            btnCharger.BackColor = SystemColors.Control;
-            btnUsb.BackColor = SystemColors.Control;
+            btnGoPro.BackColor = Color.Transparent;
+            btnTablet.BackColor = Color.Transparent;
+            btnHeadphone.BackColor = Color.Transparent;
+            btnCharger.BackColor = Color.Transparent;
+            btnUsb.BackColor = Color.Transparent;
+            btnCharger.BackColor = Color.Transparent;
         }
         private void cbShop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DisplayListInfo();
+            switch (cbShop.SelectedItem.ToString())
+            {
+                case "TechRent":
+                    shopID = 2;
+                    break;
+
+                case "CoolGreen":
+                    shopID = 5;
+                    break;
+
+
+                default:
+                    break;
+            }
             //GetProductID();
+            ResetButtons();
+            DisplayListInfo();
             ResetCart();
+
             ResetColors();
             proAmount = 0;
             lblAmount.Text = proAmount.ToString();
+
+
         }
 
         private void btnGoPro_Click(object sender, EventArgs e)
         {
             if (cbShop.SelectedIndex != -1)
             {
+                ResetColors();
                 btnGoPro.BackColor = SystemColors.GradientActiveCaption;
-
-                btnTablet.BackColor = SystemColors.Control;
-                btnHeadphone.BackColor = SystemColors.Control;
-                btnCharger.BackColor = SystemColors.Control;
-                btnUsb.BackColor = SystemColors.Control;
-
+                
                 proAmount = 1;
                 productID = 9;
                 lblAmount.Text = proAmount.ToString();
@@ -667,12 +597,10 @@ namespace Purchases
         {
             if (cbShop.SelectedIndex != -1)
             {
-                btnGoPro.BackColor = SystemColors.Control;
+                ResetColors();
 
                 btnTablet.BackColor = SystemColors.GradientActiveCaption;
-                btnHeadphone.BackColor = SystemColors.Control;
-                btnCharger.BackColor = SystemColors.Control;
-                btnUsb.BackColor = SystemColors.Control;
+               
 
                 proAmount = 1;
                 productID = 10;
@@ -684,12 +612,9 @@ namespace Purchases
         {
             if (cbShop.SelectedIndex != -1)
             {
-                btnGoPro.BackColor = SystemColors.Control;
-
-                btnTablet.BackColor = SystemColors.Control;
+                ResetColors();
                 btnHeadphone.BackColor = SystemColors.GradientActiveCaption;
-                btnCharger.BackColor = SystemColors.Control;
-                btnUsb.BackColor = SystemColors.Control;
+               
 
                 proAmount = 1;
                 productID = 5;
@@ -701,12 +626,9 @@ namespace Purchases
         {
             if (cbShop.SelectedIndex != -1)
             {
-                btnGoPro.BackColor = SystemColors.Control;
-
-                btnTablet.BackColor = SystemColors.Control;
-                btnHeadphone.BackColor = SystemColors.Control;
+                ResetColors();
                 btnCharger.BackColor = SystemColors.GradientActiveCaption;
-                btnUsb.BackColor = SystemColors.Control;
+               
 
                 proAmount = 1;
                 productID = 6;
@@ -718,11 +640,7 @@ namespace Purchases
         {
             if (cbShop.SelectedIndex != -1)
             {
-                btnGoPro.BackColor = SystemColors.Control;
-
-                btnTablet.BackColor = SystemColors.Control;
-                btnHeadphone.BackColor = SystemColors.Control;
-                btnCharger.BackColor = SystemColors.Control;
+                ResetColors();
                 btnUsb.BackColor = SystemColors.GradientActiveCaption;
 
                 proAmount = 1;
@@ -752,6 +670,24 @@ namespace Purchases
                 proAmount++;
                 lblAmount.Text = proAmount.ToString();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex != -1)
+            {
+                ResetColors();
+                btnLaptop.BackColor = SystemColors.GradientActiveCaption;
+
+                proAmount = 1;
+                productID = 15;
+                lblAmount.Text = proAmount.ToString();
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

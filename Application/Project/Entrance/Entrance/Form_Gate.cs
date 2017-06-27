@@ -32,8 +32,8 @@ namespace Entrance
             }
             else
             {
-                this.BackColor = Color.Red;
-                label_Line1.Text = "Out of server.";
+                pnlScan.BackColor = Color.Red;
+                lbScan.Text = "Out of server.";
             }
 
             //---
@@ -51,17 +51,17 @@ namespace Entrance
             }
             catch (PhidgetException)
             {
-                this.BackColor = Color.Red;
-                label_Line1.Text = "Out of server.";
+                pnlScan.BackColor = Color.Red;
+                lbScan.Text = "Out of server.";
             }
 
             //--
         }
         public void ResetForm()
         {
-            label_Line1.Text = "Scan your tag to enter";
-            label_Line1.ForeColor = SystemColors.ControlText;
-            this.BackColor = Color.PaleGoldenrod;
+            lbScan.Text = "Scan your tag to enter";
+            lbScan.ForeColor = SystemColors.ControlText;
+            pnlScan.BackColor = Color.PaleGoldenrod;
         }
         public void ExecuteIn(int milliseconds)
         {
@@ -99,9 +99,9 @@ namespace Entrance
 
             if (ValidateStatus() == true)
             {
-                this.BackColor = Color.DarkSeaGreen;
-                label_Line1.ForeColor = Color.Azure;
-                label_Line1.Text = "PASS";
+                pnlScan.BackColor = Color.DarkSeaGreen;
+                lbScan.ForeColor = Color.Azure;
+                lbScan.Text = "PASS";
                 
                 string query = "UPDATE visitor SET status='Checked-in' WHERE rfid='" + rfidTag + "'";
                 MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
@@ -113,9 +113,9 @@ namespace Entrance
             }
             else
             {
-                this.BackColor = Color.Maroon;
-                label_Line1.ForeColor = Color.Azure;
-                label_Line1.Text = "Denied";
+                pnlScan.BackColor = Color.Maroon;
+                lbScan.ForeColor = Color.Azure;
+                lbScan.Text = "Denied";
 
                 ExecuteIn(1500);
                 //label_Line1.Text = "Scan your tag to enter";
@@ -148,8 +148,8 @@ namespace Entrance
             }
             catch
             {
-                this.BackColor = Color.Red;
-                label_Line1.Text = "Out of server.";
+                pnlScan.BackColor = Color.Red;
+                lbScan.Text = "Out of server.";
             }
             
             if (status == "Registered" )

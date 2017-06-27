@@ -66,6 +66,7 @@
     <Compile Include="Form_Loans.Designer.cs">
       <DependentUpon>Form_Loans.cs</DependentUpon>
     </Compile>
+    <Compile Include="iRFID.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Return.cs">

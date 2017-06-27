@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="iRFID.cs" />
     <Compile Include="Sales.cs">
       <SubType>Form</SubType>
     </Compile>

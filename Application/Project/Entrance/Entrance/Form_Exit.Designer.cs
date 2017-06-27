@@ -40,21 +40,17 @@
             this.lbTotal = new System.Windows.Forms.Label();
             this.lbRent = new System.Windows.Forms.Label();
             this.gbRent = new System.Windows.Forms.GroupBox();
-            this.label_CS = new System.Windows.Forms.Label();
-            this.label_status = new System.Windows.Forms.Label();
-            this.label_SS = new System.Windows.Forms.Label();
-            this.label_SystemStatus = new System.Windows.Forms.Label();
-            this.label_databasestatus = new System.Windows.Forms.Label();
-            this.label_DB = new System.Windows.Forms.Label();
-            this.label_RFIDnr = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.gbRent.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_Title
             // 
             this.label_Title.AutoSize = true;
             this.label_Title.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title.Location = new System.Drawing.Point(23, 18);
+            this.label_Title.ForeColor = System.Drawing.SystemColors.Menu;
+            this.label_Title.Location = new System.Drawing.Point(20, 11);
             this.label_Title.Name = "label_Title";
             this.label_Title.Size = new System.Drawing.Size(157, 31);
             this.label_Title.TabIndex = 1;
@@ -63,11 +59,12 @@
             // lbMoney
             // 
             this.lbMoney.AutoSize = true;
+            this.lbMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbMoney.Location = new System.Drawing.Point(24, 306);
             this.lbMoney.Name = "lbMoney";
-            this.lbMoney.Size = new System.Drawing.Size(71, 17);
+            this.lbMoney.Size = new System.Drawing.Size(183, 29);
             this.lbMoney.TabIndex = 6;
-            this.lbMoney.Text = "To return:";
+            this.lbMoney.Text = "Visitor receives:";
             // 
             // listView_main
             // 
@@ -114,6 +111,7 @@
             // btnReturn
             // 
             this.btnReturn.BackColor = System.Drawing.SystemColors.Control;
+            this.btnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btnReturn.Location = new System.Drawing.Point(27, 348);
             this.btnReturn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReturn.Name = "btnReturn";
@@ -126,9 +124,10 @@
             // lbTotal
             // 
             this.lbTotal.AutoSize = true;
-            this.lbTotal.Location = new System.Drawing.Point(106, 306);
+            this.lbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbTotal.Location = new System.Drawing.Point(211, 306);
             this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(44, 17);
+            this.lbTotal.Size = new System.Drawing.Size(71, 29);
             this.lbTotal.TabIndex = 21;
             this.lbTotal.Text = "€0.00";
             // 
@@ -157,89 +156,23 @@
             this.gbRent.TabIndex = 23;
             this.gbRent.TabStop = false;
             // 
-            // label_CS
+            // panel1
             // 
-            this.label_CS.AutoSize = true;
-            this.label_CS.Location = new System.Drawing.Point(796, 116);
-            this.label_CS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_CS.Name = "label_CS";
-            this.label_CS.Size = new System.Drawing.Size(101, 17);
-            this.label_CS.TabIndex = 14;
-            this.label_CS.Text = "Current status:";
-            // 
-            // label_status
-            // 
-            this.label_status.AutoSize = true;
-            this.label_status.Location = new System.Drawing.Point(904, 116);
-            this.label_status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_status.Name = "label_status";
-            this.label_status.Size = new System.Drawing.Size(18, 17);
-            this.label_status.TabIndex = 15;
-            this.label_status.Text = "--";
-            // 
-            // label_SS
-            // 
-            this.label_SS.AutoSize = true;
-            this.label_SS.Location = new System.Drawing.Point(796, 336);
-            this.label_SS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_SS.Name = "label_SS";
-            this.label_SS.Size = new System.Drawing.Size(85, 17);
-            this.label_SS.TabIndex = 16;
-            this.label_SS.Text = "RFID status:";
-            // 
-            // label_SystemStatus
-            // 
-            this.label_SystemStatus.AutoSize = true;
-            this.label_SystemStatus.Location = new System.Drawing.Point(904, 336);
-            this.label_SystemStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_SystemStatus.Name = "label_SystemStatus";
-            this.label_SystemStatus.Size = new System.Drawing.Size(18, 17);
-            this.label_SystemStatus.TabIndex = 17;
-            this.label_SystemStatus.Text = "--";
-            // 
-            // label_databasestatus
-            // 
-            this.label_databasestatus.AutoSize = true;
-            this.label_databasestatus.Location = new System.Drawing.Point(936, 368);
-            this.label_databasestatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_databasestatus.Name = "label_databasestatus";
-            this.label_databasestatus.Size = new System.Drawing.Size(18, 17);
-            this.label_databasestatus.TabIndex = 18;
-            this.label_databasestatus.Text = "--";
-            // 
-            // label_DB
-            // 
-            this.label_DB.AutoSize = true;
-            this.label_DB.Location = new System.Drawing.Point(796, 368);
-            this.label_DB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_DB.Name = "label_DB";
-            this.label_DB.Size = new System.Drawing.Size(115, 17);
-            this.label_DB.TabIndex = 19;
-            this.label_DB.Text = "Database status:";
-            // 
-            // label_RFIDnr
-            // 
-            this.label_RFIDnr.AutoSize = true;
-            this.label_RFIDnr.Location = new System.Drawing.Point(796, 68);
-            this.label_RFIDnr.Name = "label_RFIDnr";
-            this.label_RFIDnr.Size = new System.Drawing.Size(95, 17);
-            this.label_RFIDnr.TabIndex = 20;
-            this.label_RFIDnr.Text = "RFID number:";
+            this.panel1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.panel1.Controls.Add(this.label_Title);
+            this.panel1.Location = new System.Drawing.Point(-4, -2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(796, 53);
+            this.panel1.TabIndex = 24;
             // 
             // Form_Exit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1334, 628);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(792, 628);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.gbRent);
-            this.Controls.Add(this.label_RFIDnr);
-            this.Controls.Add(this.label_DB);
-            this.Controls.Add(this.label_databasestatus);
-            this.Controls.Add(this.label_SystemStatus);
-            this.Controls.Add(this.label_SS);
-            this.Controls.Add(this.label_status);
-            this.Controls.Add(this.label_CS);
-            this.Controls.Add(this.label_Title);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_Exit";
             this.Text = "z";
@@ -247,8 +180,9 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Exit_FormClosed);
             this.gbRent.ResumeLayout(false);
             this.gbRent.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -266,12 +200,6 @@
         private System.Windows.Forms.ColumnHeader clmSubtotal;
         private System.Windows.Forms.Label lbRent;
         private System.Windows.Forms.GroupBox gbRent;
-        private System.Windows.Forms.Label label_CS;
-        private System.Windows.Forms.Label label_status;
-        private System.Windows.Forms.Label label_SS;
-        private System.Windows.Forms.Label label_SystemStatus;
-        private System.Windows.Forms.Label label_databasestatus;
-        private System.Windows.Forms.Label label_DB;
-        private System.Windows.Forms.Label label_RFIDnr;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -37,20 +37,23 @@
             this.Deposit_Return = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Days = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button_Finish = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbShop = new System.Windows.Forms.ComboBox();
             this.Sub_total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button_Finish = new System.Windows.Forms.Button();
+            this.cbShop = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox_Return.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox_Return
             // 
+            this.groupBox_Return.BackColor = System.Drawing.Color.Honeydew;
             this.groupBox_Return.Controls.Add(this.lbTotal);
             this.groupBox_Return.Controls.Add(this.lbMoney);
             this.groupBox_Return.Controls.Add(this.button_Return);
             this.groupBox_Return.Controls.Add(this.listView_Return);
-            this.groupBox_Return.Location = new System.Drawing.Point(30, 86);
+            this.groupBox_Return.Location = new System.Drawing.Point(35, 125);
             this.groupBox_Return.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox_Return.Name = "groupBox_Return";
             this.groupBox_Return.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -62,30 +65,38 @@
             // lbTotal
             // 
             this.lbTotal.AutoSize = true;
-            this.lbTotal.Location = new System.Drawing.Point(109, 231);
+            this.lbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbTotal.Location = new System.Drawing.Point(221, 231);
             this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(44, 17);
+            this.lbTotal.Size = new System.Drawing.Size(71, 29);
             this.lbTotal.TabIndex = 19;
             this.lbTotal.Text = "€0.00";
             // 
             // lbMoney
             // 
             this.lbMoney.AutoSize = true;
+            this.lbMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbMoney.Location = new System.Drawing.Point(32, 231);
             this.lbMoney.Name = "lbMoney";
-            this.lbMoney.Size = new System.Drawing.Size(71, 17);
+            this.lbMoney.Size = new System.Drawing.Size(183, 29);
             this.lbMoney.TabIndex = 16;
-            this.lbMoney.Text = "To return:";
+            this.lbMoney.Text = "Visitor receives:";
             // 
             // button_Return
             // 
-            this.button_Return.Location = new System.Drawing.Point(258, 231);
+            this.button_Return.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.button_Return.FlatAppearance.BorderColor = System.Drawing.Color.OliveDrab;
+            this.button_Return.FlatAppearance.BorderSize = 4;
+            this.button_Return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Return.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_Return.ForeColor = System.Drawing.SystemColors.Menu;
+            this.button_Return.Location = new System.Drawing.Point(463, 223);
             this.button_Return.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_Return.Name = "button_Return";
-            this.button_Return.Size = new System.Drawing.Size(112, 38);
+            this.button_Return.Size = new System.Drawing.Size(125, 45);
             this.button_Return.TabIndex = 14;
-            this.button_Return.Text = "RETURN";
-            this.button_Return.UseVisualStyleBackColor = true;
+            this.button_Return.Text = "Return";
+            this.button_Return.UseVisualStyleBackColor = false;
             this.button_Return.Click += new System.EventHandler(this.button_Return_Click);
             // 
             // listView_Return
@@ -124,9 +135,13 @@
             this.Days.Text = "Days-Rented";
             this.Days.Width = 100;
             // 
+            // Sub_total
+            // 
+            this.Sub_total.Text = "Subtotal";
+            // 
             // button_Finish
             // 
-            this.button_Finish.Location = new System.Drawing.Point(592, 11);
+            this.button_Finish.Location = new System.Drawing.Point(622, 11);
             this.button_Finish.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_Finish.Name = "button_Finish";
             this.button_Finish.Size = new System.Drawing.Size(112, 38);
@@ -135,43 +150,57 @@
             this.button_Finish.UseVisualStyleBackColor = true;
             this.button_Finish.Click += new System.EventHandler(this.button_Finish_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(50, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 17);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Shop ID:";
-            // 
             // cbShop
             // 
+            this.cbShop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbShop.FormattingEnabled = true;
-            this.cbShop.Location = new System.Drawing.Point(118, 19);
+            this.cbShop.Items.AddRange(new object[] {
+            "TechRent",
+            "CoolGreen"});
+            this.cbShop.Location = new System.Drawing.Point(161, 15);
             this.cbShop.Name = "cbShop";
-            this.cbShop.Size = new System.Drawing.Size(54, 24);
+            this.cbShop.Size = new System.Drawing.Size(116, 24);
             this.cbShop.TabIndex = 22;
+            this.cbShop.SelectedIndexChanged += new System.EventHandler(this.cbShop_SelectedIndexChanged);
             // 
-            // Sub_total
+            // label1
             // 
-            this.Sub_total.Text = "Subtotal";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Info;
+            this.label1.Location = new System.Drawing.Point(13, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 29);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Shop name:";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.cbShop);
+            this.panel1.Controls.Add(this.button_Finish);
+            this.panel1.Location = new System.Drawing.Point(-1, -3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(748, 55);
+            this.panel1.TabIndex = 26;
             // 
             // Return
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(745, 505);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbShop);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox_Return);
-            this.Controls.Add(this.button_Finish);
             this.Name = "Return";
             this.Text = "Return";
             this.Load += new System.EventHandler(this.Return_Load);
             this.groupBox_Return.ResumeLayout(false);
             this.groupBox_Return.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -186,9 +215,10 @@
         private System.Windows.Forms.ColumnHeader Name_Return;
         private System.Windows.Forms.ColumnHeader Deposit_Return;
         private System.Windows.Forms.ColumnHeader Days;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbShop;
         private System.Windows.Forms.ColumnHeader Amount;
         private System.Windows.Forms.ColumnHeader Sub_total;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

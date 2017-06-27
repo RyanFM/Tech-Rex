@@ -32,21 +32,21 @@ namespace Entrance
         {
             InitializeComponent();
             //Form patr
-            label_status.Text = "Scan RFID Tag";
+            //label_status.Text = "Scan RFID Tag";
             //RFID part
             UserRFID = new RFID();
-            UserRFID.Attach += new AttachEventHandler(ShowAttachInfo);
-            UserRFID.Detach += new DetachEventHandler(ShowDetachInfo);
+            //UserRFID.Attach += new AttachEventHandler(ShowAttachInfo);
+            //UserRFID.Detach += new DetachEventHandler(ShowDetachInfo);
             //DB part
             DB = new DatabaseConnector();
             if (DB.IsConnected())
             {
-                label_databasestatus.Text = "Database Connected";
+                //label_databasestatus.Text = "Database Connected";
             }
             else
             {
-                label_databasestatus.Text = "Database Connecttion failed";
-                label_status.Text = "Please contact Technical staff";
+                //label_databasestatus.Text = "Database Connecttion failed";
+                //label_status.Text = "Please contact Technical staff";
             }
 
 
@@ -62,8 +62,8 @@ namespace Entrance
             }
             catch (PhidgetException)
             {
-                label_SystemStatus.Text = "This Phidget is not opened and attached";
-                label_status.Text = "Please contact Technical staff";
+                //label_SystemStatus.Text = "This Phidget is not opened and attached";
+                //label_status.Text = "Please contact Technical staff";
             }
 
         }
@@ -164,14 +164,14 @@ namespace Entrance
 
 
         //Show system status 
-        public void ShowAttachInfo(object sender, AttachEventArgs e)
-        {
-            label_SystemStatus.Text = "RFID attached, Serial Number" + e.Device.SerialNumber.ToString();
-        }
-        public void ShowDetachInfo(object sender, DetachEventArgs e)
-        {
-            label_SystemStatus.Text = "RFID detached";
-        }
+        //public void ShowAttachInfo(object sender, AttachEventArgs e)
+        //{
+        //    label_SystemStatus.Text = "RFID attached, Serial Number" + e.Device.SerialNumber.ToString();
+        //}
+        //public void ShowDetachInfo(object sender, DetachEventArgs e)
+        //{
+        //    label_SystemStatus.Text = "RFID detached";
+        //}
         //Above show system status
 
 
@@ -217,13 +217,13 @@ namespace Entrance
         {
             if (Total < 0)
             {
-                lbMoney.Text = "To receive:";
+                lbMoney.Text = "Visitor pays:";
                 lbTotal.Text = "€" + (0 - Total).ToString();
 
             }
             else
             {
-                lbMoney.Text = "To return:";
+                lbMoney.Text = "Visitor receives:";
                 lbTotal.Text = "€" + Total.ToString();
 
             }
@@ -373,15 +373,15 @@ namespace Entrance
             }
             reader.Close();
 
-            label_RFIDnr.Text += " " + rfidTag;
-            label_status.Text = "RFID scanned.";
+            //label_RFIDnr.Text += " " + rfidTag;
+            //label_status.Text = "RFID scanned.";
             DisplayListInfo();
             ChangeText();
         }
         public void DetachTag(object sender, TagEventArgs e)
         {
-            label_RFIDnr.Text = "RFID number:";
-            label_status.Text = "RFID number stored";
+            //label_RFIDnr.Text = "RFID number:";
+            //label_status.Text = "RFID number stored";
             if (listView_main.Items.Count == 0)
                 UpdateSQL();
         }

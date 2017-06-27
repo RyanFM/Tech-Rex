@@ -27,23 +27,21 @@ namespace Entrance
         public Form1()
         {
             InitializeComponent();
-            //Form patr
-            label_status.Text = "Scan RFID Tag";
-            //RFID part
+            
             UserRFID = new RFID();
-            UserRFID.Attach += new AttachEventHandler(ShowAttachInfo);
-            UserRFID.Detach += new DetachEventHandler(ShowDetachInfo);
+            //UserRFID.Attach += new AttachEventHandler(ShowAttachInfo);
+            //UserRFID.Detach += new DetachEventHandler(ShowDetachInfo);
             //DB part
             DB = new DatabaseConnector();
             if (DB.IsConnected())
             {
-                label_databasestatus.Text = "Database Connected";
+                //label_databasestatus.Text = "Database Connected";
                 DB.databaseConnection.Close();
             }
             else
             {
-                label_databasestatus.Text = "Database Connecttion failed";
-                label_status.Text = "Please contact Technical staff";
+                //label_databasestatus.Text = "Database Connecttion failed";
+                //label_status.Text = "Please contact Technical staff";
             }
             
 
@@ -59,8 +57,8 @@ namespace Entrance
             }
             catch(PhidgetException)
             {
-                label_SystemStatus.Text = "This Phidget is not opened and attached";
-                label_status.Text = "Please contact Technical staff";
+                //label_SystemStatus.Text = "This Phidget is not opened and attached";
+                //label_status.Text = "Please contact Technical staff";
             }
 
         }
@@ -68,24 +66,41 @@ namespace Entrance
 
         /***********************  method  ***************************/
 
+        public void ResetForm()
+        {
+            lbScan.Text = "Scan new tag";
+        }
+
+        public void ExecuteIn(int milliseconds)
+        {
+            var timer = new System.Windows.Forms.Timer();
+            timer.Tick += (s, e) =>
+            {
+                ((System.Windows.Forms.Timer)s).Stop(); //s is the Timer
+                ResetForm();
+
+            };
+            timer.Interval = milliseconds;
+            timer.Start();
+        }
         //Show system status 
-        public void ShowAttachInfo(object sender, AttachEventArgs e)
-        {
-            label_SystemStatus.Text = "RFID attached, Serial Number" + e.Device.SerialNumber.ToString();
-        }
-        public void ShowDetachInfo(object sender, DetachEventArgs e)
-        {
-            label_SystemStatus.Text = "RFID detached";
-        }
-        //Above show system status
+        //public void ShowAttachInfo(object sender, AttachEventArgs e)
+        //{
+        //    label_SystemStatus.Text = "RFID attached, Serial Number" + e.Device.SerialNumber.ToString();
+        //}
+        //public void ShowDetachInfo(object sender, DetachEventArgs e)
+        //{
+        //    label_SystemStatus.Text = "RFID detached";
+        //}
+        ////Above show system status
 
 
         //About Tag
         public void AttcahTag(object sender,TagEventArgs e)
         {
             rfidTag = e.Tag.ToString();
-            label_RFIDnr.Text += " "+ rfidTag;
-            label_status.Text = "RFID scanned.";
+            //label_RFIDnr.Text += " "+ rfidTag;
+            //label_status.Text = "RFID scanned.";
 
            // string query = "UPDATE visitor SET status='Checked-in' WHERE visitor_id=1";
            // MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
@@ -93,15 +108,17 @@ namespace Entrance
         }
         public void DetachTag(object sender,TagEventArgs e)
         {
-            label_RFIDnr.Text = "RFID number:";
-            label_status.Text = "RFID stored. ";//Scan QR code.";
+            //label_RFIDnr.Text = "RFID number:";
+            //label_status.Text = "RFID stored. ";//Scan QR code.";
             if (ValidateStatus())
             {
                 UpdateSQL();
+                lbScan.Text = "Confirmed";
+                ExecuteIn(2000);
             }
             else
             {
-                MessageBox.Show("Ticket may not paid.");
+                MessageBox.Show("Please enter a valid ticket number");
             }
                
         }
@@ -110,19 +127,18 @@ namespace Entrance
         //validate
         public bool ValidateStatus()
         {
-            string status = "OHHHHHHHHH SHIT";
+            int visitorID = 0;
 
             DB.databaseConnection.Open();
             
-            string query = "SELECT status FROM visitor WHERE visitor_id=" + id;
+            string query = "SELECT visitor_id FROM visitor WHERE visitor_id=" + id;
             MySqlCommand command = new MySqlCommand(query, DB.databaseConnection);
 
 
             try
             {
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                status = reader[0].ToString();
+                visitorID = Convert.ToInt32(command.ExecuteScalar());
+                
 
             }
             catch
@@ -133,9 +149,12 @@ namespace Entrance
             {
                 DB.databaseConnection.Close();
             }
-            if (status == "Reserved")
+            if (visitorID != 0)
+            {
+                return true;
+            }
+            else
                 return false;
-            return true;
 
 
 
@@ -162,7 +181,7 @@ namespace Entrance
         //Status changes
         public void ChangeStatus(string status)
         {
-            label_status.Text = status;
+            //label_status.Text = status;
         }
 
         // When close this form, trun off Antenna and its LED
@@ -183,12 +202,30 @@ namespace Entrance
             {
 
             }
-            
+            if (textBox_ID.Text != "")
+            {
+                lbScan.Visible = true;
+                pnlScan.Visible = true;
+            }
+            else
+            {
+                lbScan.Visible = false;
+                pnlScan.Visible = false;
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             UserRFID.close();
+        }
+
+        private void textBox_ID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
         }
     }
 }

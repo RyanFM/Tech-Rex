@@ -22,11 +22,12 @@ namespace Purchases
         int visitorID = 1;
         double Total = 0.00;
         double subTotal = 0.00;
+        int shopID = 0;
         bool insufficient = false;
         public Return()
         {
             InitializeComponent();
-            DisplayShopID();
+            //DisplayShopID();
 
             UserRFID = new RFID();
             try
@@ -111,13 +112,13 @@ namespace Purchases
         {
             if (Total < 0)
             {
-                lbMoney.Text = "To receive:";
+                lbMoney.Text = "Visitor pays:";
                 lbTotal.Text = "€" + (0 - Total).ToString();
 
             }
             else
             {
-                lbMoney.Text = "To return:";
+                lbMoney.Text = "Visitor receives:";
                 lbTotal.Text = "€" + Total.ToString();
 
             }
@@ -188,9 +189,10 @@ namespace Purchases
         }
         public void UpdateDB()
         {
-            int shopID = Convert.ToInt32(cbShop.SelectedItem);
+            
             int amount;
             int productID;
+         
             double Deposit = Convert.ToDouble(listView_Return.SelectedItems[0].SubItems[1].Text);
             int DaysRented = Convert.ToInt32(listView_Return.SelectedItems[0].SubItems[3].Text);
             string productName = "";
@@ -331,6 +333,24 @@ namespace Purchases
         {
             UpdateDB();
             DisplayListInfo();
+        }
+
+        private void cbShop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cbShop.SelectedItem.ToString())
+            {
+                case "TechRent":
+                    shopID = 2;
+                    break;
+
+                case "CoolGreen":
+                    shopID = 5;
+                    break;
+
+
+                default:
+                    break;
+            }
         }
     }
 }

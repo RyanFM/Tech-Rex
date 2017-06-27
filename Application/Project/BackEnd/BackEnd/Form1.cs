@@ -21,18 +21,18 @@ namespace BackEnd
             DisplayVisitorInfo();
             DisplayListInfo();
             comboBox_Search.SelectedIndex = 0;
-            
+
         }
 
         private void textBox_Search_TextChanged(object sender, EventArgs e)
         {
-            
+
 
             if (textBox_Search.Text != "") // If you begin to type into the search box
             {
-                for (int i = listView_Details.Items.Count - 1; i >= 0; i--) 
+                for (int i = listView_Details.Items.Count - 1; i >= 0; i--)
                 {
-                   
+
                     if (listView_Details.Items[i].SubItems[comboBox_Search.SelectedIndex].Text.ToLower().Contains(textBox_Search.Text.ToLower()))// Looks if the row contained in the ListView column (determined by the combobox value) contains the search query
                     {
                         listView_Details.Items[i].BackColor = SystemColors.Highlight; // Highlights the search
@@ -58,16 +58,11 @@ namespace BackEnd
         {
             string sql = "SELECT visitor_id, last_name, status, balance, ifnull(camping_spot,0)" +
                         "FROM visitor";
-
-
-
-
+            
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
             MySqlCommand commandList = new MySqlCommand(sql, databaseConnection);
 
-
-
-
+            
             try
             {
                 databaseConnection.Open();
@@ -109,23 +104,7 @@ namespace BackEnd
             }
         }
 
-        public void EnableVisitorInfo()
-        {
-            lbCheckedOutTitle.Visible = true;
-            lbCheckedOut.Visible = true;
 
-            lbPending.Visible = true;
-            lbPendingTitle.Visible = true;
-
-            lbTickets.Visible = true;
-            lbTicketsTitle.Visible = true;
-
-            lbVisitors.Visible = true;
-            lbVisitorsTitle.Visible = true;
-
-            lbEarned.Visible = false;
-            lbEarnedTitle.Visible = false;
-        }
 
 
         public void DisplayVisitorInfo()
@@ -145,7 +124,7 @@ namespace BackEnd
                 int amountAttending = Convert.ToInt32(commandAttending.ExecuteScalar());
                 lbVisitors.Text = amountAttending.ToString();
 
-                string sqlPending = "SELECT COUNT(*) FROM visitor WHERE LOWER(status)IN('pending')"; // total visitors not yet checked in
+                string sqlPending = "SELECT COUNT(*) FROM visitor WHERE LOWER(status)IN('registered')"; // total visitors not yet checked in
                 MySqlCommand commandPending = new MySqlCommand(sqlPending, databaseConnection);
                 int amountPending = Convert.ToInt32(commandPending.ExecuteScalar());
                 lbPending.Text = amountPending.ToString();
@@ -155,7 +134,7 @@ namespace BackEnd
                 int amountCheckedOut = Convert.ToInt32(commandCheckedOut.ExecuteScalar());
                 lbCheckedOut.Text = amountCheckedOut.ToString();
 
-                EnableVisitorInfo();
+                EnableEventInfo();
             }
             catch (MySqlException ex)
             {
@@ -165,11 +144,11 @@ namespace BackEnd
             {
                 databaseConnection.Close();
             }
-           
-            
+
+
         }
 
-        public void EnableSalesInfo()
+        public void DisableEventInfo()
         {
             lbCheckedOutTitle.Visible = false;
             lbCheckedOut.Visible = false;
@@ -182,11 +161,82 @@ namespace BackEnd
 
             lbVisitors.Visible = false;
             lbVisitorsTitle.Visible = false;
+        }
+        public void DisableShopInfo() 
+            {
+                lbPopularShop.Visible = false;
+                lbPopularShopTitle.Visible = false;
+
+
+            } 
+        public void DisableSalesInfo()
+        {
+            lbEarned.Visible = false;
+            lbEarnedTitle.Visible = false;
+
+            lbBestSeller.Visible = false;
+            lbBestSellerTitle.Visible = false;
+
+            lbWorstSeller.Visible = false;
+            lbWorstSellerTitle.Visible = false;
+
+        }
+        public void DisableCampInfo()
+        {
+            lbCampAmount.Visible = false;
+            lbCampAmountTitle.Visible = false;
+        }
+        public void EnableEventInfo()
+        {
+            DisableSalesInfo();
+
+            lbCheckedOutTitle.Visible = true;
+            lbCheckedOut.Visible = true;
+
+            lbPending.Visible = true;
+            lbPendingTitle.Visible = true;
+
+            lbTickets.Visible = true;
+            lbTicketsTitle.Visible = true;
+
+            lbVisitors.Visible = true;
+            lbVisitorsTitle.Visible = true;
+
+        }
+
+        public void EnableSalesInfo()
+        {
+            DisableEventInfo();
+            DisableShopInfo();
+            DisableCampInfo();
 
             lbEarned.Visible = true;
             lbEarnedTitle.Visible = true;
-        }
 
+            lbBestSeller.Visible = true;
+            lbBestSellerTitle.Visible = true;
+
+            lbWorstSeller.Visible = true;
+            lbWorstSellerTitle.Visible = true;
+        }
+        public void EnableShopInfo()
+        {
+            DisableEventInfo();
+            DisableSalesInfo();
+            DisableCampInfo();
+
+            lbPopularShop.Visible = true;
+            lbPopularShopTitle.Visible = true;
+        }
+        public void EnableCampInfo()
+        {
+            DisableEventInfo();
+            DisableSalesInfo();
+            DisableShopInfo();
+
+            lbCampAmount.Visible = true;
+            lbCampAmountTitle.Visible = true;
+        }
         public void DisplaySalesInfo()
         {
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
@@ -194,15 +244,35 @@ namespace BackEnd
             try
             {
                 databaseConnection.Open();
-                string sqlEarned = "SELECT SUM(pro.price * od.amount) AS paid  FROM product pro " + 
-                                    "JOIN order_detail od ON (pro.product_id = od.product_id) " + 
+                string sqlEarned = "SELECT SUM(pro.price * od.amount) AS paid  FROM product pro " +
+                                    "JOIN order_detail od ON (pro.product_id = od.product_id) " +
                                     "JOIN orders o ON (o.order_nr = od.order_nr) " +
                                     "JOIN visitor v ON (v.visitor_id = o.visitor_id)"; // Total money earned
                 MySqlCommand commandVisitors = new MySqlCommand(sqlEarned, databaseConnection);
                 double amountEarned = Convert.ToDouble(commandVisitors.ExecuteScalar());
                 lbEarned.Text = "€" + amountEarned.ToString();
 
-                
+                string sqlBestSeller =  "SELECT product.product_name, SUM(product.price * order_detail.amount) " +
+                                        "FROM product JOIN order_detail ON(product.product_id = order_detail.product_id) " +
+                                        "GROUP BY product.product_id " +
+                                        "ORDER BY SUM(product.price * order_detail.amount) desc " +
+                                        "LIMIT 1";
+                MySqlCommand commandBestSeller = new MySqlCommand(sqlBestSeller, databaseConnection);
+                MySqlDataReader readerBestSeller = commandBestSeller.ExecuteReader();
+                readerBestSeller.Read();
+                lbBestSeller.Text = readerBestSeller[0].ToString() + ": " + "€" + readerBestSeller[1].ToString();
+                readerBestSeller.Close();
+
+                string sqlWorstSeller = "SELECT product.product_name, SUM(product.price * order_detail.amount) " +
+                                        "FROM product JOIN order_detail ON(product.product_id = order_detail.product_id) " +
+                                        "GROUP BY product.product_id " +
+                                        "ORDER BY SUM(product.price * order_detail.amount) asc " +
+                                        "LIMIT 1";
+                MySqlCommand commandWorstSeller = new MySqlCommand(sqlWorstSeller, databaseConnection);
+                MySqlDataReader readerWorstSeller = commandWorstSeller.ExecuteReader();
+                readerWorstSeller.Read();
+                lbWorstSeller.Text = readerWorstSeller[0].ToString() + ": " + "€" + readerWorstSeller[1].ToString();
+                readerWorstSeller.Close();
 
                 EnableSalesInfo();
             }
@@ -215,6 +285,62 @@ namespace BackEnd
                 databaseConnection.Close();
             }
 
+        }
+        public void DisplayShopInfo()
+        {
+
+            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+
+            try
+            {
+                databaseConnection.Open();
+                
+                string sqlPopular = "SELECT shop.shop_name, COUNT(orders.shop_id) " +
+                                        "FROM shop JOIN orders ON (shop.shop_id = orders.shop_id) " +
+                                        "GROUP BY shop.shop_name " +
+                                        "ORDER BY COUNT(orders.shop_id) desc " +
+                                        "LIMIT 1";
+                MySqlCommand commandBestSeller = new MySqlCommand(sqlPopular, databaseConnection);
+                MySqlDataReader readerBestSeller = commandBestSeller.ExecuteReader();
+                readerBestSeller.Read();
+                lbPopularShop.Text = readerBestSeller[0].ToString() + ": " + readerBestSeller[1].ToString() + " transactions" ;
+                readerBestSeller.Close();
+
+               
+                EnableShopInfo();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                databaseConnection.Close();
+            }
+        }
+        public void DisplayCampInfo()
+        {
+
+            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+
+            try
+            {
+                databaseConnection.Open();
+                string sqlCampSpotAmount = "SELECT COUNT(ifnull(camping_spot,0)) FROM visitor WHERE camping_spot IS NOT NULL ";
+                MySqlCommand commandCamp = new MySqlCommand(sqlCampSpotAmount, databaseConnection);
+                int amount = Convert.ToInt32(commandCamp.ExecuteScalar());
+                lbCampAmount.Text = amount.ToString();
+
+                EnableCampInfo();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                databaseConnection.Close();
+            }
         }
 
         private void button_Display_Click(object sender, EventArgs e)
@@ -230,16 +356,30 @@ namespace BackEnd
         private void btnVisitorInfo_Click(object sender, EventArgs e)
         {
             DisplayVisitorInfo();
+            gbInfo.BackColor = Color.DarkOliveGreen;
         }
 
         private void btnSalesInfo_Click(object sender, EventArgs e)
         {
             DisplaySalesInfo();
+            gbInfo.BackColor = Color.MediumPurple;
         }
 
         private void comboBox_Search_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
+        }
+
+        private void btnStandsInfo_Click(object sender, EventArgs e)
+        {
+            DisplayShopInfo();
+            gbInfo.BackColor = Color.Maroon;
+        }
+
+        private void btnCampInfo_Click(object sender, EventArgs e)
+        {
+            DisplayCampInfo();
+            gbInfo.BackColor = Color.Chocolate;
         }
     }
 }

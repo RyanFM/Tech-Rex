@@ -40,9 +40,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnVisitorInfo = new System.Windows.Forms.Button();
             this.btnCampInfo = new System.Windows.Forms.Button();
-            this.btnStandsInfo = new System.Windows.Forms.Button();
+            this.btnShopInfo = new System.Windows.Forms.Button();
             this.btnSalesInfo = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbInfo = new System.Windows.Forms.GroupBox();
             this.lbEarned = new System.Windows.Forms.Label();
             this.lbEarnedTitle = new System.Windows.Forms.Label();
             this.lbCheckedOut = new System.Windows.Forms.Label();
@@ -53,8 +53,16 @@
             this.lbTickets = new System.Windows.Forms.Label();
             this.lbVisitorsTitle = new System.Windows.Forms.Label();
             this.lbTicketsTitle = new System.Windows.Forms.Label();
+            this.lbBestSellerTitle = new System.Windows.Forms.Label();
+            this.lbBestSeller = new System.Windows.Forms.Label();
+            this.lbPopularShopTitle = new System.Windows.Forms.Label();
+            this.lbPopularShop = new System.Windows.Forms.Label();
+            this.lbCampAmountTitle = new System.Windows.Forms.Label();
+            this.lbCampAmount = new System.Windows.Forms.Label();
+            this.lbWorstSellerTitle = new System.Windows.Forms.Label();
+            this.lbWorstSeller = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView_Details
@@ -65,10 +73,10 @@
             this.Status,
             this.Balance,
             this.Camping});
-            this.listView_Details.Location = new System.Drawing.Point(60, 49);
-            this.listView_Details.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listView_Details.Location = new System.Drawing.Point(53, 39);
+            this.listView_Details.Margin = new System.Windows.Forms.Padding(4);
             this.listView_Details.Name = "listView_Details";
-            this.listView_Details.Size = new System.Drawing.Size(725, 286);
+            this.listView_Details.Size = new System.Drawing.Size(645, 230);
             this.listView_Details.TabIndex = 0;
             this.listView_Details.UseCompatibleStateImageBehavior = false;
             this.listView_Details.View = System.Windows.Forms.View.Details;
@@ -100,10 +108,10 @@
             // label_Search
             // 
             this.label_Search.AutoSize = true;
-            this.label_Search.Location = new System.Drawing.Point(56, 365);
+            this.label_Search.Location = new System.Drawing.Point(50, 292);
             this.label_Search.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Search.Name = "label_Search";
-            this.label_Search.Size = new System.Drawing.Size(86, 20);
+            this.label_Search.Size = new System.Drawing.Size(77, 17);
             this.label_Search.TabIndex = 1;
             this.label_Search.Text = "Search By:";
             // 
@@ -117,20 +125,20 @@
             "Status",
             "Balance",
             "Camping"});
-            this.comboBox_Search.Location = new System.Drawing.Point(152, 365);
-            this.comboBox_Search.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox_Search.Location = new System.Drawing.Point(135, 292);
+            this.comboBox_Search.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Search.Name = "comboBox_Search";
-            this.comboBox_Search.Size = new System.Drawing.Size(142, 28);
+            this.comboBox_Search.Size = new System.Drawing.Size(127, 24);
             this.comboBox_Search.TabIndex = 2;
             this.comboBox_Search.SelectedIndexChanged += new System.EventHandler(this.comboBox_Search_SelectedIndexChanged);
             // 
             // textBox_Search
             // 
             this.textBox_Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Search.Location = new System.Drawing.Point(345, 365);
-            this.textBox_Search.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox_Search.Location = new System.Drawing.Point(307, 292);
+            this.textBox_Search.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Search.Name = "textBox_Search";
-            this.textBox_Search.Size = new System.Drawing.Size(134, 30);
+            this.textBox_Search.Size = new System.Drawing.Size(120, 26);
             this.textBox_Search.TabIndex = 3;
             this.textBox_Search.TextChanged += new System.EventHandler(this.textBox_Search_TextChanged);
             // 
@@ -139,94 +147,100 @@
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.groupBox1.Controls.Add(this.btnVisitorInfo);
             this.groupBox1.Controls.Add(this.btnCampInfo);
-            this.groupBox1.Controls.Add(this.btnStandsInfo);
+            this.groupBox1.Controls.Add(this.btnShopInfo);
             this.groupBox1.Controls.Add(this.btnSalesInfo);
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.groupBox1.Location = new System.Drawing.Point(831, 49);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Location = new System.Drawing.Point(739, 39);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(202, 446);
+            this.groupBox1.Size = new System.Drawing.Size(180, 357);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Categories";
             // 
             // btnVisitorInfo
             // 
-            this.btnVisitorInfo.BackColor = System.Drawing.Color.Green;
+            this.btnVisitorInfo.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.btnVisitorInfo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnVisitorInfo.Location = new System.Drawing.Point(19, 48);
-            this.btnVisitorInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnVisitorInfo.Location = new System.Drawing.Point(17, 38);
             this.btnVisitorInfo.Name = "btnVisitorInfo";
-            this.btnVisitorInfo.Size = new System.Drawing.Size(169, 46);
+            this.btnVisitorInfo.Size = new System.Drawing.Size(150, 37);
             this.btnVisitorInfo.TabIndex = 4;
-            this.btnVisitorInfo.Text = "Visitor Information";
+            this.btnVisitorInfo.Text = "Event Information";
             this.btnVisitorInfo.UseVisualStyleBackColor = false;
             this.btnVisitorInfo.Click += new System.EventHandler(this.btnVisitorInfo_Click);
             // 
             // btnCampInfo
             // 
-            this.btnCampInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnCampInfo.Location = new System.Drawing.Point(19, 365);
-            this.btnCampInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCampInfo.BackColor = System.Drawing.Color.Chocolate;
+            this.btnCampInfo.ForeColor = System.Drawing.SystemColors.Menu;
+            this.btnCampInfo.Location = new System.Drawing.Point(17, 292);
             this.btnCampInfo.Name = "btnCampInfo";
-            this.btnCampInfo.Size = new System.Drawing.Size(169, 42);
+            this.btnCampInfo.Size = new System.Drawing.Size(150, 34);
             this.btnCampInfo.TabIndex = 3;
             this.btnCampInfo.Text = "Camping Information";
             this.btnCampInfo.UseVisualStyleBackColor = false;
+            this.btnCampInfo.Click += new System.EventHandler(this.btnCampInfo_Click);
             // 
-            // btnStandsInfo
+            // btnShopInfo
             // 
-            this.btnStandsInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnStandsInfo.Location = new System.Drawing.Point(19, 256);
-            this.btnStandsInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnStandsInfo.Name = "btnStandsInfo";
-            this.btnStandsInfo.Size = new System.Drawing.Size(169, 42);
-            this.btnStandsInfo.TabIndex = 2;
-            this.btnStandsInfo.Text = "Stands Information";
-            this.btnStandsInfo.UseVisualStyleBackColor = false;
+            this.btnShopInfo.BackColor = System.Drawing.Color.Maroon;
+            this.btnShopInfo.ForeColor = System.Drawing.SystemColors.Menu;
+            this.btnShopInfo.Location = new System.Drawing.Point(17, 205);
+            this.btnShopInfo.Name = "btnShopInfo";
+            this.btnShopInfo.Size = new System.Drawing.Size(150, 34);
+            this.btnShopInfo.TabIndex = 2;
+            this.btnShopInfo.Text = "Shop Information";
+            this.btnShopInfo.UseVisualStyleBackColor = false;
+            this.btnShopInfo.Click += new System.EventHandler(this.btnStandsInfo_Click);
             // 
             // btnSalesInfo
             // 
-            this.btnSalesInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnSalesInfo.BackColor = System.Drawing.Color.MediumPurple;
             this.btnSalesInfo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSalesInfo.Location = new System.Drawing.Point(19, 151);
-            this.btnSalesInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSalesInfo.Location = new System.Drawing.Point(17, 121);
             this.btnSalesInfo.Name = "btnSalesInfo";
-            this.btnSalesInfo.Size = new System.Drawing.Size(169, 42);
+            this.btnSalesInfo.Size = new System.Drawing.Size(150, 34);
             this.btnSalesInfo.TabIndex = 1;
             this.btnSalesInfo.Text = "Sales Information";
             this.btnSalesInfo.UseVisualStyleBackColor = false;
             this.btnSalesInfo.Click += new System.EventHandler(this.btnSalesInfo_Click);
             // 
-            // groupBox2
+            // gbInfo
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.groupBox2.Controls.Add(this.lbEarned);
-            this.groupBox2.Controls.Add(this.lbEarnedTitle);
-            this.groupBox2.Controls.Add(this.lbCheckedOut);
-            this.groupBox2.Controls.Add(this.lbPending);
-            this.groupBox2.Controls.Add(this.lbCheckedOutTitle);
-            this.groupBox2.Controls.Add(this.lbPendingTitle);
-            this.groupBox2.Controls.Add(this.lbVisitors);
-            this.groupBox2.Controls.Add(this.lbTickets);
-            this.groupBox2.Controls.Add(this.lbVisitorsTitle);
-            this.groupBox2.Controls.Add(this.lbTicketsTitle);
-            this.groupBox2.Location = new System.Drawing.Point(60, 492);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(627, 286);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Information";
+            this.gbInfo.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.gbInfo.Controls.Add(this.lbWorstSeller);
+            this.gbInfo.Controls.Add(this.lbWorstSellerTitle);
+            this.gbInfo.Controls.Add(this.lbCampAmount);
+            this.gbInfo.Controls.Add(this.lbCampAmountTitle);
+            this.gbInfo.Controls.Add(this.lbPopularShop);
+            this.gbInfo.Controls.Add(this.lbPopularShopTitle);
+            this.gbInfo.Controls.Add(this.lbBestSeller);
+            this.gbInfo.Controls.Add(this.lbBestSellerTitle);
+            this.gbInfo.Controls.Add(this.lbEarned);
+            this.gbInfo.Controls.Add(this.lbEarnedTitle);
+            this.gbInfo.Controls.Add(this.lbCheckedOut);
+            this.gbInfo.Controls.Add(this.lbPending);
+            this.gbInfo.Controls.Add(this.lbCheckedOutTitle);
+            this.gbInfo.Controls.Add(this.lbPendingTitle);
+            this.gbInfo.Controls.Add(this.lbVisitors);
+            this.gbInfo.Controls.Add(this.lbTickets);
+            this.gbInfo.Controls.Add(this.lbVisitorsTitle);
+            this.gbInfo.Controls.Add(this.lbTicketsTitle);
+            this.gbInfo.ForeColor = System.Drawing.SystemColors.Menu;
+            this.gbInfo.Location = new System.Drawing.Point(82, 400);
+            this.gbInfo.Name = "gbInfo";
+            this.gbInfo.Size = new System.Drawing.Size(616, 229);
+            this.gbInfo.TabIndex = 6;
+            this.gbInfo.TabStop = false;
+            this.gbInfo.Text = "Information";
             // 
             // lbEarned
             // 
             this.lbEarned.AutoSize = true;
-            this.lbEarned.Location = new System.Drawing.Point(246, 55);
+            this.lbEarned.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbEarned.Location = new System.Drawing.Point(278, 44);
             this.lbEarned.Name = "lbEarned";
-            this.lbEarned.Size = new System.Drawing.Size(51, 20);
+            this.lbEarned.Size = new System.Drawing.Size(53, 20);
             this.lbEarned.TabIndex = 10;
             this.lbEarned.Text = "label1";
             this.lbEarned.Visible = false;
@@ -234,19 +248,22 @@
             // lbEarnedTitle
             // 
             this.lbEarnedTitle.AutoSize = true;
-            this.lbEarnedTitle.Location = new System.Drawing.Point(26, 55);
+            this.lbEarnedTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbEarnedTitle.Location = new System.Drawing.Point(23, 44);
             this.lbEarnedTitle.Name = "lbEarnedTitle";
-            this.lbEarnedTitle.Size = new System.Drawing.Size(160, 20);
+            this.lbEarnedTitle.Size = new System.Drawing.Size(96, 20);
             this.lbEarnedTitle.TabIndex = 9;
-            this.lbEarnedTitle.Text = "Total amount earned:";
+            this.lbEarnedTitle.Text = "Total sales:";
             this.lbEarnedTitle.Visible = false;
             // 
             // lbCheckedOut
             // 
             this.lbCheckedOut.AutoSize = true;
-            this.lbCheckedOut.Location = new System.Drawing.Point(243, 208);
+            this.lbCheckedOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbCheckedOut.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbCheckedOut.Location = new System.Drawing.Point(278, 166);
             this.lbCheckedOut.Name = "lbCheckedOut";
-            this.lbCheckedOut.Size = new System.Drawing.Size(51, 20);
+            this.lbCheckedOut.Size = new System.Drawing.Size(53, 20);
             this.lbCheckedOut.TabIndex = 8;
             this.lbCheckedOut.Text = "label6";
             this.lbCheckedOut.Visible = false;
@@ -254,9 +271,11 @@
             // lbPending
             // 
             this.lbPending.AutoSize = true;
-            this.lbPending.Location = new System.Drawing.Point(243, 159);
+            this.lbPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbPending.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbPending.Location = new System.Drawing.Point(278, 127);
             this.lbPending.Name = "lbPending";
-            this.lbPending.Size = new System.Drawing.Size(51, 20);
+            this.lbPending.Size = new System.Drawing.Size(53, 20);
             this.lbPending.TabIndex = 7;
             this.lbPending.Text = "label5";
             this.lbPending.Visible = false;
@@ -264,27 +283,33 @@
             // lbCheckedOutTitle
             // 
             this.lbCheckedOutTitle.AutoSize = true;
-            this.lbCheckedOutTitle.Location = new System.Drawing.Point(26, 208);
+            this.lbCheckedOutTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbCheckedOutTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbCheckedOutTitle.Location = new System.Drawing.Point(23, 166);
             this.lbCheckedOutTitle.Name = "lbCheckedOutTitle";
-            this.lbCheckedOutTitle.Size = new System.Drawing.Size(191, 20);
+            this.lbCheckedOutTitle.Size = new System.Drawing.Size(205, 20);
             this.lbCheckedOutTitle.TabIndex = 6;
             this.lbCheckedOutTitle.Text = "Total visitors checked out:";
             // 
             // lbPendingTitle
             // 
             this.lbPendingTitle.AutoSize = true;
-            this.lbPendingTitle.Location = new System.Drawing.Point(26, 159);
+            this.lbPendingTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbPendingTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbPendingTitle.Location = new System.Drawing.Point(23, 127);
             this.lbPendingTitle.Name = "lbPendingTitle";
-            this.lbPendingTitle.Size = new System.Drawing.Size(161, 20);
+            this.lbPendingTitle.Size = new System.Drawing.Size(173, 20);
             this.lbPendingTitle.TabIndex = 5;
             this.lbPendingTitle.Text = "Total visitors pending:";
             // 
             // lbVisitors
             // 
             this.lbVisitors.AutoSize = true;
-            this.lbVisitors.Location = new System.Drawing.Point(243, 101);
+            this.lbVisitors.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbVisitors.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbVisitors.Location = new System.Drawing.Point(278, 81);
             this.lbVisitors.Name = "lbVisitors";
-            this.lbVisitors.Size = new System.Drawing.Size(51, 20);
+            this.lbVisitors.Size = new System.Drawing.Size(53, 20);
             this.lbVisitors.TabIndex = 4;
             this.lbVisitors.Text = "label5";
             this.lbVisitors.Visible = false;
@@ -292,9 +317,11 @@
             // lbTickets
             // 
             this.lbTickets.AutoSize = true;
-            this.lbTickets.Location = new System.Drawing.Point(243, 55);
+            this.lbTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbTickets.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbTickets.Location = new System.Drawing.Point(278, 44);
             this.lbTickets.Name = "lbTickets";
-            this.lbTickets.Size = new System.Drawing.Size(51, 20);
+            this.lbTickets.Size = new System.Drawing.Size(53, 20);
             this.lbTickets.TabIndex = 3;
             this.lbTickets.Text = "label4";
             this.lbTickets.Visible = false;
@@ -302,38 +329,136 @@
             // lbVisitorsTitle
             // 
             this.lbVisitorsTitle.AutoSize = true;
-            this.lbVisitorsTitle.Location = new System.Drawing.Point(26, 101);
+            this.lbVisitorsTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbVisitorsTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbVisitorsTitle.Location = new System.Drawing.Point(23, 81);
             this.lbVisitorsTitle.Name = "lbVisitorsTitle";
-            this.lbVisitorsTitle.Size = new System.Drawing.Size(171, 20);
+            this.lbVisitorsTitle.Size = new System.Drawing.Size(183, 20);
             this.lbVisitorsTitle.TabIndex = 1;
             this.lbVisitorsTitle.Text = "Total visitors attending:\r\n";
             // 
             // lbTicketsTitle
             // 
             this.lbTicketsTitle.AutoSize = true;
-            this.lbTicketsTitle.Location = new System.Drawing.Point(26, 55);
+            this.lbTicketsTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbTicketsTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbTicketsTitle.Location = new System.Drawing.Point(23, 44);
             this.lbTicketsTitle.Name = "lbTicketsTitle";
-            this.lbTicketsTitle.Size = new System.Drawing.Size(131, 20);
+            this.lbTicketsTitle.Size = new System.Drawing.Size(141, 20);
             this.lbTicketsTitle.TabIndex = 0;
             this.lbTicketsTitle.Text = "Total tickets sold:";
             // 
+            // lbBestSellerTitle
+            // 
+            this.lbBestSellerTitle.AutoSize = true;
+            this.lbBestSellerTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbBestSellerTitle.Location = new System.Drawing.Point(23, 81);
+            this.lbBestSellerTitle.Name = "lbBestSellerTitle";
+            this.lbBestSellerTitle.Size = new System.Drawing.Size(163, 20);
+            this.lbBestSellerTitle.TabIndex = 11;
+            this.lbBestSellerTitle.Text = "Best selling product:";
+            this.lbBestSellerTitle.Visible = false;
+            // 
+            // lbBestSeller
+            // 
+            this.lbBestSeller.AutoSize = true;
+            this.lbBestSeller.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbBestSeller.Location = new System.Drawing.Point(278, 81);
+            this.lbBestSeller.Name = "lbBestSeller";
+            this.lbBestSeller.Size = new System.Drawing.Size(53, 20);
+            this.lbBestSeller.TabIndex = 12;
+            this.lbBestSeller.Text = "label1";
+            this.lbBestSeller.Visible = false;
+            // 
+            // lbPopularShopTitle
+            // 
+            this.lbPopularShopTitle.AutoSize = true;
+            this.lbPopularShopTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbPopularShopTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbPopularShopTitle.Location = new System.Drawing.Point(23, 44);
+            this.lbPopularShopTitle.Name = "lbPopularShopTitle";
+            this.lbPopularShopTitle.Size = new System.Drawing.Size(152, 20);
+            this.lbPopularShopTitle.TabIndex = 13;
+            this.lbPopularShopTitle.Text = "Most popular shop:";
+            this.lbPopularShopTitle.Visible = false;
+            // 
+            // lbPopularShop
+            // 
+            this.lbPopularShop.AutoSize = true;
+            this.lbPopularShop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbPopularShop.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbPopularShop.Location = new System.Drawing.Point(278, 44);
+            this.lbPopularShop.Name = "lbPopularShop";
+            this.lbPopularShop.Size = new System.Drawing.Size(53, 20);
+            this.lbPopularShop.TabIndex = 14;
+            this.lbPopularShop.Text = "label1";
+            this.lbPopularShop.Visible = false;
+            // 
+            // lbCampAmountTitle
+            // 
+            this.lbCampAmountTitle.AutoSize = true;
+            this.lbCampAmountTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbCampAmountTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbCampAmountTitle.Location = new System.Drawing.Point(24, 44);
+            this.lbCampAmountTitle.Name = "lbCampAmountTitle";
+            this.lbCampAmountTitle.Size = new System.Drawing.Size(196, 20);
+            this.lbCampAmountTitle.TabIndex = 15;
+            this.lbCampAmountTitle.Text = "Number of spots booked:";
+            this.lbCampAmountTitle.Visible = false;
+            // 
+            // lbCampAmount
+            // 
+            this.lbCampAmount.AutoSize = true;
+            this.lbCampAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbCampAmount.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbCampAmount.Location = new System.Drawing.Point(278, 44);
+            this.lbCampAmount.Name = "lbCampAmount";
+            this.lbCampAmount.Size = new System.Drawing.Size(53, 20);
+            this.lbCampAmount.TabIndex = 16;
+            this.lbCampAmount.Text = "label1";
+            this.lbCampAmount.Visible = false;
+            // 
+            // lbWorstSellerTitle
+            // 
+            this.lbWorstSellerTitle.AutoSize = true;
+            this.lbWorstSellerTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbWorstSellerTitle.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbWorstSellerTitle.Location = new System.Drawing.Point(23, 127);
+            this.lbWorstSellerTitle.Name = "lbWorstSellerTitle";
+            this.lbWorstSellerTitle.Size = new System.Drawing.Size(170, 20);
+            this.lbWorstSellerTitle.TabIndex = 17;
+            this.lbWorstSellerTitle.Text = "Least selling product:";
+            this.lbWorstSellerTitle.Visible = false;
+            // 
+            // lbWorstSeller
+            // 
+            this.lbWorstSeller.AutoSize = true;
+            this.lbWorstSeller.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbWorstSeller.ForeColor = System.Drawing.SystemColors.Menu;
+            this.lbWorstSeller.Location = new System.Drawing.Point(278, 127);
+            this.lbWorstSeller.Name = "lbWorstSeller";
+            this.lbWorstSeller.Size = new System.Drawing.Size(53, 20);
+            this.lbWorstSeller.TabIndex = 18;
+            this.lbWorstSeller.Text = "label5";
+            this.lbWorstSeller.Visible = false;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1060, 840);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(942, 672);
+            this.Controls.Add(this.gbInfo);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox_Search);
             this.Controls.Add(this.comboBox_Search);
             this.Controls.Add(this.label_Search);
             this.Controls.Add(this.listView_Details);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Festival Management";
             this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbInfo.ResumeLayout(false);
+            this.gbInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -352,9 +477,9 @@
         private System.Windows.Forms.TextBox textBox_Search;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCampInfo;
-        private System.Windows.Forms.Button btnStandsInfo;
+        private System.Windows.Forms.Button btnShopInfo;
         private System.Windows.Forms.Button btnSalesInfo;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbInfo;
         private System.Windows.Forms.Label lbVisitorsTitle;
         private System.Windows.Forms.Label lbTicketsTitle;
         private System.Windows.Forms.Label lbCheckedOut;
@@ -366,6 +491,14 @@
         private System.Windows.Forms.Label lbEarnedTitle;
         private System.Windows.Forms.Label lbEarned;
         private System.Windows.Forms.Button btnVisitorInfo;
+        private System.Windows.Forms.Label lbBestSeller;
+        private System.Windows.Forms.Label lbBestSellerTitle;
+        private System.Windows.Forms.Label lbPopularShop;
+        private System.Windows.Forms.Label lbPopularShopTitle;
+        private System.Windows.Forms.Label lbCampAmount;
+        private System.Windows.Forms.Label lbCampAmountTitle;
+        private System.Windows.Forms.Label lbWorstSeller;
+        private System.Windows.Forms.Label lbWorstSellerTitle;
     }
 }
 
